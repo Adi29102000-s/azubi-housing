@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azubi Housing in Germany — where to apply</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111113;
+    --signal:#FFCE00;
+    --slate:#54545E;
+    --paper:#FFFFFF;
+    --rule:#D8D8D2;
+    --wash:#F4F4F1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  a{color:inherit}
+
+  .band{
+    background:var(--ink);color:var(--paper);
+    padding:44px 0 40px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--signal);margin-bottom:16px;
+  }
+  h1{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:clamp(44px,9vw,82px);line-height:.92;
+    letter-spacing:-.01em;text-transform:uppercase;
+  }
+  h1 em{font-style:normal;color:var(--signal)}
+  .sub{
+    margin-top:18px;max-width:46ch;color:#C9C9CE;font-size:16px;
+  }
+
+  .gate{
+    background:var(--signal);color:var(--ink);
+    padding:20px 0;border-bottom:3px solid var(--ink);
+  }
+  .gate h2{
+    font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;
+    font-size:22px;letter-spacing:.02em;margin-bottom:8px;
+  }
+  .gate ul{list-style:none;display:grid;gap:5px}
+  .gate li{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    padding-left:20px;position:relative;
+  }
+  .gate li::before{content:"→";position:absolute;left:0;font-weight:500}
+
+  section{padding:52px 0;border-bottom:1px solid var(--rule)}
+  h2.sec{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:clamp(28px,5vw,40px);text-transform:uppercase;
+    line-height:1;margin-bottom:6px;
+  }
+  .seclede{color:var(--slate);max-width:56ch;margin-bottom:28px;font-size:15px}
+
+  .routes{display:grid;gap:0;border-top:2px solid var(--ink)}
+  .route{
+    display:grid;grid-template-columns:38px 1fr;gap:16px;
+    padding:20px 0;border-bottom:1px solid var(--rule);align-items:start;
+  }
+  .rnum{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    color:var(--slate);padding-top:4px;
+  }
+  .rname{
+    font-family:'Barlow Condensed',sans-serif;font-weight:600;
+    font-size:23px;text-transform:uppercase;line-height:1.1;
+  }
+  .rbody{color:var(--slate);font-size:15px;margin-top:5px}
+  .rlink{
+    display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    text-decoration:none;border-bottom:2px solid var(--signal);
+    padding-bottom:2px;transition:background .15s;
+  }
+  .rlink:hover,.rlink:focus{background:var(--signal)}
+
+  .city{border-top:2px solid var(--ink);margin-bottom:0}
+  .cityhead{
+    display:flex;align-items:baseline;gap:12px;
+    padding:14px 0 10px;flex-wrap:wrap;
+  }
+  .cityname{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:34px;text-transform:uppercase;line-height:1;
+  }
+  .citytag{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--slate);
+  }
+  .opts{list-style:none;border-top:1px solid var(--rule)}
+  .opts li{
+    padding:13px 0;border-bottom:1px solid var(--rule);
+    display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+    flex-wrap:wrap;
+  }
+  .oname{font-weight:500;font-size:15px;flex:1 1 auto;min-width:180px}
+  .onote{color:var(--slate);font-size:14px;font-weight:400}
+  .go{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;text-decoration:none;white-space:nowrap;
+    border-bottom:2px solid var(--signal);padding-bottom:2px;
+  }
+  .go:hover,.go:focus{background:var(--signal)}
+  .go.search{border-bottom-color:var(--rule);color:var(--slate)}
+
+  .money{background:var(--wash);padding:24px;border-left:5px solid var(--ink)}
+  .money h3{
+    font-family:'Barlow Condensed',sans-serif;font-size:21px;
+    text-transform:uppercase;margin-bottom:6px;
+  }
+  .money p{color:var(--slate);font-size:15px;margin-bottom:14px}
+  .money + .money{margin-top:16px}
+
+  .warn{
+    background:var(--ink);color:var(--paper);padding:28px 24px;
+    border-top:6px solid var(--signal);
+  }
+  .warn h3{
+    font-family:'Barlow Condensed',sans-serif;font-size:24px;
+    text-transform:uppercase;color:var(--signal);margin-bottom:12px;
+  }
+  .warn ul{list-style:none;display:grid;gap:9px}
+  .warn li{
+    font-size:15px;padding-left:22px;position:relative;color:#DEDEE2;
+  }
+  .warn li::before{
+    content:"×";position:absolute;left:0;color:var(--signal);font-weight:600;
+  }
+
+  footer{padding:36px 0 60px;color:var(--slate);font-size:13px}
+  footer .mono{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  :focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div class="wrap">
+    <div class="eyebrow">Ausbildung · Germany · Housing</div>
+    <h1>Where Azubis<br>actually <em>get a room</em></h1>
+    <p class="sub">Student dorms turn trainees away. These are the systems built for you instead — with the application page for each one.</p>
+  </div>
+</div>
+
+<div class="gate">
+  <div class="wrap">
+    <h2>Check this before you apply anywhere</h2>
+    <ul>
+      <li>Most Azubi dorms accept ages 16–26 only</li>
+      <li>You need a signed Ausbildungsvertrag, or one starting soon</li>
+      <li>Your training company must be in that city</li>
+      <li>University students are not eligible — apply to Studierendenwerk instead</li>
+    </ul>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <h2 class="sec">Start with these three</h2>
+  <p class="seclede">Work through them in this order. The first two are cheap and hard to get. The third is expensive and always available.</p>
+
+  <div class="routes">
+    <div class="route">
+      <div class="rnum">01</div>
+      <div>
+        <div class="rname">Azubiwerk &amp; Jugendwohnheime</div>
+        <p class="rbody">Dorms built specifically for trainees. Furnished rooms, shared flats, often with staff on site. Cheapest option by a wide margin. Hamburg has the most developed network; Kolping runs houses nationwide.</p>
+        <a class="rlink" href="https://azubiwerk-hamburg.de/en/" target="_blank" rel="noopener">Azubiwerk Hamburg ↗</a>
+        <a class="rlink" href="https://www.kolping-azubiwohnen.de/" target="_blank" rel="noopener" style="margin-left:14px">Kolping Azubiwohnen ↗</a>
+      </div>
+    </div>
+
+    <div class="route">
+      <div class="rnum">02</div>
+      <div>
+        <div class="rname">Ask your training company</div>
+        <p class="rbody">Werkswohnungen — company housing. Common in nursing, hospitals, airports and heavy industry. Nobody advertises this. Ask HR directly during onboarding, before you start looking anywhere else. It costs you one email.</p>
+      </div>
+    </div>
+
+    <div class="route">
+      <div class="rnum">03</div>
+      <div>
+        <div class="rname">WG-Gesucht</div>
+        <p class="rbody">Germany's main shared-flat platform. Always has listings, always competitive. Write in German, answer everything the ad asks for, and never send money before signing.</p>
+        <a class="rlink" href="https://www.wg-gesucht.de/en/" target="_blank" rel="noopener">Open WG-Gesucht ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">By city</h2>
+  <p class="seclede">Direct links where a national portal exists. Where housing is run by small local providers, use the search link — the operators change and a stale link is worse than none.</p>
+
+  <div class="city">
+    <div class="cityhead"><span class="cityname">Hamburg</span><span class="citytag">Best-developed Azubi network</span></div>
+    <ul class="opts">
+      <li><span class="oname">Azubiwerk Hamburg <span class="onote">— four houses, online application</span></span><a class="go" href="https://azubiwerk-hamburg.de/en/" target="_blank" rel="noopener">Apply ↗</a></li>
+      <li><span class="oname">Kolping Hamburg-Eimsbüttel <span class="onote">— 150 single rooms, own bathroom</span></span><a class="go" href="https://www.kolping-azubiwohnen.de/hamburg-eimsbuettel/" target="_blank" rel="noopener">Apply ↗</a></li>
+      <li><span class="oname">Studierendenwerk Hamburg <span class="onote">— quota places for Azubis</span></span><a class="go" href="https://www.hamburg.de/politik-und-verwaltung/behoerden/behoerde-fuer-stadtentwicklung-und-wohnen/themen/wohnen/mieten/azubi-wohnen-hamburg-32008" target="_blank" rel="noopener">Overview ↗</a></li>
+      <li><span class="oname">Full city list <span class="onote">— maintained by Handelskammer Hamburg</span></span><a class="go" href="https://www.ihk.de/hamburg/ausbildung-weiterbildung/ausbildung/azubiwohnraum-3449732" target="_blank" rel="noopener">See all ↗</a></li>
+    </ul>
+  </div>
+
+  <div class="city" style="margin-top:34px">
+    <div class="cityhead"><span class="cityname">Cologne</span><span class="citytag">Kolping headquarters</span></div>
+    <ul class="opts">
+      <li><span class="oname">Kolping Jugendwohnen <span class="onote">— city map of all houses</span></span><a class="go" href="https://www.kolping-jugendwohnen.de/" target="_blank" rel="noopener">Find a house ↗</a></li>
+      <li><span class="oname">Private WG rooms</span><a class="go" href="https://www.wg-gesucht.de/en/" target="_blank" rel="noopener">WG-Gesucht ↗</a></li>
+    </ul>
+  </div>
+
+  <div class="city" style="margin-top:34px">
+    <div class="cityhead"><span class="cityname">Berlin</span><span class="citytag">Very high competition</span></div>
+    <ul class="opts">
+      <li><span class="oname">Berlinovo <span class="onote">— micro-apartments, trainees eligible</span></span><a class="go search" href="https://www.google.com/search?q=berlinovo+apartment+azubi+wohnen" target="_blank" rel="noopener">Search ↗</a></li>
+      <li><span class="oname">Kolping Berlin</span><a class="go" href="https://www.kolping-jugendwohnen.de/" target="_blank" rel="noopener">Check map ↗</a></li>
+    </ul>
+  </div>
+
+  <div class="city" style="margin-top:34px">
+    <div class="cityhead"><span class="cityname">Munich</span><span class="citytag">Most expensive market</span></div>
+    <ul class="opts">
+      <li><span class="oname">Kreisjugendring München-Stadt <span class="onote">— youth residences, under 27</span></span><a class="go search" href="https://www.google.com/search?q=Kreisjugendring+M%C3%BCnchen+Jugendwohnheim+Azubi" target="_blank" rel="noopener">Search ↗</a></li>
+      <li><span class="oname">Kolping München</span><a class="go" href="https://www.kolping-jugendwohnen.de/" target="_blank" rel="noopener">Check map ↗</a></li>
+    </ul>
+  </div>
+
+  <div class="city" style="margin-top:34px">
+    <div class="cityhead"><span class="cityname">Frankfurt</span><span class="citytag">Employer housing is common</span></div>
+    <ul class="opts">
+      <li><span class="oname">Kolping Frankfurt</span><a class="go" href="https://www.kolping-azubiwohnen.de/" target="_blank" rel="noopener">Check map ↗</a></li>
+      <li><span class="oname">Caritas &amp; Diakonie youth housing</span><a class="go search" href="https://www.google.com/search?q=Jugendwohnheim+Frankfurt+Azubi+Caritas+Diakonie" target="_blank" rel="noopener">Search ↗</a></li>
+    </ul>
+  </div>
+
+  <div class="city" style="margin-top:34px">
+    <div class="cityhead"><span class="cityname">Stuttgart</span><span class="citytag">Industrial employers help</span></div>
+    <ul class="opts">
+      <li><span class="oname">Jugendwohnheime Stuttgart</span><a class="go search" href="https://www.google.com/search?q=Jugendwohnheim+Stuttgart+Auszubildende+Zimmer" target="_blank" rel="noopener">Search ↗</a></li>
+      <li><span class="oname">Employer housing <span class="onote">— ask HR at Bosch, Daimler, hospitals</span></span></li>
+    </ul>
+  </div>
+
+  <div class="city" style="margin-top:34px">
+    <div class="cityhead"><span class="cityname">Any other city</span><span class="citytag">Works everywhere</span></div>
+    <ul class="opts">
+      <li><span class="oname">Search "Azubiwohnheim + your city" in German <span class="onote">— English searches miss local providers</span></span><a class="go search" href="https://www.google.com/search?q=Azubiwohnheim+Auszubildende+Zimmer" target="_blank" rel="noopener">Search ↗</a></li>
+      <li><span class="oname">Ask your IHK <span class="onote">— chambers of commerce keep local housing lists</span></span><a class="go search" href="https://www.google.com/search?q=IHK+Azubiwohnraum" target="_blank" rel="noopener">Search ↗</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">If the rent doesn't fit your salary</h2>
+  <p class="seclede">Two government payments exist for exactly this. Both are applications you make yourself — nobody will offer them to you.</p>
+
+  <div class="money">
+    <h3>Berufsausbildungsbeihilfe (BAB)</h3>
+    <p>Monthly support from the Agentur für Arbeit for trainees living away from home whose parents can't cover costs. Apply through the employment agency.</p>
+    <a class="rlink" href="https://www.google.com/search?q=Berufsausbildungsbeihilfe+BAB+Antrag+Agentur+f%C3%BCr+Arbeit" target="_blank" rel="noopener">Find the application ↗</a>
+  </div>
+
+  <div class="money">
+    <h3>Wohngeld</h3>
+    <p>General rent subsidy from your local Bürgeramt. This is the route if you're not eligible for BAB — for example on a second Ausbildung.</p>
+    <a class="rlink" href="https://www.google.com/search?q=Wohngeld+Antrag+B%C3%BCrgeramt" target="_blank" rel="noopener">Find the application ↗</a>
+  </div>
+</section>
+
+<section style="border-bottom:none">
+  <div class="warn">
+    <h3>Walk away if you see this</h3>
+    <ul>
+      <li>Money requested before a viewing or a signed contract</li>
+      <li>Landlord says they're abroad and will post the keys</li>
+      <li>Rent far below everything else in that city</li>
+      <li>No photos of the inside</li>
+      <li>Pressure to decide today because "others are waiting"</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p class="mono">Check every link before you rely on it</p>
+  <p style="margin-top:10px">Providers, prices and eligibility rules change. Confirm details on the provider's own site. Where a direct application page wasn't verifiable, this page sends you to a search instead of a link that might be dead.</p>
+</footer>
+
+</div>
+</body>
+</html>
