@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reel Frame Maker — unpackgermany</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111113;
+    --signal:#FFCE00;
+    --slate:#54545E;
+    --paper:#FFFFFF;
+    --rule:#D8D8D2;
+    --wash:#F4F4F1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--wash);color:var(--ink);
+    font-family:'Poppins',system-ui,sans-serif;font-size:15px;line-height:1.5;
+    padding:24px 16px 60px;
+  }
+  .shell{max-width:1180px;margin:0 auto}
+
+  header{margin-bottom:24px}
+  .kicker{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--slate);margin-bottom:6px;
+  }
+  h1{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:clamp(32px,6vw,54px);text-transform:uppercase;line-height:.95;
+  }
+  .lede{color:var(--slate);max-width:60ch;margin-top:8px}
+
+  .cols{display:grid;grid-template-columns:1fr;gap:26px;margin-top:26px}
+  @media(min-width:940px){.cols{grid-template-columns:400px 1fr;align-items:start}}
+
+  .panel{background:var(--paper);border:2px solid var(--ink);padding:20px}
+  .panel h2{
+    font-family:'Barlow Condensed',sans-serif;font-size:22px;
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  label{
+    display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--slate);
+    margin:14px 0 5px;
+  }
+  textarea,input[type=text],select{
+    width:100%;padding:9px 11px;border:2px solid var(--rule);
+    font-family:'Poppins',sans-serif;font-size:14px;background:var(--paper);
+  }
+  textarea{resize:vertical;min-height:70px}
+  textarea:focus,input:focus,select:focus{outline:none;border-color:var(--ink)}
+  .row{display:flex;gap:10px}
+  .row>*{flex:1}
+
+  .swatches{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+  .sw{
+    width:34px;height:34px;border:2px solid var(--ink);cursor:pointer;
+  }
+  .sw[aria-pressed="true"]{outline:3px solid var(--ink);outline-offset:2px}
+
+  button.act{
+    width:100%;margin-top:20px;padding:13px;border:none;cursor:pointer;
+    background:var(--ink);color:var(--signal);
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    letter-spacing:.1em;text-transform:uppercase;
+  }
+  button.act:hover{background:#2A2A2E}
+  button.ghost{
+    background:var(--paper);color:var(--ink);border:2px solid var(--ink);
+  }
+  button.ghost:hover{background:var(--signal)}
+
+  .stagewrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+  canvas{
+    width:100%;max-width:320px;height:auto;
+    border:2px solid var(--ink);background:#000;display:block;
+  }
+  .hint{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--slate);
+    text-align:center;letter-spacing:.04em;
+  }
+
+  .presets{display:grid;gap:8px;margin-top:6px}
+  .preset{
+    text-align:left;padding:9px 11px;border:2px solid var(--rule);
+    background:var(--paper);cursor:pointer;font-family:'Poppins',sans-serif;font-size:13px;
+  }
+  .preset:hover{border-color:var(--ink);background:var(--signal)}
+  .preset b{display:block;font-size:11px;font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:2px}
+  .preset:hover b{color:var(--ink)}
+
+  footer{margin-top:34px;color:var(--slate);font-size:13px;max-width:70ch}
+  :focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<header>
+  <div class="kicker">unpackgermany · internal tool</div>
+  <h1>Reel frame maker</h1>
+  <p class="lede">Type your text, download a 1080×1920 frame. Same font, same colours, every time — so the grid looks like one account instead of nine.</p>
+</header>
+
+<div class="cols">
+
+  <div class="panel">
+    <h2>Text</h2>
+
+    <label for="p1">Hook line (big)</label>
+    <textarea id="p1">You can't open a bank account in Germany until you do this first</textarea>
+
+    <label for="p2">Sub line (optional)</label>
+    <textarea id="p2">Anmeldung → Bank → Insurance → Enrolment</textarea>
+
+    <label for="p3">Bottom strip (optional)</label>
+    <input type="text" id="p3" value="Comment &quot;WEEK1&quot; for the full checklist">
+
+    <label>Hook colour</label>
+    <div class="swatches" id="swatch">
+      <button class="sw" data-c="#FFCE00" style="background:#FFCE00" aria-pressed="true" title="Yellow"></button>
+      <button class="sw" data-c="#FFFFFF" style="background:#FFFFFF" aria-pressed="false" title="White"></button>
+      <button class="sw" data-c="#FF5A4E" style="background:#FF5A4E" aria-pressed="false" title="Red"></button>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="pos">Text block position</label>
+        <select id="pos">
+          <option value="mid" selected>Middle (safe)</option>
+          <option value="upper">Upper third</option>
+          <option value="lower">Lower third</option>
+        </select>
+      </div>
+      <div>
+        <label for="dim">Background dim</label>
+        <select id="dim">
+          <option value="0.55" selected>Medium</option>
+          <option value="0.75">Heavy</option>
+          <option value="0.35">Light</option>
+          <option value="1">Solid black</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="bg">Background image (optional — use a frame from your video)</label>
+    <input type="file" id="bg" accept="image/*">
+
+    <button class="act" id="dl">Download 1080 × 1920</button>
+    <button class="act ghost" id="clear" style="margin-top:10px">Clear background</button>
+
+    <h2 style="margin-top:26px">Quick presets</h2>
+    <div class="presets" id="presets">
+      <button class="preset" data-a="Half your suitcase is wasted space" data-b="What not to pack for Germany" data-c='Comment "PACK" for the full list'>
+        <b>Packing</b> Half your suitcase is wasted space
+      </button>
+      <button class="preset" data-a="Flying to Germany soon with no accommodation?" data-b="Book two weeks. Find a room once you're here." data-c='Comment "STAY" for the full list'>
+        <b>Accommodation</b> Flying soon with nothing booked?
+      </button>
+      <button class="preset" data-a="No name on your letterbox = no post in Germany" data-b="Tax ID. Bank card. Insurance card. All by mail." data-c='Comment "WEEK1" for the checklist'>
+        <b>Letterbox</b> No name = no post
+      </button>
+      <button class="preset" data-a="€1 laundry" data-b="Wash and dry, one 3-hour slot" data-c="Follow for more before you fly">
+        <b>Price</b> €1 laundry
+      </button>
+    </div>
+  </div>
+
+  <div class="stagewrap">
+    <canvas id="cv" width="1080" height="1920"></canvas>
+    <p class="hint">Preview updates as you type · exports at full Instagram resolution</p>
+  </div>
+
+</div>
+
+<footer>
+  <p><strong>How to use it:</strong> pick a frame from your own video, load it as the background, type the hook, download. Then set it as the reel cover in Instagram, or drop it into your editor as the opening frame.</p>
+  <p style="margin-top:10px">Keep the same colour and position for at least ten posts. Consistency is what makes a faceless grid read as a brand — changing the design every time is what makes it read as nine unrelated posts.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var cv = document.getElementById('cv');
+  var ctx = cv.getContext('2d');
+  var W = 1080, H = 1920;
+  var bgImg = null;
+  var hookColour = '#FFCE00';
+
+  var el = {
+    p1: document.getElementById('p1'),
+    p2: document.getElementById('p2'),
+    p3: document.getElementById('p3'),
+    pos: document.getElementById('pos'),
+    dim: document.getElementById('dim')
+  };
+
+  function wrap(text, font, maxW){
+    ctx.font = font;
+    var words = String(text).split(/\s+/).filter(Boolean);
+    var lines = [], cur = '';
+    for (var i=0;i<words.length;i++){
+      var test = cur ? cur + ' ' + words[i] : words[i];
+      if (ctx.measureText(test).width > maxW && cur){
+        lines.push(cur); cur = words[i];
+      } else { cur = test; }
+    }
+    if (cur) lines.push(cur);
+    return lines;
+  }
+
+  function fitFont(text, maxW, maxLines, startPx, family){
+    var size = startPx;
+    while (size > 30){
+      var f = '700 ' + size + 'px ' + family;
+      var ls = wrap(text, f, maxW);
+      if (ls.length <= maxLines) return {size:size, lines:ls, font:f};
+      size -= 4;
+    }
+    var f2 = '700 30px ' + family;
+    return {size:30, lines:wrap(text,f2,maxW), font:f2};
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0,0,W,H);
+    if (bgImg){
+      var r = Math.max(W/bgImg.width, H/bgImg.height);
+      var w = bgImg.width*r, h = bgImg.height*r;
+      ctx.drawImage(bgImg, (W-w)/2, (H-h)/2, w, h);
+    }
+
+    var dim = parseFloat(el.dim.value);
+    ctx.fillStyle = 'rgba(10,10,12,'+dim+')';
+    ctx.fillRect(0,0,W,H);
+
+    var pad = 90;
+    var maxW = W - pad*2;
+
+    var hook = el.p1.value.trim();
+    var sub  = el.p2.value.trim();
+    var strip= el.p3.value.trim();
+
+    var H1 = hook ? fitFont(hook, maxW, 4, 118, "'Anton', sans-serif") : null;
+    var H2 = sub  ? fitFont(sub,  maxW, 3, 62,  "'Poppins', sans-serif") : null;
+
+    var lh1 = H1 ? H1.size*1.08 : 0;
+    var lh2 = H2 ? H2.size*1.3 : 0;
+    var blockH = (H1 ? H1.lines.length*lh1 : 0) + (H2 ? H2.lines.length*lh2 + 40 : 0);
+
+    var startY;
+    var p = el.pos.value;
+    if (p === 'upper') startY = H*0.24;
+    else if (p === 'lower') startY = H*0.60;
+    else startY = (H - blockH)/2;
+
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+
+    var y = startY;
+    if (H1){
+      ctx.font = H1.font;
+      for (var i=0;i<H1.lines.length;i++){
+        ctx.fillStyle = 'rgba(0,0,0,0.55)';
+        ctx.fillText(H1.lines[i], W/2+4, y+5);
+        ctx.fillStyle = hookColour;
+        ctx.fillText(H1.lines[i], W/2, y);
+        y += lh1;
+      }
+    }
+    if (H2){
+      y += 40;
+      ctx.font = H2.font;
+      for (var j=0;j<H2.lines.length;j++){
+        ctx.fillStyle = 'rgba(0,0,0,0.55)';
+        ctx.fillText(H2.lines[j], W/2+3, y+4);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillText(H2.lines[j], W/2, y);
+        y += lh2;
+      }
+    }
+
+    if (strip){
+      var S = fitFont(strip, maxW, 2, 50, "'Poppins', sans-serif");
+      var sh = S.lines.length * S.size * 1.3;
+      var barTop = H*0.845 - 34;
+      ctx.fillStyle = 'rgba(10,10,12,0.88)';
+      ctx.fillRect(0, barTop, W, sh + 68);
+      ctx.fillStyle = '#FFCE00';
+      ctx.fillRect(0, barTop, W, 8);
+      ctx.font = S.font;
+      ctx.fillStyle = '#FFFFFF';
+      var sy = barTop + 34;
+      for (var k=0;k<S.lines.length;k++){
+        ctx.fillText(S.lines[k], W/2, sy);
+        sy += S.size*1.3;
+      }
+    }
+  }
+
+  ['p1','p2','p3','pos','dim'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', draw);
+    document.getElementById(id).addEventListener('change', draw);
+  });
+
+  document.getElementById('swatch').addEventListener('click', function(e){
+    var b = e.target.closest('.sw'); if(!b) return;
+    hookColour = b.dataset.c;
+    [].forEach.call(this.querySelectorAll('.sw'), function(s){
+      s.setAttribute('aria-pressed', s===b ? 'true':'false');
+    });
+    draw();
+  });
+
+  document.getElementById('bg').addEventListener('change', function(e){
+    var f = e.target.files && e.target.files[0];
+    if(!f) return;
+    var img = new Image();
+    img.onload = function(){ bgImg = img; draw(); };
+    img.src = URL.createObjectURL(f);
+  });
+
+  document.getElementById('clear').addEventListener('click', function(){
+    bgImg = null;
+    document.getElementById('bg').value = '';
+    draw();
+  });
+
+  document.getElementById('presets').addEventListener('click', function(e){
+    var b = e.target.closest('.preset'); if(!b) return;
+    el.p1.value = b.dataset.a || '';
+    el.p2.value = b.dataset.b || '';
+    el.p3.value = b.dataset.c || '';
+    draw();
+  });
+
+  document.getElementById('dl').addEventListener('click', function(){
+    var a = document.createElement('a');
+    a.download = 'reel-frame.png';
+    a.href = cv.toDataURL('image/png');
+    a.click();
+  });
+
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
