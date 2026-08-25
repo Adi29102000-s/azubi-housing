@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Money Mistakes in Germany — What Nobody Warns You About</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111113;
+    --signal:#FFCE00;
+    --alert:#D42A2A;
+    --go:#1E7A4C;
+    --slate:#54545E;
+    --paper:#FFFFFF;
+    --rule:#D8D8D2;
+    --wash:#F4F4F1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  a{color:inherit}
+
+  .band{background:var(--ink);color:var(--paper);padding:44px 0 40px}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--signal);margin-bottom:16px;
+  }
+  h1{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:clamp(42px,8.5vw,78px);line-height:.92;
+    letter-spacing:-.01em;text-transform:uppercase;
+  }
+  h1 em{font-style:normal;color:var(--signal)}
+  .sub{margin-top:18px;max-width:52ch;color:#C9C9CE;font-size:16px}
+
+  .tally{
+    background:var(--signal);color:var(--ink);
+    padding:24px 0;border-bottom:3px solid var(--ink);
+  }
+  .tally h2{
+    font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;
+    font-size:24px;margin-bottom:8px;
+  }
+  .tally p{font-size:15px;max-width:62ch}
+  .facts{display:flex;gap:32px;flex-wrap:wrap;margin-top:14px}
+  .fact .big{font-family:'Barlow Condensed',sans-serif;font-size:38px;line-height:1;font-weight:700}
+  .fact .lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+
+  section{padding:52px 0;border-bottom:1px solid var(--rule)}
+  h2.sec{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:clamp(28px,5vw,40px);text-transform:uppercase;
+    line-height:1;margin-bottom:6px;
+  }
+  .seclede{color:var(--slate);max-width:62ch;margin-bottom:28px;font-size:15px}
+
+  .items{list-style:none;border-top:2px solid var(--ink)}
+  .items>li{padding:24px 0;border-bottom:1px solid var(--rule)}
+  .ihead{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+  .iname{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:26px;text-transform:uppercase;line-height:1.05;
+  }
+  .icost{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    background:var(--wash);padding:4px 10px;white-space:nowrap;
+  }
+  .icost.back{background:#EAF6EF;color:var(--go)}
+  .icost.out{background:#FFECEA;color:var(--alert)}
+  .ibody{color:var(--slate);font-size:15px}
+  .ibody strong{color:var(--ink)}
+  .fix{
+    display:inline-block;margin-top:10px;padding:10px 14px;
+    background:#FFF6D6;border-left:5px solid var(--signal);font-size:15px;
+  }
+  .fix b{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+
+  .scam{background:var(--ink);color:var(--paper);padding:28px 24px;border-top:6px solid var(--alert)}
+  .scam h3{
+    font-family:'Barlow Condensed',sans-serif;font-size:26px;
+    text-transform:uppercase;color:var(--signal);margin-bottom:12px;
+  }
+  .scam p{color:#DEDEE2;font-size:15px;margin-bottom:12px;max-width:64ch}
+  .scam strong{color:var(--paper)}
+
+  .quick{background:var(--wash);padding:24px;border-left:5px solid var(--ink)}
+  .quick h3{font-family:'Barlow Condensed',sans-serif;font-size:24px;text-transform:uppercase;margin-bottom:12px}
+  .quick ul{list-style:none;display:grid;gap:10px}
+  .quick li{padding-left:24px;position:relative;font-size:15px}
+  .quick li::before{content:"□";position:absolute;left:0;font-family:'IBM Plex Mono',monospace}
+
+  footer{padding:36px 0 60px;color:var(--slate);font-size:13px}
+  footer .mono{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--ink);
+  }
+  :focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div class="wrap">
+    <div class="eyebrow">Germany · Money · What nobody warns you</div>
+    <h1>Money you're<br>losing <em>without<br>noticing</em></h1>
+    <p class="sub">None of these are big. All of them are constant. Together they're the difference between a month that works and a month that doesn't.</p>
+  </div>
+</div>
+
+<div class="tally">
+  <div class="wrap">
+    <h2>The numbers on this page</h2>
+    <p>Small amounts, every week, for years. That's why they matter.</p>
+    <div class="facts">
+      <div class="fact"><div class="big">25c</div><div class="lbl">per plastic bottle</div></div>
+      <div class="fact"><div class="big">€18.36</div><div class="lbl">radio fee, monthly</div></div>
+      <div class="fact"><div class="big">€1</div><div class="lbl">trolley coin</div></div>
+      <div class="fact"><div class="big">€0</div><div class="lbl">what most people budget for these</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <h2 class="sec">Money you get back</h2>
+  <p class="seclede">You've already paid this. It's sitting in your kitchen.</p>
+
+  <ul class="items">
+    <li>
+      <div class="ihead"><span class="iname">Pfand — bottle deposit</span><span class="icost back">You get it back</span></div>
+      <p class="ibody">Almost every plastic bottle and can in Germany carries a deposit you paid at the till. Take them back to any supermarket, feed them into the machine, and you get a receipt to redeem at checkout. <strong>Throwing bottles in the bin is throwing away money you already spent.</strong></p>
+      <span class="fix"><b>How to spot it</b>Look for the Pfand symbol on the label, and check the shelf price — the deposit is listed separately. Glass bottles usually carry a smaller deposit than plastic.</span>
+    </li>
+
+    <li>
+      <div class="ihead"><span class="iname">The €1 trolley coin</span><span class="icost back">You get it back</span></div>
+      <p class="ibody">Supermarket trolleys are chained. You insert a €1 coin to release one and get it back when you return the trolley. It isn't a charge — but if you don't have a coin, you're carrying your shopping by hand.</p>
+      <span class="fix"><b>The fix</b>Keep a €1 coin in your bag permanently, or buy a plastic trolley token. Almost every German has one on their keys.</span>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2 class="sec">Money that quietly leaves</h2>
+  <p class="seclede">The costs nobody includes when they tell you Germany is affordable.</p>
+
+  <ul class="items">
+    <li>
+      <div class="ihead"><span class="iname">Rundfunkbeitrag — the radio fee</span><span class="icost out">€18.36 / month</span></div>
+      <p class="ibody">A mandatory broadcasting fee charged to <strong>every household</strong> in Germany, whether or not you own a TV, a radio, or any device at all. Nationality and visa status make no difference — international students pay it like everyone else. It's usually billed quarterly at €55.08.</p>
+      <span class="fix"><b>If you're in a WG, don't be the one who pays alone</b>The fee is per household, not per person. Four flatmates pay it once between them and split it. In student halls it depends on the housing type — single self-contained apartments count as separate households. Sort this out with your flatmates the week you move in.</span>
+    </li>
+
+    <li>
+      <div class="ihead"><span class="iname">Shopping bags</span><span class="icost out">Every time</span></div>
+      <p class="ibody">Bags aren't free and nobody packs your shopping for you. You'll also be expected to bag it fast — German checkouts move quickly and the queue behind you notices.</p>
+      <span class="fix"><b>The fix</b>Keep a folded cloth bag in your rucksack. It costs you once.</span>
+    </li>
+
+    <li>
+      <div class="ihead"><span class="iname">Sunday closures</span><span class="icost out">Costs you indirectly</span></div>
+      <p class="ibody">Supermarkets close on Sundays. If you haven't shopped by Saturday evening you're eating out, and eating out is where a student budget actually breaks.</p>
+      <span class="fix"><b>The fix</b>Saturday is shopping day. Treat it as fixed, not optional.</span>
+    </li>
+
+    <li>
+      <div class="ihead"><span class="iname">Cash-only places</span><span class="icost out">Costs you in fees</span></div>
+      <p class="ibody">Plenty of small shops, bakeries and restaurants still take cash only. Getting caught out means using a foreign card at a random ATM and paying for it.</p>
+      <span class="fix"><b>The fix</b>Carry €20–30 in cash, and only withdraw from your own bank's machines.</span>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2 class="sec">The expensive mistakes</h2>
+  <p class="seclede">These are the ones that cost hundreds, not cents.</p>
+
+  <ul class="items">
+    <li>
+      <div class="ihead"><span class="iname">Blocked account transfer fees</span><span class="icost out">Can cost you a visa</span></div>
+      <p class="ibody">Send exactly the required amount and the bank's transfer fee comes out of it — leaving you short. A shortfall in the blocked account is a rejection reason.</p>
+      <span class="fix"><b>The fix</b>Send a buffer above the required figure, and confirm the exact current amount with the German Mission before transferring.</span>
+    </li>
+
+    <li>
+      <div class="ihead"><span class="iname">Sending money before signing anything</span><span class="icost out">Deposit gone</span></div>
+      <p class="ibody">Housing scams target new arrivals every intake. Money requested before a viewing or a signed contract is the single clearest warning sign.</p>
+      <span class="fix"><b>The rule</b>No signature, no money. A landlord claiming to be abroad who'll post you the keys is not a landlord.</span>
+    </li>
+
+    <li>
+      <div class="ihead"><span class="iname">Choosing private health insurance as a student</span><span class="icost out">Hard to reverse</span></div>
+      <p class="ibody">Private cover can look cheaper at first, but switching back to public later as a student is difficult and sometimes not possible. It's one of the few decisions here you can't easily undo.</p>
+      <span class="fix"><b>The fix</b>Understand both options properly before choosing, and ask your university's International Office what most students there do.</span>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <div class="scam">
+    <h3>One warning about letters</h3>
+    <p>You'll get a real letter from the Beitragsservice asking you to register for the broadcasting fee. It looks alarming and it is genuine — <strong>ignoring it doesn't make it go away</strong>, it produces reminders and eventually enforcement.</p>
+    <p>But new arrivals are also targeted by fraudulent letters designed to look official. Before paying anything unexpected, check the sender against the official domain and ask a German-speaking friend or your International Office. <strong>Never pay from a letter alone if anything about it feels off.</strong></p>
+  </div>
+</section>
+
+<section style="border-bottom:none">
+  <h2 class="sec">Do these in week one</h2>
+  <div class="quick">
+    <h3>Ten minutes each, saves you all year</h3>
+    <ul>
+      <li>Put a €1 coin or trolley token in your bag</li>
+      <li>Put a folded cloth bag in your rucksack</li>
+      <li>Start collecting bottles instead of binning them</li>
+      <li>Agree with flatmates who pays the Rundfunkbeitrag and how you split it</li>
+      <li>Write your name on the letterbox — bank cards and official letters arrive by post</li>
+      <li>Find which ATMs belong to your own bank</li>
+      <li>Make Saturday your shopping day</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p class="mono">Check current figures yourself — they change</p>
+  <p style="margin-top:10px">The broadcasting fee has been frozen at €18.36 per month per household but is reviewed periodically. Deposit amounts, blocked account requirements and insurance rules change over time and vary by provider and city. This is general information compiled from published guidance and personal experience, not financial or legal advice. Nothing here is sponsored.</p>
+</footer>
+
+</div>
+</body>
+</html>
