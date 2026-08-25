@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cost of Living by City — Germany Student Budget</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111113;
+    --signal:#FFCE00;
+    --alert:#D42A2A;
+    --go:#1E7A4C;
+    --slate:#54545E;
+    --paper:#FFFFFF;
+    --rule:#D8D8D2;
+    --wash:#F4F4F1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+
+  .band{background:var(--ink);color:var(--paper);padding:40px 0 34px}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--signal);margin-bottom:14px;
+  }
+  h1{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:clamp(40px,8vw,70px);
+    line-height:.92;text-transform:uppercase;letter-spacing:-.01em;
+  }
+  h1 em{font-style:normal;color:var(--signal)}
+  .sub{margin-top:14px;max-width:52ch;color:#C9C9CE;font-size:16px}
+
+  .searchwrap{background:var(--signal);padding:22px 0;border-bottom:3px solid var(--ink)}
+  .slabel{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;margin-bottom:8px;color:var(--ink);
+  }
+  #city{
+    width:100%;padding:14px 16px;border:3px solid var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;font-size:17px;background:var(--paper);
+  }
+  #city:focus{outline:none;box-shadow:inset 0 0 0 3px rgba(0,0,0,.15)}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .chip{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    background:var(--ink);color:var(--signal);border:none;cursor:pointer;
+    padding:7px 12px;
+  }
+  .chip:hover{background:#2A2A2E}
+
+  main{padding:38px 0 20px}
+  .empty{color:var(--slate);font-size:15px;text-align:center;padding:30px 0}
+
+  .card{border-top:3px solid var(--ink);padding-top:20px;margin-bottom:44px}
+  .chead{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-bottom:4px}
+  .cname{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:clamp(32px,7vw,46px);text-transform:uppercase;line-height:1;
+  }
+  .tier{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;padding:4px 9px;
+  }
+  .t-high{background:#FFECEA;color:var(--alert)}
+  .t-mid{background:var(--wash);color:var(--slate)}
+  .t-low{background:#EAF6EF;color:var(--go)}
+  .cnote{color:var(--slate);font-size:15px;margin-bottom:16px}
+
+  .total{
+    background:var(--ink);color:var(--paper);padding:18px 20px;margin-bottom:16px;
+    display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;
+  }
+  .total .big{font-family:'Barlow Condensed',sans-serif;font-size:40px;line-height:1;color:var(--signal);font-weight:700}
+  .total .lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#C9C9CE}
+
+  table{width:100%;border-collapse:collapse;margin-bottom:16px}
+  th{
+    text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--slate);
+    padding:8px 0;border-bottom:2px solid var(--ink);font-weight:500;
+  }
+  th:last-child,td:last-child{text-align:right}
+  td{padding:11px 0;border-bottom:1px solid var(--rule);font-size:15px}
+  td.amt{font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap}
+  td .note{display:block;color:var(--slate);font-size:13px;margin-top:2px}
+
+  .verdict{padding:16px 18px;font-size:15px;border-left:5px solid var(--signal);background:#FFF6D6}
+  .verdict b{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+  .verdict.short{border-left-color:var(--alert);background:#FFECEA}
+  .verdict.fine{border-left-color:var(--go);background:#EAF6EF}
+
+  .allcities{padding:30px 0 10px;border-top:1px solid var(--rule)}
+  .allcities h2{font-family:'Barlow Condensed',sans-serif;font-size:26px;text-transform:uppercase;margin-bottom:6px}
+  .allcities p{color:var(--slate);font-size:14px;margin-bottom:16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+  .gbtn{
+    text-align:left;padding:11px 12px;border:2px solid var(--rule);background:var(--paper);
+    cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:14px;
+  }
+  .gbtn:hover{border-color:var(--ink);background:var(--signal)}
+  .gbtn b{display:block;font-weight:600}
+  .gbtn span{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--slate)}
+  .gbtn:hover span{color:var(--ink)}
+
+  footer{padding:34px 0 60px;color:var(--slate);font-size:13px;border-top:1px solid var(--rule);margin-top:30px}
+  footer .mono{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;
+  }
+  :focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div class="wrap">
+    <div class="eyebrow">Germany · Student budget · By city</div>
+    <h1>The blocked account<br>gives you <em>€992</em>.<br>Is it enough?</h1>
+    <p class="sub">Depends entirely on the city. In Leipzig you'll have money left over. In Munich you'll be short every single month. Search your city below.</p>
+  </div>
+</div>
+
+<div class="searchwrap">
+  <div class="wrap">
+    <div class="slabel">Search your city</div>
+    <input type="text" id="city" placeholder="Type a city — Munich, Berlin, Aachen…" autocomplete="off">
+    <div class="chips">
+      <button class="chip" data-c="munich">Munich</button>
+      <button class="chip" data-c="berlin">Berlin</button>
+      <button class="chip" data-c="aachen">Aachen</button>
+      <button class="chip" data-c="leipzig">Leipzig</button>
+      <button class="chip" data-c="hamburg">Hamburg</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div id="out"><p class="empty">Start typing a city name above.</p></div>
+
+  <div class="allcities">
+    <h2>All cities</h2>
+    <p>Monthly total for a student in a shared room, cooking at home.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p class="mono">Planning ranges, not quotes</p>
+  <p>These are typical figures compiled from published 2026 guidance including Destatis, Studentenwerk surveys and rent indices. Real costs vary by neighbourhood, housing type and how you live — a dorm room is far cheaper than a private studio in the same city. Health insurance is roughly €141–151/month nationally for public student cover. Deposits of one to three months' rent are on top of everything here. Confirm current figures locally before you commit to anything. Nothing on this page is sponsored.</p>
+</footer>
+
+<script>
+(function(){
+  var BLOCKED = 992;
+
+  var CITIES = [
+    {k:"munich", n:"Munich", de:"München", tier:"high", rent:[650,800], food:[220,260], ins:145, phone:12, transport:"Semester ticket, ~€40–60/mo equivalent", tnum:50,
+     note:"The most expensive student city in Germany. Central shared rooms start around €800; districts further out from €650."},
+    {k:"frankfurt", n:"Frankfurt", de:"Frankfurt am Main", tier:"high", rent:[550,750], food:[210,250], ins:145, phone:12, transport:"Semester ticket included", tnum:45,
+     note:"Banking hub, rents close to Munich depending on district."},
+    {k:"stuttgart", n:"Stuttgart", de:"Stuttgart", tier:"high", rent:[500,700], food:[200,240], ins:145, phone:12, transport:"Semester ticket included", tnum:45,
+     note:"Automotive and engineering centre. Rent similar to or slightly below Munich."},
+    {k:"hamburg", n:"Hamburg", de:"Hamburg", tier:"high", rent:[500,700], food:[200,240], ins:145, phone:12, transport:"Semester ticket included", tnum:45,
+     note:"Popular and competitive. Wide spread by neighbourhood."},
+    {k:"berlin", n:"Berlin", de:"Berlin", tier:"high", rent:[500,700], food:[200,240], ins:145, phone:12, transport:"Semester ticket included", tnum:45,
+     note:"Once a bargain, now mid-to-high and rising fast. Lichtenberg saves roughly €150–200 a month against Mitte."},
+    {k:"dusseldorf", n:"Düsseldorf", de:"Düsseldorf", tier:"mid", rent:[450,600], food:[190,230], ins:145, phone:12, transport:"Semester ticket included", tnum:40,
+     note:"Moderate costs, lively, very well connected."},
+    {k:"cologne", n:"Cologne", de:"Köln", tier:"mid", rent:[450,550], food:[190,230], ins:145, phone:12, transport:"Semester ticket included", tnum:40,
+     note:"Solid mid-range. Big student population, competitive WG market."},
+    {k:"bonn", n:"Bonn", de:"Bonn", tier:"mid", rent:[450,550], food:[185,225], ins:145, phone:12, transport:"Semester ticket included", tnum:40,
+     note:"Mid-range, smaller and calmer than Cologne next door."},
+    {k:"freiburg", n:"Freiburg", de:"Freiburg im Breisgau", tier:"mid", rent:[450,600], food:[190,230], ins:145, phone:12, transport:"Semester ticket included", tnum:40,
+     note:"Beautiful and popular, which keeps rents higher than the region suggests."},
+    {k:"karlsruhe", n:"Karlsruhe", de:"Karlsruhe", tier:"mid", rent:[420,530], food:[185,225], ins:145, phone:12, transport:"Semester ticket included", tnum:38,
+     note:"Mid-cost engineering city."},
+    {k:"hannover", n:"Hannover", de:"Hannover", tier:"mid", rent:[420,530], food:[185,225], ins:145, phone:12, transport:"Semester ticket included", tnum:38,
+     note:"Solid, low-key, decent value for a large city."},
+    {k:"bremen", n:"Bremen", de:"Bremen", tier:"mid", rent:[400,500], food:[180,220], ins:145, phone:12, transport:"Semester ticket included", tnum:38,
+     note:"Low-cost northern student city."},
+    {k:"aachen", n:"Aachen", de:"Aachen", tier:"low", rent:[320,450], food:[180,220], ins:145, phone:12, transport:"Semester ticket included", tnum:35,
+     note:"Frequently cited for value. Engineering powerhouse with WG rooms often €320–450, and Studentenwerk dorms lower still."},
+    {k:"bochum", n:"Bochum", de:"Bochum", tier:"low", rent:[320,430], food:[175,215], ins:145, phone:12, transport:"Semester ticket included", tnum:35,
+     note:"Ruhr region, consistently affordable."},
+    {k:"dortmund", n:"Dortmund", de:"Dortmund", tier:"low", rent:[320,430], food:[175,215], ins:145, phone:12, transport:"Semester ticket included", tnum:35,
+     note:"One of the cheaper large cities in western Germany."},
+    {k:"dresden", n:"Dresden", de:"Dresden", tier:"low", rent:[320,450], food:[175,215], ins:145, phone:12, transport:"Semester ticket included", tnum:35,
+     note:"Affordable, strong in tech and research."},
+    {k:"leipzig", n:"Leipzig", de:"Leipzig", tier:"low", rent:[330,450], food:[175,215], ins:145, phone:12, transport:"Semester ticket included", tnum:35,
+     note:"The cheapest major student city. Central shared rooms in Plagwitz or Südvorstadt around €350–450."},
+    {k:"magdeburg", n:"Magdeburg", de:"Magdeburg", tier:"low", rent:[300,420], food:[170,210], ins:145, phone:12, transport:"Semester ticket included", tnum:33,
+     note:"Among the cheapest student cities in the country."},
+    {k:"jena", n:"Jena", de:"Jena", tier:"low", rent:[300,420], food:[170,210], ins:145, phone:12, transport:"Semester ticket included", tnum:33,
+     note:"Small, affordable, strong in optics and research."},
+    {k:"chemnitz", n:"Chemnitz", de:"Chemnitz", tier:"low", rent:[280,400], food:[170,210], ins:145, phone:12, transport:"Semester ticket included", tnum:33,
+     note:"Consistently the lowest rents of any major German student city."}
+  ];
+
+  function total(c){
+    var lo = c.rent[0] + c.food[0] + c.ins + c.phone + c.tnum;
+    var hi = c.rent[1] + c.food[1] + c.ins + c.phone + c.tnum;
+    return [lo,hi];
+  }
+
+  function tierLabel(t){
+    return t==="high" ? "Expensive" : t==="low" ? "Affordable" : "Mid-range";
+  }
+
+  function verdict(c){
+    var t = total(c);
+    var mid = (t[0]+t[1])/2;
+    if (t[1] <= BLOCKED) {
+      return {cls:"fine", head:"€992 covers this comfortably",
+        txt:"Even at the upper end you stay under the blocked account release. You'll have room for travel and emergencies."};
+    }
+    if (t[0] <= BLOCKED) {
+      return {cls:"", head:"€992 works — with discipline",
+        txt:"A cheap room and cooking at home keeps you inside the blocked account release. A central room or eating out regularly puts you over it."};
+    }
+    var gap = Math.round(mid - BLOCKED);
+    return {cls:"short", head:"You'll be short by roughly €" + gap + " a month",
+      txt:"The blocked account release alone doesn't cover this city. Plan for a part-time job, family support, or a cheaper district further out."};
+  }
+
+  function render(c){
+    var t = total(c);
+    var v = verdict(c);
+    var html = '';
+    html += '<div class="card">';
+    html += '<div class="chead"><span class="cname">'+c.n+'</span><span class="tier t-'+c.tier+'">'+tierLabel(c.tier)+'</span></div>';
+    html += '<p class="cnote">'+c.note+'</p>';
+    html += '<div class="total"><span class="lbl">Monthly total, shared room, cooking at home</span><span class="big">€'+t[0]+'–'+t[1]+'</span></div>';
+    html += '<table><thead><tr><th>What</th><th>Per month</th></tr></thead><tbody>';
+    html += '<tr><td>Rent — room in a shared flat<span class="note">Studentenwerk dorms are usually cheaper, often €200–400 all in</span></td><td class="amt">€'+c.rent[0]+'–'+c.rent[1]+'</td></tr>';
+    html += '<tr><td>Groceries<span class="note">Cooking at home. Eating out regularly adds €50–100</span></td><td class="amt">€'+c.food[0]+'–'+c.food[1]+'</td></tr>';
+    html += '<tr><td>Health insurance<span class="note">Public student cover, roughly the same nationwide</span></td><td class="amt">€'+c.ins+'</td></tr>';
+    html += '<tr><td>Transport<span class="note">'+c.transport+'</span></td><td class="amt">€'+c.tnum+'</td></tr>';
+    html += '<tr><td>Phone<span class="note">Prepaid or basic contract</span></td><td class="amt">€'+c.phone+'</td></tr>';
+    html += '</tbody></table>';
+    html += '<div class="verdict '+v.cls+'"><b>'+v.head+'</b>'+v.txt+'</div>';
+    html += '</div>';
+    document.getElementById('out').innerHTML = html;
+  }
+
+  function find(q){
+    q = q.trim().toLowerCase();
+    if(!q) return null;
+    for (var i=0;i<CITIES.length;i++){
+      var c = CITIES[i];
+      if (c.k.indexOf(q)===0 || c.n.toLowerCase().indexOf(q)===0 || c.de.toLowerCase().indexOf(q)===0) return c;
+    }
+    for (var j=0;j<CITIES.length;j++){
+      var d = CITIES[j];
+      if (d.n.toLowerCase().indexOf(q)>-1 || d.de.toLowerCase().indexOf(q)>-1) return d;
+    }
+    return null;
+  }
+
+  var input = document.getElementById('city');
+
+  input.addEventListener('input', function(){
+    var q = this.value.trim();
+    if(!q){
+      document.getElementById('out').innerHTML = '<p class="empty">Start typing a city name above.</p>';
+      return;
+    }
+    var c = find(q);
+    if(c) render(c);
+    else document.getElementById('out').innerHTML = '<p class="empty">No match yet — try another spelling, or pick one from the list below.</p>';
+  });
+
+  document.querySelectorAll('.chip').forEach(function(b){
+    b.addEventListener('click', function(){
+      input.value = this.dataset.c;
+      var c = find(this.dataset.c);
+      if(c){ render(c); document.getElementById('out').scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
+  });
+
+  var sorted = CITIES.slice().sort(function(a,b){ return total(a)[0] - total(b)[0]; });
+  var g = document.getElementById('grid');
+  sorted.forEach(function(c){
+    var t = total(c);
+    var b = document.createElement('button');
+    b.className = 'gbtn';
+    b.innerHTML = '<b>'+c.n+'</b><span>€'+t[0]+'–'+t[1]+'</span>';
+    b.addEventListener('click', function(){
+      input.value = c.n;
+      render(c);
+      document.getElementById('out').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+    g.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
