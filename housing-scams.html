@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The housing fraud checklist for students moving to Germany: red flags, what to verify before you pay, safe payment rules, and what to do if you have already sent the money.">
+<meta name="theme-color" content="#F6F7F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121517" media="(prefers-color-scheme: dark)">
+
+<!-- Link preview (shows in Instagram DMs, WhatsApp, Telegram) -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Before You Send the Deposit">
+<meta property="og:description" content="Housing fraud checklist for students moving to Germany. Read it before you transfer anything.">
+<meta property="og:site_name" content="unpackgermany">
+<meta property="og:url" content="https://adi29102000-s.github.io/azubi-housing/">
+<meta property="og:image" content="https://adi29102000-s.github.io/azubi-housing/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Housing fraud in Germany - checklist for students">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://adi29102000-s.github.io/azubi-housing/">
+
+<title>Before You Send the Deposit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+
+<style>
+  :root {
+    --ground: #F6F7F4;
+    --panel: #FFFFFF;
+    --ink: #14171A;
+    --muted: #5A6169;
+    --rule: #D8DBD4;
+    --rule-strong: #B9BEB4;
+    --danger: #B33A2B;
+    --danger-soft: #FBEDEA;
+    --safe: #2C6B4F;
+    --safe-soft: #EAF2ED;
+    --stamp: #B33A2B;
+
+    --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --f-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+
+    --step--1: 0.8125rem;
+    --step-0: 1.0625rem;
+    --step-1: 1.25rem;
+    --step-2: 1.5rem;
+    --step-3: 2rem;
+    --step-4: 2.75rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #121517;
+      --panel: #191D20;
+      --ink: #E9EBE6;
+      --muted: #969D9A;
+      --rule: #2A2F32;
+      --rule-strong: #3C4347;
+      --danger: #E67563;
+      --danger-soft: #2A1B18;
+      --safe: #6DBB92;
+      --safe-soft: #16241E;
+      --stamp: #E67563;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #121517;
+    --panel: #191D20;
+    --ink: #E9EBE6;
+    --muted: #969D9A;
+    --rule: #2A2F32;
+    --rule-strong: #3C4347;
+    --danger: #E67563;
+    --danger-soft: #2A1B18;
+    --safe: #6DBB92;
+    --safe-soft: #16241E;
+    --stamp: #E67563;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .eyebrow {
+    font-family: var(--f-display);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+  }
+
+  .stamp {
+    font-family: var(--f-display);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    border: 2px solid var(--stamp);
+    border-radius: 2px;
+    padding: 0.2rem 0.5rem;
+    transform: rotate(-1.5deg);
+  }
+
+  h1 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: var(--step-4);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    margin: 0;
+    font-size: var(--step-1);
+    color: var(--muted);
+    max-width: 34ch;
+  }
+
+  /* ---------- alert ---------- */
+
+  .alert {
+    background: var(--danger-soft);
+    border-left: 4px solid var(--danger);
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .alert p { margin: 0; }
+
+  .alert .lede {
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: var(--step-1);
+    color: var(--danger);
+    line-height: 1.25;
+  }
+
+  /* ---------- sections ---------- */
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  h2 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: var(--step-2);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--rule-strong);
+    text-wrap: balance;
+  }
+
+  .section-note {
+    margin: -0.4rem 0 0;
+    color: var(--muted);
+    font-size: var(--step--1);
+    font-family: var(--f-display);
+  }
+
+  /* ---------- red flags ---------- */
+
+  .flags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .flag {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--danger);
+    padding: 0.9rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .flag .quote {
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: var(--step-0);
+    line-height: 1.35;
+  }
+
+  .flag .why {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* ---------- checklist ---------- */
+
+  .checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .checklist li {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .check {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    padding: 0.8rem 0.25rem;
+    cursor: pointer;
+    font-family: var(--f-display);
+    font-size: var(--step-0);
+    line-height: 1.4;
+  }
+
+  .check input {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: 0 0 auto;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin: 0.1rem 0 0;
+    border: 2px solid var(--rule-strong);
+    border-radius: 3px;
+    background: var(--panel);
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    transition: background 0.12s ease, border-color 0.12s ease;
+  }
+
+  .check input::after {
+    content: "";
+    width: 0.7rem;
+    height: 0.4rem;
+    border-left: 2.5px solid var(--panel);
+    border-bottom: 2.5px solid var(--panel);
+    transform: rotate(-45deg) translate(1px, -1px) scale(0);
+    transition: transform 0.12s ease;
+  }
+
+  .check input:checked {
+    background: var(--safe);
+    border-color: var(--safe);
+  }
+
+  .check input:checked::after { transform: rotate(-45deg) translate(1px, -1px) scale(1); }
+
+  .check input:focus-visible {
+    outline: 2px solid var(--safe);
+    outline-offset: 2px;
+  }
+
+  .check input:checked + span {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--rule-strong);
+  }
+
+  /* ---------- money rules ---------- */
+
+  .rules {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rules li {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+    font-family: var(--f-display);
+    line-height: 1.45;
+  }
+
+  .mark {
+    flex: 0 0 auto;
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    width: 1.1rem;
+  }
+
+  .mark.no { color: var(--danger); }
+  .mark.yes { color: var(--safe); }
+
+  /* ---------- portals ---------- */
+
+  .portals {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 0.5rem;
+  }
+
+  .portals li {
+    background: var(--safe-soft);
+    border: 1px solid var(--rule);
+    padding: 0.7rem 0.8rem;
+    font-family: var(--f-display);
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  .portals .tag {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  /* ---------- ordered emergency steps ---------- */
+
+  .steps {
+    list-style: none;
+    counter-reset: step;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 2.1rem 1fr;
+    gap: 0.9rem;
+    align-items: start;
+  }
+
+  .steps li::before {
+    content: counter(step);
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--panel);
+    background: var(--ink);
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .steps strong {
+    font-family: var(--f-display);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+
+  .steps p { margin: 0; color: var(--muted); font-size: 0.98rem; line-height: 1.5; }
+
+  /* ---------- legal facts ---------- */
+
+  .facts {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .fact { display: flex; flex-direction: column; gap: 0.15rem; }
+
+  .fact dt {
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .fact dd {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    border-top: 2px solid var(--ink);
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .handle {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: var(--step-1);
+    letter-spacing: -0.01em;
+  }
+
+  .disclaimer {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+
+  @media (min-width: 40rem) {
+    .wrap { padding-top: 3.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>@unpackgermany</span>
+      <span class="stamp">Read before you pay</span>
+    </div>
+    <h1>Before you send the deposit</h1>
+    <p class="standfirst">The housing fraud checklist for students moving to Germany.</p>
+  </header>
+
+  <div class="alert">
+    <p class="lede">Every year students lose four-figure sums on flats that do not exist.</p>
+    <p>The scam is always the same shape: a great room, a landlord who cannot meet you, and a payment method with no way back. Nine minutes of checking is what stands between you and a transfer you cannot reverse.</p>
+  </div>
+
+  <section>
+    <h2>Six things a scammer says</h2>
+    <p class="section-note">If you hear any one of these, stop and verify before you reply.</p>
+    <ul class="flags">
+      <li class="flag">
+        <span class="quote">&ldquo;I'm currently abroad. I'll courier you the keys.&rdquo;</span>
+        <span class="why">Keys are handed over in person, at the flat, on move-in day. No real landlord in Germany posts them.</span>
+      </li>
+      <li class="flag">
+        <span class="quote">&ldquo;Send the deposit and the flat is yours.&rdquo;</span>
+        <span class="why">Money moves after you have seen the flat and signed the Mietvertrag. Never before both.</span>
+      </li>
+      <li class="flag">
+        <span class="quote">&ldquo;My camera is broken, I can't do a video call.&rdquo;</span>
+        <span class="why">A refused live video call is the single most reliable sign of a fake listing. Real landlords will show you the rooms.</span>
+      </li>
+      <li class="flag">
+        <span class="quote">&ldquo;Pay by PayPal Friends &amp; Family / crypto / Western Union.&rdquo;</span>
+        <span class="why">All three are chosen because they have no buyer protection and no trace. The money is gone the moment it leaves.</span>
+      </li>
+      <li class="flag">
+        <span class="quote">&ldquo;Three others want it. Decide tonight.&rdquo;</span>
+        <span class="why">Manufactured urgency exists to stop you checking. The German market is tight, but real landlords still wait for a viewing.</span>
+      </li>
+      <li class="flag">
+        <span class="quote">&ldquo;Just send your passport and visa scans first.&rdquo;</span>
+        <span class="why">Some listings are not after your deposit at all. They are collecting documents to open accounts in your name.</span>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Check these before you pay</h2>
+    <p class="section-note">Tick them off. Your progress is saved on this device.</p>
+    <ul class="checklist" id="checklist">
+      <li><label class="check"><input type="checkbox" data-key="c1"><span>I reverse-image searched the photos and they do not appear on other listings or hotel sites</span></label></li>
+      <li><label class="check"><input type="checkbox" data-key="c2"><span>I found the address on Google Maps and Street View, and the building matches the photos</span></label></li>
+      <li><label class="check"><input type="checkbox" data-key="c3"><span>I had a live video call where they showed their face and walked through the actual rooms</span></label></li>
+      <li><label class="check"><input type="checkbox" data-key="c4"><span>I googled the landlord's name, email address and IBAN for scam reports</span></label></li>
+      <li><label class="check"><input type="checkbox" data-key="c5"><span>The rent is in a normal range for that city &mdash; not far below it</span></label></li>
+      <li><label class="check"><input type="checkbox" data-key="c6"><span>The name on the contract matches the name on the bank account, the doorbell and the mailbox</span></label></li>
+      <li><label class="check"><input type="checkbox" data-key="c7"><span>I have a written Mietvertrag in German, and I have read it or had it read</span></label></li>
+      <li><label class="check"><input type="checkbox" data-key="c8"><span>Someone I trust in that city viewed the flat for me, if I could not go myself</span></label></li>
+      <li><label class="check"><input type="checkbox" data-key="c9"><span>Any document I sent was watermarked and had account numbers blacked out</span></label></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How the money moves</h2>
+    <ul class="rules">
+      <li><span class="mark yes">&#10003;</span><span>SEPA bank transfer only, to a <strong>German IBAN that starts with DE</strong>, held in the landlord's or company's name.</span></li>
+      <li><span class="mark yes">&#10003;</span><span>Pay on the day you sign and collect keys &mdash; not before.</span></li>
+      <li><span class="mark yes">&#10003;</span><span>Keep the transfer receipt and the signed contract together.</span></li>
+      <li><span class="mark no">&times;</span><span>Never PayPal Friends &amp; Family, Western Union, MoneyGram, crypto, or gift cards.</span></li>
+      <li><span class="mark no">&times;</span><span>Never a foreign IBAN for a German flat.</span></li>
+      <li><span class="mark no">&times;</span><span>Never a fee to view a flat, apply for it, or &ldquo;reserve&rdquo; it. Those fees do not exist here.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Two rules worth knowing</h2>
+    <dl class="facts">
+      <div class="fact">
+        <dt>The deposit is capped at three months' cold rent</dt>
+        <dd>Kaution may not exceed three times the Kaltmiete (&sect;551 BGB), and you are entitled to pay it in three monthly instalments. Anyone demanding five months up front is either a scammer or breaking the law.</dd>
+      </div>
+      <div class="fact">
+        <dt>You do not pay the agent's fee unless you hired the agent</dt>
+        <dd>Under the Bestellerprinzip, whoever engaged the Makler pays them. If the landlord found the agent, the commission is not yours.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Where to search instead</h2>
+    <p class="section-note">Scams appear on every platform. These are simply the ones with the most oversight.</p>
+    <ul class="portals">
+      <li>Studentenwerk<span class="tag">Your city's dorms</span></li>
+      <li>WG-Gesucht<span class="tag">Shared flats</span></li>
+      <li>ImmoScout24<span class="tag">Whole flats</span></li>
+      <li>Immowelt<span class="tag">Whole flats</span></li>
+      <li>HousingAnywhere<span class="tag">Book from abroad</span></li>
+      <li>Wunderflats<span class="tag">Furnished, mid-term</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>If you have already sent the money</h2>
+    <p class="section-note">Speed decides whether any of it comes back. Do these in order, today.</p>
+    <ol class="steps">
+      <li>
+        <div>
+          <strong>Call your bank now</strong>
+          <p>Ask for a SEPA recall on the transfer. A recall only has a chance in the first hours or days, so this comes before everything else.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>File a police report</strong>
+          <p>Every German state has an online Onlinewache where you can report fraud without going in. You need the report number for the bank and for any insurance claim.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Report the listing to the platform</strong>
+          <p>It stops the same advert reaching the next student, and platforms keep records that help the investigation.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Save every piece of evidence</strong>
+          <p>Screenshots of the listing and the full chat, the email headers, the transfer confirmation, the IBAN and the name on it. Do this before anything gets deleted.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Tell your university's international office</strong>
+          <p>They handle this every semester, often know the specific scam, and can usually point you to emergency accommodation.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <footer>
+    <span class="handle">@unpackgermany</span>
+    <p class="disclaimer">Everything I wish someone had told me before I moved to Germany. Share this with anyone flat-hunting right now &mdash; it costs nothing and it takes one message.</p>
+    <p class="disclaimer">General information for students, not legal advice. For a dispute with a real landlord, join your local Mieterverein.</p>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var boxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+    var KEY = 'ug-deposit-checklist';
+    var state = {};
+
+    try {
+      var saved = window.localStorage.getItem(KEY);
+      if (saved) state = JSON.parse(saved) || {};
+    } catch (e) { state = {}; }
+
+    boxes.forEach(function (box) {
+      if (state[box.dataset.key]) box.checked = true;
+      box.addEventListener('change', function () {
+        state[box.dataset.key] = box.checked;
+        try {
+          window.localStorage.setItem(KEY, JSON.stringify(state));
+        } catch (e) { /* storage unavailable — page still works */ }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
