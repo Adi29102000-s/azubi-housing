@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Student Fare Check</title>
+<meta name="description" content="Student flight discounts to Germany, checked against airline terms: why 15% becomes 5%, airline-by-airline breakdown for Emirates, Turkish, Qatar, Lufthansa and Air India, registration lead times, and how to work out your real saving.">
+<meta name="keywords" content="student flight discount, student fare india to germany, turkish airlines student discount, qatar airways student club, emirates student discount, lufthansa student discount, air india student discount, extra baggage for students, indian students in germany, cheap flights india to germany, moving to germany from india">
+<meta name="author" content="unpackgermany">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adi29102000-s.github.io/azubi-housing/flights.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Student Fare Check — what student flight discounts actually save">
+<meta property="og:description" content="Why 15% becomes 5%, airline by airline, and the one airline whose student fare costs more.">
+<meta property="og:url" content="https://adi29102000-s.github.io/azubi-housing/flights.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%E2%9C%88%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --paper:#F4F2ED; --card:#FFFFFF; --card-2:#FAF8F4;
+  --ink:#13272B; --ink-2:#3A5257; --muted:#6E8085; --line:#DDD8CE;
+  --accent:#C05423; --accent-soft:#F7E5DA; --accent-line:#E5C3AE;
+  --ok:#3B6B51; --ok-soft:#E2EDE5;
+  --warn:#836115; --warn-soft:#F6EBD2;
+  --stop:#93312A; --stop-soft:#F7DFDC;
+  --shadow:0 1px 2px rgba(19,39,43,.05),0 8px 24px -16px rgba(19,39,43,.25);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1A1C; --card:#16262A; --card-2:#1B2E32;
+    --ink:#ECE8E0; --ink-2:#C2CFCF; --muted:#8CA1A3; --line:#2A3F43;
+    --accent:#E8873A; --accent-soft:#38230F; --accent-line:#5A3A1E;
+    --ok:#83BC98; --ok-soft:#1A2E23;
+    --warn:#DCB55F; --warn-soft:#2D2715;
+    --stop:#E08379; --stop-soft:#33201E;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -16px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1A1C; --card:#16262A; --card-2:#1B2E32;
+  --ink:#ECE8E0; --ink-2:#C2CFCF; --muted:#8CA1A3; --line:#2A3F43;
+  --accent:#E8873A; --accent-soft:#38230F; --accent-line:#5A3A1E;
+  --ok:#83BC98; --ok-soft:#1A2E23;
+  --warn:#DCB55F; --warn-soft:#2D2715;
+  --stop:#E08379; --stop-soft:#33201E;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -16px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:Archivo,"Helvetica Neue",Arial,sans-serif;text-wrap:balance;margin:0;line-height:1.12;letter-spacing:-.015em}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+/* ---------- shell ---------- */
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.col{max-width:720px}
+main{padding-bottom:96px}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:20;background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;gap:20px;height:52px;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav-brand{font-family:Archivo;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:var(--ink)}
+.nav a{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.02em;color:var(--muted);text-decoration:none;white-space:nowrap}
+.nav a:hover{color:var(--accent)}
+
+/* ---------- hero ---------- */
+.hero{padding:72px 0 56px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.hero h1{font-size:clamp(38px,6.5vw,68px);font-weight:800;letter-spacing:-.03em}
+.hero .lede{font-size:20px;color:var(--ink-2);margin-top:22px;max-width:60ch}
+.paradox{
+  margin-top:34px;padding:22px 24px;background:var(--accent-soft);
+  border-left:3px solid var(--accent);border-radius:0 6px 6px 0;max-width:60ch;
+}
+.paradox p{margin:0;font-family:Archivo;font-weight:600;font-size:19px;line-height:1.4;color:var(--ink)}
+
+/* ---------- sections ---------- */
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;gap:16px;align-items:baseline;margin-bottom:12px}
+.sec-num{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.1em;padding-top:6px}
+h2{font-size:clamp(27px,3.6vw,36px);font-weight:700}
+.sec-sub{color:var(--muted);font-size:17px;margin:14px 0 0;max-width:62ch}
+h3{font-size:20px;font-weight:700;margin:38px 0 12px}
+h4{font-size:15px;font-weight:700;margin:0 0 8px}
+p{margin:14px 0}
+.col p,.col ul,.col ol{max-width:66ch}
+ul,ol{padding-left:22px;margin:14px 0}
+li{margin:7px 0}
+strong{font-weight:600;color:var(--ink)}
+
+/* ---------- timeline ---------- */
+.timeline{display:grid;gap:2px;margin-top:34px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+@media(min-width:820px){.timeline{grid-template-columns:repeat(4,1fr)}}
+.stage{background:var(--card);padding:22px 20px}
+.stage-when{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.stage h4{font-size:17px;font-family:Archivo;margin-bottom:8px}
+.stage p{font-size:15px;color:var(--ink-2);margin:0;line-height:1.55}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:16px;margin-top:28px}
+@media(min-width:760px){.grid-2{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:22px;box-shadow:var(--shadow)}
+.card h4{font-family:Archivo;font-size:17px}
+.card p{margin:8px 0 0;font-size:15.5px;color:var(--ink-2)}
+
+/* ---------- provider blocks ---------- */
+.prov{background:var(--card);border:1px solid var(--line);border-radius:8px;margin-top:20px;overflow:hidden;box-shadow:var(--shadow)}
+.prov-head{padding:20px 22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:var(--card-2)}
+.prov-name{font-family:Archivo;font-weight:700;font-size:19px}
+.prov-meta{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.04em;padding:4px 9px;border-radius:100px;border:1px solid var(--line);color:var(--muted);background:var(--paper);white-space:nowrap}
+.chip-net{border-color:var(--accent-line);color:var(--accent);background:var(--accent-soft)}
+.chip-ok{border-color:transparent;color:var(--ok);background:var(--ok-soft)}
+.prov-body{padding:6px 22px 20px}
+.prov-note{font-size:15px;color:var(--ink-2);margin:14px 0 0}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:8px}
+table{border-collapse:collapse;width:100%;min-width:460px;font-family:Archivo;font-size:15px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--muted);
+  padding:12px 14px 8px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:14px}
+.big-table table{min-width:640px}
+
+/* ---------- callouts ---------- */
+.call{border-radius:8px;padding:18px 20px;margin:26px 0;border:1px solid transparent}
+.call p{margin:8px 0 0;font-size:15.5px}
+.call p:first-of-type{margin-top:0}
+.call-label{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:8px;display:block}
+.call-warn{background:var(--warn-soft);border-color:var(--warn)}
+.call-warn .call-label{color:var(--warn)}
+.call-stop{background:var(--stop-soft);border-color:var(--stop)}
+.call-stop .call-label{color:var(--stop)}
+.call-ok{background:var(--ok-soft);border-color:var(--ok)}
+.call-ok .call-label{color:var(--ok)}
+
+/* ---------- checklist ---------- */
+.check{list-style:none;padding:0;margin:24px 0}
+.check li{
+  display:flex;gap:14px;align-items:flex-start;padding:15px 18px;margin:0 0 8px;
+  background:var(--card);border:1px solid var(--line);border-radius:7px;font-size:16px
+}
+.check .k{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);padding-top:4px;font-weight:600}
+.check .v strong{display:block;font-family:Archivo;font-size:16px;margin-bottom:3px}
+.check .v span{font-size:15px;color:var(--ink-2)}
+
+/* ---------- steps ---------- */
+.steps{counter-reset:s;list-style:none;padding:0;margin:26px 0}
+.steps li{counter-increment:s;position:relative;padding:0 0 22px 46px;font-size:16px}
+.steps li::before{
+  content:counter(s,decimal-leading-zero);position:absolute;left:0;top:1px;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--accent);
+  border:1px solid var(--accent-line);background:var(--accent-soft);
+  width:30px;height:30px;display:grid;place-items:center;border-radius:100px
+}
+.steps li::after{content:"";position:absolute;left:15px;top:34px;bottom:2px;width:1px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps b{font-family:Archivo;display:block;margin-bottom:3px}
+
+/* ---------- faq ---------- */
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;font-family:Archivo;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:"IBM Plex Mono",monospace;color:var(--accent);font-size:19px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:12px 0 2px;font-size:16px;color:var(--ink-2)}
+
+/* ---------- footer ---------- */
+footer{padding:52px 0 72px;color:var(--muted);font-size:14.5px}
+footer h4{font-family:Archivo;color:var(--ink);font-size:15px;margin-bottom:10px}
+footer a{color:var(--accent)}
+.stamp{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.03em;padding:14px 18px;border:1px dashed var(--accent-line);border-radius:7px;color:var(--ink-2);background:var(--accent-soft);margin-bottom:28px}
+.srcs{columns:2;column-gap:32px;font-size:13.5px;line-height:1.7;margin-top:10px}
+@media(max-width:640px){.srcs{columns:1}}
+.cta{background:var(--ink);color:var(--paper);border-radius:10px;padding:30px 28px;margin:40px 0 8px}
+.cta h4{color:var(--paper);font-size:20px;margin-bottom:8px}
+.cta p{color:var(--paper);opacity:.82;margin:0;font-size:16px}
+.cta a{color:var(--accent)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <span class="nav-brand">The Student Fare Check</span>
+    <a href="#truth">The catch</a>
+    <a href="#airlines">Airline by airline</a>
+    <a href="#qatar">Two Qatar schemes</a>
+    <a href="#register">Register first</a>
+    <a href="#method">How to check</a>
+    <a href="#traps">Traps</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<main>
+
+<header class="hero">
+  <div class="wrap col">
+    <div class="eyebrow">Field guide · Flying to Germany</div>
+    <h1>What student fares actually save you</h1>
+    <p class="lede">Airlines advertise 10, 15, even 25 per cent off for students. The real saving is usually a fraction of that, one airline's "discount" makes fares more expensive, and another's doesn't work at all. Here's what the terms actually say.</p>
+    <div class="paradox">
+      <p>The discount applies to the base fare only — not the taxes and fuel surcharges. On a long-haul ticket those are most of the price.</p>
+    </div>
+  </div>
+</header>
+
+<section id="truth">
+  <div class="wrap col">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Why 15% becomes 5%</h2></div>
+    <p class="sec-sub">This single mechanic explains almost every disappointed student.</p>
+
+    <p>A long-haul ticket has two parts: the <strong>base fare</strong>, which is the airline's own price, and the <strong>taxes and surcharges</strong>, which include airport fees, government levies and fuel charges. On India–Europe routes the second part is often a large share of what you pay.</p>
+
+    <p>Student discounts apply to the base fare. Not to the rest. So a headline "15% off" applied to roughly a third of your ticket comes out somewhere around 5% of the total.</p>
+
+    <div class="call call-warn">
+      <span class="call-label">A real example</span>
+      <p>On a tested Hamburg–Kuala Lumpur booking, Turkish Airlines' advertised <strong>15%</strong> student discount produced an actual saving of <strong>5.5%</strong>. The percentage wasn't a lie — it just wasn't applied to the number you assume.</p>
+    </div>
+
+    <h3>Two more things that shrink it further</h3>
+    <ul>
+      <li><strong>Student fares usually can't be combined with public sale fares.</strong> When there's a promotion running, the sale price often beats the student price outright. Always compare both before booking.</li>
+      <li><strong>Discounts are limited to specific booking classes.</strong> Qatar's applies only to R, P, Q, T, O and W fares. Those are limited-inventory buckets — when they sell out on a busy flight, the discount simply isn't available.</li>
+    </ul>
+
+    <p>Neither of these appears in the marketing. Both appear in the terms.</p>
+  </div>
+</section>
+
+<section id="airlines">
+  <div class="wrap">
+    <div class="col">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Airline by airline</h2></div>
+      <p class="sec-sub">The carriers that actually matter for India to Germany — direct, or via a Gulf or Istanbul hub. Every entry is labelled with where it came from.</p>
+    </div>
+
+    <div class="call call-warn" style="max-width:720px">
+      <span class="call-label">Checked August 2026</span>
+      <p>Airline offers change constantly and terms differ by country of purchase. Treat every row as a starting point and open the airline's own page before you book. Sources are listed at the bottom.</p>
+    </div>
+
+    <div class="prov">
+      <div class="prov-head">
+        <span class="prov-name">Emirates</span>
+        <span class="prov-meta">
+          <span class="chip chip-net">via Dubai</span>
+          <span class="chip chip-ok">Discount is real</span>
+        </span>
+      </div>
+      <div class="prov-body">
+        <div class="scroll"><table>
+          <thead><tr><th>Detail</th><th>What it says</th></tr></thead>
+          <tbody>
+            <tr><td>Discount</td><td class="num">10% off economy</td></tr>
+            <tr><td>Age</td><td>16–31</td></tr>
+            <tr><td>Baggage</td><td>Extra allowance on top of the standard two checked bags</td></tr>
+            <tr><td>Proof</td><td>Student ID verified at check-in</td></tr>
+            <tr><td>How</td><td>Student discount page, promo code <strong>STUDENT</strong></td></tr>
+          </tbody>
+        </table></div>
+        <p class="prov-note">Rated as genuinely delivering, and a sensible pick for long-haul via Dubai. The extra baggage is worth more than the 10% on a one-way move.</p>
+      </div>
+    </div>
+
+    <div class="prov">
+      <div class="prov-head">
+        <span class="prov-name">Turkish Airlines</span>
+        <span class="prov-meta">
+          <span class="chip chip-net">via Istanbul</span>
+          <span class="chip chip-ok">Best for heavy luggage</span>
+        </span>
+      </div>
+      <div class="prov-body">
+        <div class="scroll"><table>
+          <thead><tr><th>Detail</th><th>What it says</th></tr></thead>
+          <tbody>
+            <tr><td>Discount</td><td class="num">15% international via Turkey · 10% to/from Turkey · 20% domestic</td></tr>
+            <tr><td>Real-world</td><td>One tested booking saved <strong>5.5%</strong></td></tr>
+            <tr><td>Age</td><td>Up to your 35th birthday</td></tr>
+            <tr><td>Baggage</td><td><strong>40 kg instead of 30 kg</strong> on weight-based routes; free changes</td></tr>
+            <tr><td>How</td><td>Free Miles&amp;Smiles account, then submit student status. Approval takes about a week, valid one year</td></tr>
+          </tbody>
+        </table></div>
+        <p class="prov-note">The most generous baggage upgrade of any airline here, and the highest age limit. The extra 10 kg is the reason to book it, not the percentage.</p>
+      </div>
+    </div>
+
+    <div class="prov">
+      <div class="prov-head">
+        <span class="prov-name">Qatar Airways</span>
+        <span class="prov-meta">
+          <span class="chip chip-net">via Doha</span>
+          <span class="chip">Two different schemes</span>
+        </span>
+      </div>
+      <div class="prov-body">
+        <div class="scroll"><table>
+          <thead><tr><th>Detail</th><th>What it says</th></tr></thead>
+          <tbody>
+            <tr><td>Student Club</td><td class="num">10% first flight, 15% second, 20% third and fourth</td></tr>
+            <tr><td>Student Beans offer</td><td class="num">up to 9%</td></tr>
+            <tr><td>Age</td><td>18–30 (Student Club)</td></tr>
+            <tr><td>Baggage</td><td>Increased allowance, date-change flexibility, free onboard Wi-Fi</td></tr>
+            <tr><td>Restrictions</td><td>R, P, Q, T, O, W fare classes only · blackout dates in Dec 2026 and Jan 2027 · not combinable with public promo fares</td></tr>
+            <tr><td>How</td><td>Student Club page, create account and upload student ID</td></tr>
+          </tbody>
+        </table></div>
+        <p class="prov-note">The escalating discount rewards repeat flying, so it suits students who fly home yearly. Note the December and January blackout — exactly when most students want to travel.</p>
+      </div>
+    </div>
+
+    <div class="prov">
+      <div class="prov-head">
+        <span class="prov-name">Lufthansa</span>
+        <span class="prov-meta">
+          <span class="chip chip-net">direct + Frankfurt / Munich</span>
+        </span>
+      </div>
+      <div class="prov-body">
+        <div class="scroll"><table>
+          <thead><tr><th>Detail</th><th>What it says</th></tr></thead>
+          <tbody>
+            <tr><td>Discount</td><td>Not published as a fixed percentage — student fares appear automatically in search</td></tr>
+            <tr><td>Baggage</td><td>One checked bag on North America routes, two within Europe</td></tr>
+            <tr><td>Proof</td><td>Student status</td></tr>
+            <tr><td>How</td><td>Lufthansa's student offer page; fares show up in the results</td></tr>
+          </tbody>
+        </table></div>
+        <p class="prov-note">Described as a solid all-round option. Because there's no published percentage, the only way to know your saving is to run the same search with and without the student fare and compare.</p>
+      </div>
+    </div>
+
+    <div class="prov">
+      <div class="prov-head">
+        <span class="prov-name">Air India</span>
+        <span class="prov-meta">
+          <span class="chip chip-net">direct</span>
+          <span class="chip" style="color:var(--stop);border-color:var(--stop);background:var(--stop-soft)">Check the total price</span>
+        </span>
+      </div>
+      <div class="prov-body">
+        <div class="scroll"><table>
+          <thead><tr><th>Detail</th><th>What it says</th></tr></thead>
+          <tbody>
+            <tr><td>Advertised</td><td class="num">25% off economy</td></tr>
+            <tr><td>Reality</td><td>Testing found student fares came out <strong>higher</strong> than the normal fare</td></tr>
+            <tr><td>Eligibility</td><td>Active student studying in India, student ID required</td></tr>
+            <tr><td>How</td><td>Select "Student" in the Concessionary Type field</td></tr>
+          </tbody>
+        </table></div>
+        <p class="prov-note">The highest advertised discount on this page and the one rated worst in testing. That doesn't mean it's always bad — it means the headline number tells you nothing. Price the student fare against the normal fare on the same search before you book.</p>
+      </div>
+    </div>
+
+    <div class="col">
+      <h3>Worth knowing if you connect through Europe</h3>
+      <ul>
+        <li><strong>Iberia</strong> — 10% off, 15% on group bookings, ages 16–30 via Iberia Joven. Rated one of the better schemes.</li>
+        <li><strong>SAS</strong> — youth fares for ages 12–25, no registration, just select "Youth" in the search. Rated the strongest value of any airline tested.</li>
+        <li><strong>Air France</strong> — advertises an 18–29 student fare, but testing found no actual saving. Skip.</li>
+        <li><strong>KLM</strong> — youth fares priced the same as standard. Not worth the effort.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="qatar">
+  <div class="wrap col">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Qatar has two schemes — don't confuse them</h2></div>
+    <p class="sec-sub">This trips people up because both are called a student discount and they give different numbers.</p>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>Qatar Student Club</h4>
+        <p>Qatar's own programme. <strong>10% on your first flight, rising to 20% by your fourth.</strong> Ages 18–30. You register on their Student Club page and upload a student ID.</p>
+        <p>Also includes extra baggage, date-change flexibility and free Wi-Fi.</p>
+      </div>
+      <div class="card">
+        <h4>Student Beans offer</h4>
+        <p>A separate partnership discount, <strong>up to 9%</strong>, taken through Student Beans verification. Restricted to R, P, Q, T, O and W fare classes, with December and January blackouts, and it cannot be combined with public promotional fares.</p>
+      </div>
+    </div>
+
+    <p>If you're going to fly Qatar more than once during your degree, the Student Club is the better route because the discount grows. If it's a one-off, compare both against the plain sale price before deciding either is worth it.</p>
+  </div>
+</section>
+
+<section id="register">
+  <div class="wrap col">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Register before you book, not after</h2></div>
+    <p class="sec-sub">The most common way students miss the discount entirely.</p>
+
+    <p>Most of these schemes need verification <em>before</em> the discounted fare will appear in your search. Verification is not instant, and you cannot apply the discount retroactively to a ticket you've already bought.</p>
+
+    <ul class="check">
+      <li><span class="k">01</span><span class="v"><strong>Turkish — about one week</strong><span>Create a free Miles&amp;Smiles account, then submit your student status through the feedback form. Approval is valid for a year.</span></span></li>
+      <li><span class="k">02</span><span class="v"><strong>Qatar — account plus ID upload</strong><span>Register on the Student Club page and upload a photo of your student ID. Do it before you start searching fares.</span></span></li>
+      <li><span class="k">03</span><span class="v"><strong>Emirates — code at booking, ID at check-in</strong><span>Use the promo code when you book, then carry your student ID because it's verified at the airport.</span></span></li>
+      <li><span class="k">04</span><span class="v"><strong>Lufthansa — fares appear in search</strong><span>No separate registration step; the student fares show up in the results on their student page.</span></span></li>
+      <li><span class="k">05</span><span class="v"><strong>Everyone — carry proof at the airport</strong><span>Your admission letter, enrolment certificate or student card. If you can't produce it, you can be charged the difference at the gate.</span></span></li>
+    </ul>
+
+    <div class="call call-stop">
+      <span class="call-label">If you're flying in September</span>
+      <p>Turkish's verification takes about a week. If your flight is in three weeks and you haven't registered, start today or the discount won't exist for you when you book. And because discounts sit in limited fare classes, they sell out first on peak-season flights.</p>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap col">
+    <div class="sec-head"><span class="sec-num">05</span><h2>How to actually check your saving</h2></div>
+    <p class="sec-sub">Four minutes, and it beats trusting any list including this one.</p>
+
+    <ol class="steps">
+      <li><b>Search the route normally</b>Same dates, same airline, no student fare. Write down the total price including taxes.</li>
+      <li><b>Search again with the student fare</b>Logged in or with the code applied. Write down that total.</li>
+      <li><b>Subtract</b>That difference is your real saving. Not the advertised percentage.</li>
+      <li><b>Check whether a sale is running</b>If there's a public promotion, price that too. Student fares usually can't be combined with sales, and the sale often wins.</li>
+      <li><b>Then compare the baggage</b>If the student fare gives you 10 extra kilos and you're moving one-way, that's often worth more than the entire discount.</li>
+    </ol>
+
+    <div class="call call-ok">
+      <span class="call-label">The rule</span>
+      <p>Compare <strong>totals</strong>, never percentages. The percentage is marketing. The total is what leaves your account.</p>
+    </div>
+  </div>
+</section>
+
+<section id="traps">
+  <div class="wrap col">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Traps</h2></div>
+    <p class="sec-sub">Specific, and all of them documented above.</p>
+    <div class="grid grid-2">
+      <div class="card"><h4>Assuming the percentage is the saving</h4><p>It applies to the base fare only. On long-haul, expect roughly a third of the headline figure.</p></div>
+      <div class="card"><h4>Not pricing the sale fare</h4><p>Student fares generally don't combine with public promotions. A sale price often beats the student price.</p></div>
+      <div class="card"><h4>Booking before you're verified</h4><p>Discounts can't be applied retroactively. Register first — Turkish takes about a week.</p></div>
+      <div class="card"><h4>Trusting the highest advertised number</h4><p>Air India advertises 25% and tested worse than its own normal fares. Highest headline, worst outcome.</p></div>
+      <div class="card"><h4>Leaving it late in peak season</h4><p>Discounts live in limited fare classes. On busy September flights those sell out first.</p></div>
+      <div class="card"><h4>Ignoring blackout dates</h4><p>Qatar's Student Beans offer is blacked out in December and January — exactly when students fly home.</p></div>
+      <div class="card"><h4>Reading a booking site instead of the airline</h4><p>Agencies earn commission on your booking. Their numbers are marketing, and they omit the catches.</p></div>
+      <div class="card"><h4>Forgetting proof at the airport</h4><p>Emirates verifies student ID at check-in. No proof can mean paying the difference at the gate.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap col">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Questions</h2></div>
+
+    <details><summary>Which airline is actually best for India to Germany?</summary><p>For baggage, Turkish — 40 kg instead of 30, and eligibility until you turn 35. For a reliable straightforward discount, Emirates at 10%. For repeat flying over several years, Qatar's Student Club, because the discount rises to 20% by your fourth flight. Price all three totals before deciding.</p></details>
+
+    <details><summary>Is the student fare always cheaper?</summary><p>No. Air India's tested higher than its normal fare, and Air France's produced no saving at all. Always compare the two totals on the same search.</p></details>
+
+    <details><summary>Can I get the discount after booking?</summary><p>No. These are fare types applied at the time of booking, not refunds you claim later. Register and verify before you search.</p></details>
+
+    <details><summary>What proof do I need?</summary><p>Depends on the airline — an admission letter, enrolment certificate or student card. Emirates checks at check-in, so carry it in your hand luggage rather than your suitcase.</p></details>
+
+    <details><summary>Is there an age limit?</summary><p>Usually. Turkish goes up to your 35th birthday, which is the most generous here. Qatar's Student Club is 18–30, Emirates 16–31, Iberia 16–30. Some schemes are age-based rather than student-based, so being enrolled isn't always enough.</p></details>
+
+    <details><summary>Does the discount cover extra baggage too?</summary><p>Different thing. Some student fares include a larger allowance as part of the fare — Turkish's 40 kg, Emirates' extra bag. Anything beyond that is bought separately, and buying it at booking is far cheaper than at the airport.</p></details>
+
+    <details><summary>Why do blog posts quote much bigger numbers?</summary><p>Most articles on this topic are published by ticket-booking agencies that earn commission when you book through them. They quote the advertised percentage and leave out the base-fare mechanic, the sale-fare exclusion and the blackout dates.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap col">
+    <div class="stamp">Checked August 2026. Airline offers, percentages and eligibility change frequently and vary by country of purchase — always open the airline's own terms page before booking. Not affiliated with any airline; no booking links, no commission.</div>
+
+    <div class="cta">
+      <h4>Made for people about to fly</h4>
+      <p>If this saved you from a discount that wasn't one, send it to whoever's booking next.</p>
+    </div>
+
+    <h4>Sources</h4>
+    <div class="srcs">
+      <a href="https://www.qatarairways.com/en-gb/offers/student-discount.html">Qatar Airways — student offer (official)</a><br>
+      <a href="https://members.jacksflightclub.com/articles/which-airlines-offer-student-flight-discounts">Jack's Flight Club — which airlines offer student discounts (updated Jul 2026)</a><br>
+      <a href="https://travel-dealz.com/deal/turkish-airlines-students/">Travel-Dealz — Turkish Airlines student discount (Jul 2026)</a><br>
+      <a href="https://travel-dealz.com/deal/qatar-airways-student-club/">Travel-Dealz — Qatar Airways Student Club</a>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+</body>
+</html>
