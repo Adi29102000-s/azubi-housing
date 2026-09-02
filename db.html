@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airport To Your City</title>
+<meta name="description" content="Interactive journey map from every major German airport to your university city — station by station, with journey times, changes, ICE vs regional, Deutschlandticket coverage, and the exact DB Navigator search to type for your route.">
+<meta name="keywords" content="frankfurt airport to city train, munich airport to city, db navigator booking, ice train germany, airport to university germany, deutschlandticket, sparpreis, deutsche bahn for students, indian students in germany, moving to germany from india, first class fine germany train">
+<meta name="author" content="unpackgermany">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adi29102000-s.github.io/azubi-housing/db.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Airport To Your City — German train routes for new students">
+<meta property="og:description" content="Pick your airport and city, watch the route, then book it properly on DB Navigator.">
+<meta property="og:url" content="https://adi29102000-s.github.io/azubi-housing/db.html">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%9A%84%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --paper:#F4F2ED; --card:#FFFFFF; --card-2:#FAF8F4;
+  --ink:#13272B; --ink-2:#3A5257; --muted:#6E8085; --line:#DDD8CE;
+  --accent:#C05423; --accent-soft:#F7E5DA; --accent-line:#E5C3AE;
+  --ok:#3B6B51; --ok-soft:#E2EDE5;
+  --warn:#836115; --warn-soft:#F6EBD2;
+  --stop:#93312A; --stop-soft:#F7DFDC;
+  --shadow:0 1px 2px rgba(19,39,43,.05),0 8px 24px -16px rgba(19,39,43,.25);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1A1C; --card:#16262A; --card-2:#1B2E32;
+    --ink:#ECE8E0; --ink-2:#C2CFCF; --muted:#8CA1A3; --line:#2A3F43;
+    --accent:#E8873A; --accent-soft:#38230F; --accent-line:#5A3A1E;
+    --ok:#83BC98; --ok-soft:#1A2E23;
+    --warn:#DCB55F; --warn-soft:#2D2715;
+    --stop:#E08379; --stop-soft:#33201E;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -16px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1A1C; --card:#16262A; --card-2:#1B2E32;
+  --ink:#ECE8E0; --ink-2:#C2CFCF; --muted:#8CA1A3; --line:#2A3F43;
+  --accent:#E8873A; --accent-soft:#38230F; --accent-line:#5A3A1E;
+  --ok:#83BC98; --ok-soft:#1A2E23;
+  --warn:#DCB55F; --warn-soft:#2D2715;
+  --stop:#E08379; --stop-soft:#33201E;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -16px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:Archivo,"Helvetica Neue",Arial,sans-serif;text-wrap:balance;margin:0;line-height:1.12;letter-spacing:-.015em}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+/* ---------- shell ---------- */
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.col{max-width:720px}
+main{padding-bottom:96px}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:20;background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;gap:20px;height:52px;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav-brand{font-family:Archivo;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:var(--ink)}
+.nav a{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.02em;color:var(--muted);text-decoration:none;white-space:nowrap}
+.nav a:hover{color:var(--accent)}
+
+/* ---------- hero ---------- */
+.hero{padding:72px 0 56px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.hero h1{font-size:clamp(38px,6.5vw,68px);font-weight:800;letter-spacing:-.03em}
+.hero .lede{font-size:20px;color:var(--ink-2);margin-top:22px;max-width:60ch}
+.paradox{
+  margin-top:34px;padding:22px 24px;background:var(--accent-soft);
+  border-left:3px solid var(--accent);border-radius:0 6px 6px 0;max-width:60ch;
+}
+.paradox p{margin:0;font-family:Archivo;font-weight:600;font-size:19px;line-height:1.4;color:var(--ink)}
+
+/* ---------- sections ---------- */
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;gap:16px;align-items:baseline;margin-bottom:12px}
+.sec-num{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.1em;padding-top:6px}
+h2{font-size:clamp(27px,3.6vw,36px);font-weight:700}
+.sec-sub{color:var(--muted);font-size:17px;margin:14px 0 0;max-width:62ch}
+h3{font-size:20px;font-weight:700;margin:38px 0 12px}
+h4{font-size:15px;font-weight:700;margin:0 0 8px}
+p{margin:14px 0}
+.col p,.col ul,.col ol{max-width:66ch}
+ul,ol{padding-left:22px;margin:14px 0}
+li{margin:7px 0}
+strong{font-weight:600;color:var(--ink)}
+
+/* ---------- timeline ---------- */
+.timeline{display:grid;gap:2px;margin-top:34px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+@media(min-width:820px){.timeline{grid-template-columns:repeat(4,1fr)}}
+.stage{background:var(--card);padding:22px 20px}
+.stage-when{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.stage h4{font-size:17px;font-family:Archivo;margin-bottom:8px}
+.stage p{font-size:15px;color:var(--ink-2);margin:0;line-height:1.55}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:16px;margin-top:28px}
+@media(min-width:760px){.grid-2{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:22px;box-shadow:var(--shadow)}
+.card h4{font-family:Archivo;font-size:17px}
+.card p{margin:8px 0 0;font-size:15.5px;color:var(--ink-2)}
+
+/* ---------- provider blocks ---------- */
+.prov{background:var(--card);border:1px solid var(--line);border-radius:8px;margin-top:20px;overflow:hidden;box-shadow:var(--shadow)}
+.prov-head{padding:20px 22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:var(--card-2)}
+.prov-name{font-family:Archivo;font-weight:700;font-size:19px}
+.prov-meta{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.04em;padding:4px 9px;border-radius:100px;border:1px solid var(--line);color:var(--muted);background:var(--paper);white-space:nowrap}
+.chip-net{border-color:var(--accent-line);color:var(--accent);background:var(--accent-soft)}
+.chip-ok{border-color:transparent;color:var(--ok);background:var(--ok-soft)}
+.prov-body{padding:6px 22px 20px}
+.prov-note{font-size:15px;color:var(--ink-2);margin:14px 0 0}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:8px}
+table{border-collapse:collapse;width:100%;min-width:460px;font-family:Archivo;font-size:15px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--muted);
+  padding:12px 14px 8px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:14px}
+.big-table table{min-width:640px}
+
+/* ---------- callouts ---------- */
+.call{border-radius:8px;padding:18px 20px;margin:26px 0;border:1px solid transparent}
+.call p{margin:8px 0 0;font-size:15.5px}
+.call p:first-of-type{margin-top:0}
+.call-label{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:8px;display:block}
+.call-warn{background:var(--warn-soft);border-color:var(--warn)}
+.call-warn .call-label{color:var(--warn)}
+.call-stop{background:var(--stop-soft);border-color:var(--stop)}
+.call-stop .call-label{color:var(--stop)}
+.call-ok{background:var(--ok-soft);border-color:var(--ok)}
+.call-ok .call-label{color:var(--ok)}
+
+/* ---------- checklist ---------- */
+.check{list-style:none;padding:0;margin:24px 0}
+.check li{
+  display:flex;gap:14px;align-items:flex-start;padding:15px 18px;margin:0 0 8px;
+  background:var(--card);border:1px solid var(--line);border-radius:7px;font-size:16px
+}
+.check .k{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);padding-top:4px;font-weight:600}
+.check .v strong{display:block;font-family:Archivo;font-size:16px;margin-bottom:3px}
+.check .v span{font-size:15px;color:var(--ink-2)}
+
+/* ---------- steps ---------- */
+.steps{counter-reset:s;list-style:none;padding:0;margin:26px 0}
+.steps li{counter-increment:s;position:relative;padding:0 0 22px 46px;font-size:16px}
+.steps li::before{
+  content:counter(s,decimal-leading-zero);position:absolute;left:0;top:1px;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--accent);
+  border:1px solid var(--accent-line);background:var(--accent-soft);
+  width:30px;height:30px;display:grid;place-items:center;border-radius:100px
+}
+.steps li::after{content:"";position:absolute;left:15px;top:34px;bottom:2px;width:1px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps b{font-family:Archivo;display:block;margin-bottom:3px}
+
+/* ---------- faq ---------- */
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;font-family:Archivo;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:"IBM Plex Mono",monospace;color:var(--accent);font-size:19px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:12px 0 2px;font-size:16px;color:var(--ink-2)}
+
+/* ---------- footer ---------- */
+footer{padding:52px 0 72px;color:var(--muted);font-size:14.5px}
+footer h4{font-family:Archivo;color:var(--ink);font-size:15px;margin-bottom:10px}
+footer a{color:var(--accent)}
+.stamp{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.03em;padding:14px 18px;border:1px dashed var(--accent-line);border-radius:7px;color:var(--ink-2);background:var(--accent-soft);margin-bottom:28px}
+.srcs{columns:2;column-gap:32px;font-size:13.5px;line-height:1.7;margin-top:10px}
+@media(max-width:640px){.srcs{columns:1}}
+.cta{background:var(--ink);color:var(--paper);border-radius:10px;padding:30px 28px;margin:40px 0 8px}
+.cta h4{color:var(--paper);font-size:20px;margin-bottom:8px}
+.cta p{color:var(--paper);opacity:.82;margin:0;font-size:16px}
+.cta a{color:var(--accent)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <span class="nav-brand">Airport → Your City</span>
+    <a href="#planner">Route planner</a>
+    <a href="#booking">How to book</a>
+    <a href="#tickets">Ticket types</a>
+    <a href="#class">Second class</a>
+    <a href="#airports">Airport notes</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<main>
+
+<header class="hero">
+  <div class="wrap col">
+    <div class="eyebrow">Field guide · Your first journey in Germany</div>
+    <h1>Airport to your city</h1>
+    <p class="lede">Pick where you land and where you're going. You'll get the full route, station by station, and the exact search to type into DB Navigator. Book it before you fly.</p>
+    <div class="paradox">
+      <p>Your semester ticket doesn't work yet. It activates after you enrol, and you enrol after you arrive.</p>
+    </div>
+  </div>
+</header>
+
+<section id="planner">
+  <div class="wrap">
+    <div class="col">
+      <div class="sec-head"><span class="sec-num">01</span><h2>Route planner</h2></div>
+      <p class="sec-sub">Times are typical fastest connections — always confirm live times in DB Navigator for your date.</p>
+    </div>
+
+    <div class="planner">
+      <div class="picker">
+        <div class="picker-label">1 · You land at</div>
+        <div class="chips" id="airportChips" role="group" aria-label="Choose airport"></div>
+      </div>
+
+      <div class="picker" id="cityPicker" hidden>
+        <div class="picker-label">2 · You're going to</div>
+        <div class="chips" id="cityChips" role="group" aria-label="Choose destination"></div>
+      </div>
+
+      <div class="result" id="result" aria-live="polite">
+        <div class="result-empty" id="resultEmpty">Choose your airport to begin.</div>
+
+        <div id="resultBody" hidden>
+
+          <div class="rmap-head">
+            <div>
+              <div class="rmap-eyebrow">Your route</div>
+              <div class="rmap-title" id="rmapTitle">—</div>
+            </div>
+            <button type="button" class="replay" id="replayBtn">↻ Replay</button>
+          </div>
+
+          <div class="stats" id="stats"></div>
+
+          <div class="roadmap" id="roadmap">
+            <div class="rail-v"><div class="rail-v-fill" id="railFill"></div></div>
+            <div class="train-v" id="trainV" aria-hidden="true">
+              <svg viewBox="0 0 64 28" width="46" height="21">
+                <rect x="1" y="4" width="50" height="17" rx="7" fill="currentColor"/>
+                <path d="M51 4h4l7 8.5L55 21h-4z" fill="currentColor"/>
+                <rect x="7" y="8" width="9" height="7" rx="2" fill="var(--paper)" opacity=".9"/>
+                <rect x="20" y="8" width="9" height="7" rx="2" fill="var(--paper)" opacity=".9"/>
+                <rect x="33" y="8" width="9" height="7" rx="2" fill="var(--paper)" opacity=".9"/>
+                <circle cx="14" cy="23" r="3" fill="currentColor"/>
+                <circle cx="40" cy="23" r="3" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="nodes" id="nodes"></div>
+          </div>
+
+          <p class="route-note" id="routeNote"></p>
+
+          <div class="bookcard" id="bookcard">
+            <div class="bookcard-head">Book this exact route</div>
+            <ol class="bookcard-steps" id="bookSteps"></ol>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="wrap col">
+    <div class="sec-head"><span class="sec-num">02</span><h2>The full booking process</h2></div>
+    <p class="sec-sub">Do this in India, on wifi, with time to think — not at the airport with a dead SIM.</p>
+
+    <ol class="steps">
+      <li><b>Download DB Navigator</b>Deutsche Bahn's official app, free, and available in English — set the language on first open. This is the only app you need. Avoid third-party resellers.</li>
+      <li><b>Create an account</b>Use your own email. An account keeps the ticket inside the app, which matters when you have no printer and no signal.</li>
+      <li><b>Search the airport station, not the city</b>This is the mistake that costs people an hour. "Frankfurt(M) Flughafen Fernbf" is not "Frankfurt(Main)Hbf" — they're on opposite sides of the city. The planner above gives you the exact station name for your airport.</li>
+      <li><b>Add a 2–3 hour buffer after landing</b>Immigration, baggage, and finding your platform all take longer on your first day than you expect.</li>
+      <li><b>Pick the ICE, not the RE</b>ICE is the fast long-distance train. RE and RB are regional — far slower, more changes, and miserable with two suitcases.</li>
+      <li><b>Select 2. Klasse</b>Second class. It's the affordable one and it's what students travel in. First class is a separate, much pricier ticket.</li>
+      <li><b>Consider a seat reservation</b>A few euros. On a long ICE in September with luggage, worth every cent — without one you may stand.</li>
+      <li><b>Pay and download the ticket offline</b>International cards work. Download it inside the app so it opens with no internet, then screenshot it as backup.</li>
+    </ol>
+
+    <div class="call call-ok">
+      <span class="call-label">On the train</span>
+      <p>A conductor will check tickets. Show the ticket in the app plus the passport you booked with — the name has to match. Have both ready before they reach you.</p>
+    </div>
+  </div>
+</section>
+
+<section id="tickets">
+  <div class="wrap col">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Which ticket type</h2></div>
+    <p class="sec-sub">This choice matters more than the price gap suggests.</p>
+
+    <div class="scroll big-table">
+      <table>
+        <thead><tr><th>Type</th><th>Price</th><th>Locked to one train?</th><th>Use it when</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Super Sparpreis</strong></td><td>Cheapest</td><td class="num">Yes</td><td>You have a big buffer after landing</td></tr>
+          <tr><td><strong>Sparpreis</strong></td><td>Cheap</td><td class="num">Yes</td><td>Same, with a small rebooking fee</td></tr>
+          <tr><td><strong>Flexpreis</strong></td><td>Dearest</td><td class="num">No</td><td>Tight connection, or a flight you don't trust</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call call-warn">
+      <span class="call-label">The trade-off</span>
+      <p>Sparpreis tickets are tied to the exact train you booked. Flight late, train missed, ticket gone — you buy a new one. Either leave a proper buffer of two to three hours, or pay more for Flexpreis. On a first arrival the buffer is usually the better answer.</p>
+    </div>
+
+    <h3>And the Deutschlandticket</h3>
+    <p>€63 a month, covering every regional train, S-Bahn, bus and tram in Germany — but <strong>not ICE, IC or EC</strong>. Buy it for your first weeks in your own city, because your semester ticket won't be active until you enrol. It will not carry you across the country.</p>
+  </div>
+</section>
+
+<section id="class">
+  <div class="wrap col">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Second class — and how not to end up in first</h2></div>
+    <p class="sec-sub">This happens on day one, with luggage, in an unfamiliar station.</p>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>Book 2. Klasse</h4>
+        <p>Second class. Tables, luggage racks, and what almost every student travels in. First class costs far more and gives you very little you actually need on a two-hour journey.</p>
+      </div>
+      <div class="card">
+        <h4>Spot first class before boarding</h4>
+        <p>A large <strong>1</strong> on the carriage door and window, and a <strong>yellow stripe</strong> along the outside. Second class carries a <strong>2</strong>. The platform display also shows which section is which.</p>
+      </div>
+    </div>
+
+    <div class="call call-stop">
+      <span class="call-label">If you sit in the wrong one</span>
+      <p>Travelling in first class on a second-class ticket counts as not having a valid ticket for that carriage. The conductor will charge you the fare difference plus a penalty. "I didn't know" is not accepted, and it's an expensive first hour in the country.</p>
+    </div>
+
+    <p>Look up at the carriage number before you step on. It takes one second — and with a heavy suitcase you do not want to be walking through a moving train to change carriages.</p>
+  </div>
+</section>
+
+<section id="airports">
+  <div class="wrap">
+    <div class="col">
+      <div class="sec-head"><span class="sec-num">05</span><h2>What's different at each airport</h2></div>
+      <p class="sec-sub">The one thing to know before you land.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card"><h4>Frankfurt (FRA)</h4><p>Has its own <strong>long-distance station</strong> — the Fernbahnhof — inside the airport. You board an ICE without ever entering the city. There's a separate regional station too, so check which one your train leaves from.</p></div>
+      <div class="card"><h4>Munich (MUC)</h4><p><strong>No long-distance station.</strong> Take the S1 or S8 to München Hbf first, roughly 40–45 minutes, then your ICE. Budget that leg when you book.</p></div>
+      <div class="card"><h4>Düsseldorf (DUS)</h4><p>Own long-distance station, reached by SkyTrain from the terminals. Very convenient for anywhere in NRW.</p></div>
+      <div class="card"><h4>Berlin (BER)</h4><p>Station directly under Terminal 1. Regional and some long-distance. Most journeys change at Berlin Hbf or Südkreuz.</p></div>
+      <div class="card"><h4>Hamburg (HAM)</h4><p>S1 to Hamburg Hbf, around 25 minutes, then long-distance from there. No ICE from the airport itself.</p></div>
+      <div class="card"><h4>Cologne/Bonn (CGN)</h4><p>Own station under the terminal. Handy for Cologne, Bonn and Aachen — and many of those routes are fully regional, so the Deutschlandticket covers them.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap col">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Questions</h2></div>
+
+    <details><summary>Should I really book before I fly?</summary><p>Yes. It's cheaper, and you won't be at a ticket machine with no data and no idea which platform. Just leave two to three hours after landing, or pay for a flexible fare if the connection is tight.</p></details>
+
+    <details><summary>What if my flight is delayed and I miss the train?</summary><p>A Sparpreis is tied to that train, so normally you'd buy a new ticket — which is exactly why the buffer matters. If it happens, go to the DB Reisezentrum, the service centre in every main station. A person will help you more than a machine will.</p></details>
+
+    <details><summary>Can I use the Deutschlandticket for this?</summary><p>Only if the whole route runs on regional trains — the planner above tells you per route. It is never valid on ICE, IC or EC.</p></details>
+
+    <details><summary>Is there a luggage limit on German trains?</summary><p>No limit and no fee for normal suitcases. But there's no luggage van either — bags go on overhead racks or in the racks at the carriage ends, and those fill up. Board early, and avoid the last carriage.</p></details>
+
+    <details><summary>Do I need a seat reservation?</summary><p>Not required, but for a long ICE in September with two suitcases it's worth the few euros. Without one you may be standing.</p></details>
+
+    <details><summary>What if my train is cancelled?</summary><p>Common enough. If the delay is DB's fault, the train binding on a Sparpreis is lifted and you can take the next service. Check the app or ask staff.</p></details>
+
+    <details><summary>Will announcements be in English?</summary><p>On ICE, usually. On regional trains, often not. Follow the app rather than the announcements, and watch the display above the door for the next stop.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap col">
+    <div class="stamp">Journey times are typical fastest connections, checked August 2026, and vary with time of day, engineering works and delays. Always confirm live times and platforms in DB Navigator. Not affiliated with Deutsche Bahn.</div>
+
+    <div class="cta">
+      <h4>Made for people about to fly</h4>
+      <p>If this is your first journey in Germany, send it to whoever's landing with you.</p>
+    </div>
+
+    <h4>Sources</h4>
+    <div class="srcs">
+      <a href="https://int.bahn.de/en">Deutsche Bahn — international site</a><br>
+      <a href="https://int.bahn.de/en/booking-information/passenger-rights/faq">DB — passenger rights FAQ</a><br>
+      <a href="https://en.wikipedia.org/wiki/Deutschlandticket">Deutschlandticket — price and coverage</a>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<style>
+.planner{margin-top:30px}
+.picker{margin-bottom:22px}
+.picker-label{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip-btn{
+  font-family:Archivo,sans-serif;font-size:14px;font-weight:600;
+  padding:9px 15px;border-radius:100px;cursor:pointer;
+  border:1px solid var(--line);background:var(--card);color:var(--ink-2);
+  transition:background .15s,border-color .15s,color .15s;
+}
+.chip-btn:hover{border-color:var(--accent-line);color:var(--ink)}
+.chip-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+
+.result{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 22px;box-shadow:var(--shadow)}
+.result-empty{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted);text-align:center;padding:30px 0}
+
+.rmap-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.rmap-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+.rmap-title{font-family:Archivo,sans-serif;font-weight:700;font-size:20px;color:var(--ink);line-height:1.2}
+.replay{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;cursor:pointer;
+  background:var(--paper);border:1px solid var(--line);color:var(--muted);
+  padding:7px 12px;border-radius:100px;white-space:nowrap;
+}
+.replay:hover{color:var(--accent);border-color:var(--accent-line)}
+
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:26px}
+@media(min-width:620px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--card-2);padding:13px 14px}
+.stat-k{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.stat-v{font-family:Archivo,sans-serif;font-weight:700;font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums}
+.stat-v.ok{color:var(--ok)}
+.stat-v.no{color:var(--stop)}
+
+/* ---------- vertical roadmap ---------- */
+.roadmap{position:relative;padding:4px 0 4px 46px}
+.rail-v{position:absolute;left:19px;top:14px;bottom:14px;width:3px;background:var(--line);border-radius:3px;overflow:hidden}
+.rail-v-fill{position:absolute;left:0;top:0;width:100%;height:0;background:var(--accent);border-radius:3px;transition:height 1.6s cubic-bezier(.5,.05,.35,1)}
+.train-v{position:absolute;left:-4px;top:0;color:var(--accent);opacity:0;transition:opacity .25s, transform 1.6s cubic-bezier(.5,.05,.35,1);z-index:3}
+.train-v.go{opacity:1}
+
+.node{position:relative;padding:0 0 30px 0}
+.node:last-child{padding-bottom:0}
+.node-dot{
+  position:absolute;left:-34px;top:2px;width:17px;height:17px;border-radius:50%;
+  background:var(--card);border:3px solid var(--line);transition:border-color .3s,background .3s,transform .3s;z-index:2;
+}
+.node.on .node-dot{border-color:var(--accent);background:var(--accent);transform:scale(1.15)}
+.node-name{font-family:Archivo,sans-serif;font-weight:700;font-size:16px;color:var(--ink-2);transition:color .3s}
+.node.on .node-name{color:var(--ink)}
+.node-tag{
+  display:inline-block;margin-top:5px;font-family:"IBM Plex Mono",monospace;font-size:10px;
+  letter-spacing:.07em;text-transform:uppercase;padding:3px 8px;border-radius:100px;
+  background:var(--warn-soft);color:var(--warn);border:1px solid var(--warn);
+}
+.node-tag.arrive{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.leg{margin-top:10px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.leg-mode{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.06em;
+  padding:4px 10px;border-radius:5px;background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line);
+}
+.leg-mode.reg{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.leg-time{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+.route-note{font-size:15.5px;color:var(--ink-2);margin:22px 0 0;max-width:66ch}
+
+.bookcard{margin-top:24px;background:var(--card-2);border:1px solid var(--line);border-radius:9px;padding:20px 22px}
+.bookcard-head{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.bookcard-steps{counter-reset:b;list-style:none;padding:0;margin:0}
+.bookcard-steps li{counter-increment:b;position:relative;padding:0 0 12px 30px;font-size:15.5px;color:var(--ink-2)}
+.bookcard-steps li:last-child{padding-bottom:0}
+.bookcard-steps li::before{
+  content:counter(b);position:absolute;left:0;top:1px;
+  font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;color:var(--accent);
+  width:20px;height:20px;display:grid;place-items:center;border-radius:50%;
+  background:var(--accent-soft);border:1px solid var(--accent-line);
+}
+.bookcard-steps code{
+  font-family:"IBM Plex Mono",monospace;font-size:13px;background:var(--paper);
+  border:1px solid var(--line);border-radius:4px;padding:2px 6px;color:var(--ink);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .rail-v-fill,.train-v,.node-dot,.node-name{transition:none!important}
+}
+</style>
+
+<script>
+(function(){
+  var A = function(station, label, warn, routes){ return {station:station, label:label, warn:warn, routes:routes}; };
+
+  var DATA = {
+    FRA: A("Frankfurt(M) Flughafen Fernbf","Frankfurt Airport (FRA)",null,{
+      "Frankfurt":  {dt:true,  legs:[{to:"Frankfurt(Main)Hbf",mode:"S-Bahn",t:"11 min"}], note:"Straight into the city on the S8 or S9. Your Deutschlandticket covers this one."},
+      "Heidelberg": {dt:false, legs:[{to:"Heidelberg Hbf",mode:"ICE",t:"~50 min"}], note:"Direct ICE from the airport's long-distance station. No need to enter Frankfurt at all."},
+      "Cologne":    {dt:false, legs:[{to:"Köln Hbf",mode:"ICE",t:"~1 h"}], note:"One of the fastest stretches of railway in Germany. Direct, no change."},
+      "Stuttgart":  {dt:false, legs:[{to:"Stuttgart Hbf",mode:"ICE",t:"~1 h 15"}], note:"Direct ICE from the Fernbahnhof."},
+      "Karlsruhe":  {dt:false, legs:[{to:"Karlsruhe Hbf",mode:"ICE",t:"~1 h"}], note:"Direct ICE."},
+      "Freiburg":   {dt:false, legs:[{to:"Freiburg(Breisgau) Hbf",mode:"ICE",t:"~2 h"}], note:"Direct ICE down the Rhine valley."},
+      "Aachen":     {dt:false, legs:[{to:"Köln Hbf",mode:"ICE",t:"~1 h"},{to:"Aachen Hbf",mode:"ICE / RE",t:"~1 h"}], note:"ICE to Cologne, then change. Allow a proper gap for the change — Köln Hbf is busy and you'll have suitcases."},
+      "Düsseldorf": {dt:false, legs:[{to:"Düsseldorf Hbf",mode:"ICE",t:"~1 h 30"}], note:"Direct ICE up the Rhine."},
+      "Hannover":   {dt:false, legs:[{to:"Hannover Hbf",mode:"ICE",t:"~2 h 20"}], note:"Direct ICE."},
+      "Nuremberg":  {dt:false, legs:[{to:"Nürnberg Hbf",mode:"ICE",t:"~2 h"}], note:"Direct ICE."},
+      "Munich":     {dt:false, legs:[{to:"München Hbf",mode:"ICE",t:"~3 h 10"}], note:"Direct but long — a seat reservation is worth it with luggage."},
+      "Hamburg":    {dt:false, legs:[{to:"Hamburg Hbf",mode:"ICE",t:"~3 h 45"}], note:"Direct ICE. Reserve a seat; this route fills up."},
+      "Berlin":     {dt:false, legs:[{to:"Berlin Hbf",mode:"ICE",t:"~4 h"}], note:"Direct ICE. Reserve a seat and a luggage space."},
+      "Leipzig":    {dt:false, legs:[{to:"Frankfurt(Main)Hbf",mode:"S-Bahn",t:"11 min"},{to:"Leipzig Hbf",mode:"ICE",t:"~3 h"}], note:"Usually via Frankfurt Hbf. Check the app — some dates have better routings."},
+      "Dresden":    {dt:false, legs:[{to:"Frankfurt(Main)Hbf",mode:"S-Bahn",t:"11 min"},{to:"Dresden Hbf",mode:"ICE",t:"~4 h 20"}], note:"Long, with a change. If you land late, consider breaking the journey."}
+    }),
+    MUC: A("München Flughafen","Munich Airport (MUC)","Munich airport has no long-distance station — every journey starts with the S1 or S8 into München Hbf.",{
+      "Munich":     {dt:true,  legs:[{to:"München Hbf",mode:"S-Bahn",t:"~40 min"}], note:"S1 or S8 straight to the Hauptbahnhof. Deutschlandticket covers it."},
+      "Nuremberg":  {dt:false, legs:[{to:"München Hbf",mode:"S-Bahn",t:"~40 min"},{to:"Nürnberg Hbf",mode:"ICE",t:"~1 h 10"}], note:"S-Bahn in, then ICE. Leave a real gap for the change."},
+      "Stuttgart":  {dt:false, legs:[{to:"München Hbf",mode:"S-Bahn",t:"~40 min"},{to:"Stuttgart Hbf",mode:"ICE",t:"~2 h 15"}], note:"S-Bahn in, then ICE."},
+      "Frankfurt":  {dt:false, legs:[{to:"München Hbf",mode:"S-Bahn",t:"~40 min"},{to:"Frankfurt(Main)Hbf",mode:"ICE",t:"~3 h 15"}], note:"S-Bahn in, then a direct ICE."},
+      "Berlin":     {dt:false, legs:[{to:"München Hbf",mode:"S-Bahn",t:"~40 min"},{to:"Berlin Hbf",mode:"ICE",t:"~4 h"}], note:"Long day. Reserve a seat."},
+      "Hamburg":    {dt:false, legs:[{to:"München Hbf",mode:"S-Bahn",t:"~40 min"},{to:"Hamburg Hbf",mode:"ICE",t:"~6 h"}], note:"Very long. If your flight lands in the evening, a night in Munich may be the saner option."}
+    }),
+    DUS: A("Düsseldorf Flughafen","Düsseldorf Airport (DUS)",null,{
+      "Düsseldorf": {dt:true,  legs:[{to:"Düsseldorf Hbf",mode:"Regional",t:"~12 min"}], note:"Short regional hop. Deutschlandticket covers it."},
+      "Cologne":    {dt:false, legs:[{to:"Köln Hbf",mode:"ICE",t:"~40 min"}], note:"Direct from the airport's long-distance station."},
+      "Aachen":     {dt:false, legs:[{to:"Köln Hbf",mode:"ICE",t:"~40 min"},{to:"Aachen Hbf",mode:"ICE / RE",t:"~1 h"}], note:"Change in Cologne. A fully regional routing exists and is covered by the Deutschlandticket, but it's slower."},
+      "Dortmund":   {dt:false, legs:[{to:"Dortmund Hbf",mode:"ICE",t:"~50 min"}], note:"Direct."},
+      "Frankfurt":  {dt:false, legs:[{to:"Frankfurt(Main)Hbf",mode:"ICE",t:"~1 h 30"}], note:"Direct ICE on the high-speed line."}
+    }),
+    BER: A("Berlin Flughafen BER","Berlin Brandenburg (BER)",null,{
+      "Berlin":     {dt:true,  legs:[{to:"Berlin Hbf",mode:"Regional",t:"~30 min"}], note:"FEX or regional from under Terminal 1. Deutschlandticket covers it."},
+      "Leipzig":    {dt:false, legs:[{to:"Berlin Hbf",mode:"Regional",t:"~30 min"},{to:"Leipzig Hbf",mode:"ICE",t:"~1 h 15"}], note:"Into the city first, then ICE."},
+      "Dresden":    {dt:false, legs:[{to:"Berlin Hbf",mode:"Regional",t:"~30 min"},{to:"Dresden Hbf",mode:"ICE / EC",t:"~1 h 45"}], note:"Into the city first, then onward."},
+      "Hamburg":    {dt:false, legs:[{to:"Berlin Hbf",mode:"Regional",t:"~30 min"},{to:"Hamburg Hbf",mode:"ICE",t:"~2 h"}], note:"Change at Berlin Hbf or Südkreuz."}
+    }),
+    HAM: A("Hamburg Airport","Hamburg Airport (HAM)","No long-distance trains from the airport — the S1 into Hamburg Hbf comes first.",{
+      "Hamburg":    {dt:true,  legs:[{to:"Hamburg Hbf",mode:"S-Bahn",t:"~25 min"}], note:"S1 to the Hauptbahnhof. Deutschlandticket covers it."},
+      "Bremen":     {dt:false, legs:[{to:"Hamburg Hbf",mode:"S-Bahn",t:"~25 min"},{to:"Bremen Hbf",mode:"ICE / IC",t:"~1 h"}], note:"S-Bahn in, then onward."},
+      "Hannover":   {dt:false, legs:[{to:"Hamburg Hbf",mode:"S-Bahn",t:"~25 min"},{to:"Hannover Hbf",mode:"ICE",t:"~1 h 20"}], note:"S-Bahn in, then ICE."},
+      "Berlin":     {dt:false, legs:[{to:"Hamburg Hbf",mode:"S-Bahn",t:"~25 min"},{to:"Berlin Hbf",mode:"ICE",t:"~2 h"}], note:"S-Bahn in, then a fast ICE."}
+    }),
+    CGN: A("Köln/Bonn Flughafen","Cologne/Bonn (CGN)",null,{
+      "Cologne":    {dt:true,  legs:[{to:"Köln Hbf",mode:"Regional",t:"~15 min"}], note:"Regional from under the terminal. Deutschlandticket covers it."},
+      "Bonn":       {dt:true,  legs:[{to:"Bonn Hbf",mode:"Regional",t:"~30 min"}], note:"Regional throughout — covered by the Deutschlandticket."},
+      "Aachen":     {dt:true,  legs:[{to:"Köln Hbf",mode:"Regional",t:"~15 min"},{to:"Aachen Hbf",mode:"RE",t:"~1 h"}], note:"All regional, so your Deutschlandticket covers the entire journey. Slower than ICE but free if you already have the ticket."},
+      "Düsseldorf": {dt:true,  legs:[{to:"Köln Hbf",mode:"Regional",t:"~15 min"},{to:"Düsseldorf Hbf",mode:"RE",t:"~30 min"}], note:"Regional throughout — Deutschlandticket covers it."}
+    })
+  };
+
+  var elA=document.getElementById('airportChips'),
+      elCwrap=document.getElementById('cityPicker'),
+      elC=document.getElementById('cityChips'),
+      empty=document.getElementById('resultEmpty'),
+      body=document.getElementById('resultBody'),
+      nodesEl=document.getElementById('nodes'),
+      fill=document.getElementById('railFill'),
+      trainV=document.getElementById('trainV'),
+      roadmap=document.getElementById('roadmap');
+  var selA=null, selC=null, timers=[];
+
+  function chip(label, fn){
+    var b=document.createElement('button');
+    b.type='button'; b.className='chip-btn'; b.textContent=label;
+    b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',function(){ fn(b); });
+    return b;
+  }
+  function unpress(box){ Array.prototype.forEach.call(box.children,function(c){ c.setAttribute('aria-pressed','false'); }); }
+  function clearTimers(){ timers.forEach(clearTimeout); timers=[]; }
+
+  Object.keys(DATA).forEach(function(code){
+    elA.appendChild(chip(DATA[code].label,function(btn){
+      selA=code; selC=null;
+      unpress(elA); btn.setAttribute('aria-pressed','true');
+      elC.innerHTML='';
+      Object.keys(DATA[code].routes).forEach(function(city){
+        elC.appendChild(chip(city,function(b2){ selC=city; unpress(elC); b2.setAttribute('aria-pressed','true'); draw(); }));
+      });
+      elCwrap.hidden=false;
+      body.hidden=true; empty.hidden=false;
+      empty.textContent = DATA[code].warn || 'Now choose your city.';
+    }));
+  });
+
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+  function draw(){
+    if(!selA||!selC) return;
+    clearTimers();
+    var ap=DATA[selA], r=ap.routes[selC];
+    empty.hidden=true; body.hidden=false;
+
+    document.getElementById('rmapTitle').textContent = ap.label + '  →  ' + selC;
+
+    var changes = r.legs.length - 1;
+    var total = r.legs.map(function(l){return l.t;}).join(' + ');
+    document.getElementById('stats').innerHTML =
+      st('Total time', total) +
+      st('Changes', changes===0?'Direct':String(changes), changes===0?'ok':'') +
+      st('Fastest train', r.legs.some(function(l){return /ICE|IC|EC/.test(l.mode);})?'ICE':'Regional') +
+      st('Deutschlandticket', r.dt?'Covered':'Not valid', r.dt?'ok':'no');
+
+    // build nodes
+    var html = '<div class="node" data-i="0"><div class="node-dot"></div>'
+             + '<div class="node-name">'+esc(ap.station)+'</div>'
+             + '<div class="node-tag">Start · your airport</div>';
+    r.legs.forEach(function(l,i){
+      html += '<div class="leg"><span class="leg-mode'+(/ICE|IC|EC/.test(l.mode)?'':' reg')+'">'+esc(l.mode)+'</span><span class="leg-time">'+esc(l.t)+'</span></div></div>';
+      var last = (i === r.legs.length-1);
+      html += '<div class="node" data-i="'+(i+1)+'"><div class="node-dot"></div>'
+            + '<div class="node-name">'+esc(l.to)+'</div>'
+            + (last ? '<div class="node-tag arrive">You have arrived</div>' : '<div class="node-tag">Change here</div>');
+    });
+    html += '</div>';
+    nodesEl.innerHTML = html;
+
+    document.getElementById('routeNote').textContent = r.note;
+
+    // booking steps for this exact route
+    var bs = document.getElementById('bookSteps');
+    var first = r.legs[0], lastLeg = r.legs[r.legs.length-1];
+    var s = [];
+    s.push('Open <strong>DB Navigator</strong> and search <code>'+esc(ap.station)+'</code> → <code>'+esc(lastLeg.to)+'</code>');
+    s.push('Set your arrival date, and a departure time <strong>2–3 hours after you land</strong>');
+    if(r.legs.some(function(l){return /ICE|IC|EC/.test(l.mode);})){
+      s.push('Choose the connection that uses the <strong>ICE</strong>, not the RE — it is much faster' + (changes?' and shows '+changes+' change'+(changes>1?'s':''):' and is direct'));
+    } else {
+      s.push('This route is fully regional. If you already have a <strong>Deutschlandticket</strong>, you do not need to buy anything');
+    }
+    s.push('Select <strong>2. Klasse</strong> — second class');
+    if(!r.dt) s.push('Consider a <strong>seat reservation</strong>, and pick Flexpreis if your connection is tight');
+    s.push('Pay, then <strong>download the ticket offline</strong> in the app and screenshot it');
+    bs.innerHTML = s.map(function(x){return '<li>'+x+'</li>';}).join('');
+
+    animate();
+  }
+
+  function st(k,v,cls){ return '<div class="stat"><div class="stat-k">'+k+'</div><div class="stat-v '+(cls||'')+'">'+v+'</div></div>'; }
+
+  function animate(){
+    var nodes = nodesEl.querySelectorAll('.node');
+    if(!nodes.length) return;
+    fill.style.transition='none'; fill.style.height='0';
+    trainV.classList.remove('go'); trainV.style.transition='none'; trainV.style.transform='translateY(0)';
+    Array.prototype.forEach.call(nodes,function(n){ n.classList.remove('on'); });
+    void fill.offsetWidth;
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){
+      fill.style.height='100%';
+      Array.prototype.forEach.call(nodes,function(n){ n.classList.add('on'); });
+      return;
+    }
+
+    var lastNode = nodes[nodes.length-1];
+    var dist = lastNode.offsetTop;
+
+    trainV.style.transition='opacity .25s ease, transform 1.7s cubic-bezier(.5,.05,.35,1)';
+    fill.style.transition='height 1.7s cubic-bezier(.5,.05,.35,1)';
+    trainV.classList.add('go');
+
+    timers.push(setTimeout(function(){
+      fill.style.height='100%';
+      trainV.style.transform='translateY('+dist+'px)';
+    },40));
+
+    Array.prototype.forEach.call(nodes,function(n,i){
+      timers.push(setTimeout(function(){ n.classList.add('on'); }, 60 + i*(1700/nodes.length)));
+    });
+    timers.push(setTimeout(function(){ trainV.classList.remove('go'); }, 2300));
+  }
+
+  document.getElementById('replayBtn').addEventListener('click', animate);
+})();
+</script>
+
+</body>
+</html>
