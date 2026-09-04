@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Germany Day 1 to 5 Survival Checklist</title>
+<meta name="description" content="A practical Day 1 to Day 5 checklist for international students and Ausbildung trainees arriving in Germany. Cash, SIM, Anmeldung, bank account, Pfand and recycling.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Germany Day 1 to 5 Survival Checklist">
+<meta property="og:description" content="Ten things to do in your first five days in Germany. Saves your progress on your phone.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#f9f9f9;
+    --surface:#ffffff;
+    --ink:#111111;
+    --ink-soft:#54595f;
+    --ink-faint:#8b9096;
+    --line:#e6e7e9;
+    --slate:#2c3e50;
+    --crimson:#d9381e;
+    --crimson-bg:#fdf0ee;
+    --amber:#fab005;
+    --amber-bg:#fff8e5;
+    --green:#2f9e44;
+    --radius:16px;
+    --maxw:680px;
+    --pad:20px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+
+  html{-webkit-text-size-adjust:100%;}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:150px;
+  }
+
+  /* ---------- sticky progress ---------- */
+  .progress-bar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(12px);
+    -webkit-backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--line);
+    padding-top:env(safe-area-inset-top);
+  }
+  .progress-track{
+    height:5px;
+    background:var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:var(--slate);
+    border-radius:0 3px 3px 0;
+    transition:width .35s cubic-bezier(.4,0,.2,1), background-color .35s ease;
+  }
+  .progress-fill.is-complete{background:var(--green);}
+  .progress-meta{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:9px var(--pad);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.005em;
+  }
+  .progress-label{color:var(--ink-soft);}
+  .progress-pct{
+    color:var(--slate);
+    font-variant-numeric:tabular-nums;
+    font-size:14px;
+  }
+  .progress-pct.is-complete{color:var(--green);}
+
+  /* ---------- shell ---------- */
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 var(--pad);
+  }
+
+  /* ---------- header ---------- */
+  header.hero{
+    padding:38px 0 26px;
+    text-align:left;
+  }
+  h1{
+    margin:0 0 10px;
+    font-size:clamp(28px,7vw,38px);
+    line-height:1.15;
+    letter-spacing:-.022em;
+    font-weight:800;
+  }
+  .sub{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:15.5px;
+    max-width:46ch;
+  }
+  .hero-note{
+    margin:18px 0 0;
+    font-size:13.5px;
+    color:var(--ink-faint);
+    display:flex;
+    align-items:center;
+    gap:7px;
+  }
+  .hero-note svg{flex:0 0 auto;}
+
+  /* ---------- day card ---------- */
+  .day{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px var(--pad) 8px;
+    margin:0 0 16px;
+  }
+  .day-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    flex-wrap:wrap;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:4px;
+  }
+  .day-num{
+    flex:0 0 auto;
+    background:var(--slate);
+    color:#fff;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.02em;
+    padding:4px 10px;
+    border-radius:999px;
+    position:relative;
+    top:-1px;
+  }
+  .day-title{
+    margin:0;
+    font-size:17px;
+    font-weight:700;
+    letter-spacing:-.01em;
+    line-height:1.3;
+  }
+
+  /* ---------- checklist item ---------- */
+  .item{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .item:last-of-type{border-bottom:0;}
+  .item input{
+    position:absolute;
+    opacity:0;
+    width:1px;height:1px;
+    margin:0;
+  }
+  .box{
+    flex:0 0 auto;
+    width:26px;height:26px;
+    margin-top:1px;
+    border:2px solid #c8ccd0;
+    border-radius:8px;
+    background:#fff;
+    display:grid;
+    place-items:center;
+    transition:background-color .18s ease,border-color .18s ease,transform .18s ease;
+  }
+  .box svg{
+    width:15px;height:15px;
+    stroke:#fff;
+    stroke-width:3.2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    fill:none;
+    stroke-dasharray:24;
+    stroke-dashoffset:24;
+    transition:stroke-dashoffset .22s ease .04s;
+  }
+  .item:hover .box{border-color:var(--slate);}
+  .item input:focus-visible + .box{
+    outline:3px solid rgba(44,62,80,.35);
+    outline-offset:2px;
+  }
+  .item input:checked + .box{
+    background:var(--green);
+    border-color:var(--green);
+  }
+  .item input:checked + .box svg{stroke-dashoffset:0;}
+  .item input:checked ~ .text .item-title{
+    text-decoration:line-through;
+    text-decoration-thickness:2px;
+    text-decoration-color:var(--ink-faint);
+  }
+  .item input:checked ~ .text{opacity:.42;}
+  .text{
+    transition:opacity .22s ease;
+    min-width:0;
+  }
+  .item-title{
+    display:block;
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:-.008em;
+    margin-bottom:3px;
+  }
+  .item-body{
+    display:block;
+    color:var(--ink-soft);
+    font-size:14.5px;
+  }
+  .item-body b{color:var(--ink);font-weight:600;}
+
+  /* ---------- callouts ---------- */
+  .callout{
+    border-radius:12px;
+    padding:14px 16px;
+    margin:2px 0 18px;
+    font-size:14px;
+    line-height:1.5;
+    border-left:4px solid;
+  }
+  .callout .callout-label{
+    display:block;
+    font-weight:700;
+    font-size:12.5px;
+    letter-spacing:.02em;
+    margin-bottom:4px;
+  }
+  .callout.tip{
+    background:var(--amber-bg);
+    border-left-color:var(--amber);
+    color:#5c4400;
+  }
+  .callout.tip .callout-label{color:#8a6400;}
+  .callout.alert{
+    background:var(--crimson-bg);
+    border-left-color:var(--crimson);
+    color:#7d2213;
+  }
+  .callout.alert .callout-label{color:var(--crimson);}
+
+  /* ---------- reset ---------- */
+  .reset-row{
+    display:flex;
+    justify-content:center;
+    padding:6px 0 30px;
+  }
+  .reset{
+    appearance:none;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    font:inherit;
+    font-size:14px;
+    font-weight:600;
+    padding:11px 20px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:border-color .18s ease,color .18s ease,background-color .18s ease;
+  }
+  .reset:hover{border-color:var(--crimson);color:var(--crimson);background:var(--crimson-bg);}
+  .reset:focus-visible{outline:3px solid rgba(217,56,30,.35);outline-offset:2px;}
+
+  /* ---------- sticky footer CTA ---------- */
+  .cta{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    z-index:60;
+    background:rgba(255,255,255,.93);
+    backdrop-filter:saturate(180%) blur(12px);
+    -webkit-backdrop-filter:saturate(180%) blur(12px);
+    border-top:1px solid var(--line);
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .cta-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:13px var(--pad) 15px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .cta-text{
+    margin:0;
+    font-size:13.5px;
+    line-height:1.4;
+    color:var(--ink-soft);
+    flex:1 1 auto;
+    min-width:0;
+  }
+  .cta-text b{color:var(--ink);font-weight:700;}
+  .cta-btn{
+    flex:0 0 auto;
+    display:inline-block;
+    background:var(--ink);
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:-.005em;
+    padding:12px 18px;
+    border-radius:999px;
+    transition:transform .15s ease,background-color .18s ease;
+  }
+  .cta-btn:hover{background:var(--slate);}
+  .cta-btn:active{transform:scale(.97);}
+  .cta-btn:focus-visible{outline:3px solid rgba(44,62,80,.4);outline-offset:2px;}
+
+  .fineprint{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 var(--pad) 34px;
+    font-size:12.5px;
+    line-height:1.5;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- celebration ---------- */
+  .done-banner{
+    display:none;
+    background:#eaf7ee;
+    border:1px solid #bfe3c8;
+    border-radius:var(--radius);
+    padding:18px 20px;
+    margin:0 0 16px;
+    font-size:15px;
+    color:#1c6b31;
+    font-weight:600;
+  }
+  .done-banner.show{display:block;}
+
+  @media (max-width:420px){
+    :root{--pad:16px;}
+    .cta-inner{flex-direction:column;align-items:stretch;gap:10px;}
+    .cta-btn{text-align:center;}
+    body{padding-bottom:190px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition-duration:.001ms !important;animation-duration:.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar">
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <div class="progress-meta">
+    <span class="progress-label" id="progressLabel">0 of 10 done</span>
+    <span class="progress-pct" id="progressPct">0%</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <h1>🎒 Germany Day 1 to 5 Survival Checklist</h1>
+    <p class="sub">Ten things that actually matter in your first week. For international students and Ausbildung trainees.</p>
+    <p class="hero-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Your ticks are saved on this phone. Close the tab, come back later.
+    </p>
+  </header>
+
+  <div class="done-banner" id="doneBanner">All ten done. Your first week in Germany is officially handled. 🇩🇪</div>
+
+  <!-- DAY 1 -->
+  <section class="day">
+    <div class="day-head">
+      <span class="day-num">Day 1</span>
+      <h2 class="day-title">The airport and survival mode</h2>
+    </div>
+
+    <label class="item">
+      <input type="checkbox" data-id="c1">
+      <span class="box"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></span>
+      <span class="text">
+        <span class="item-title">Get emergency cash</span>
+        <span class="item-body">Withdraw <b>€50–€100</b> at an airport ATM and ask for small notes (€5, €10, €20). Plenty of bakeries, kiosks, market stalls and older ticket machines still take cash only.</span>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="c2">
+      <span class="box"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></span>
+      <span class="text">
+        <span class="item-title">Buy water and snacks at the station</span>
+        <span class="item-body">Grab a big bottle of water and food at the airport or main station before heading to your accommodation. If you land on a <b>Sunday or a public holiday</b>, normal supermarkets are shut.</span>
+      </span>
+    </label>
+  </section>
+
+  <!-- DAY 2 -->
+  <section class="day">
+    <div class="day-head">
+      <span class="day-num">Day 2</span>
+      <h2 class="day-title">Getting around and getting online</h2>
+    </div>
+
+    <label class="item">
+      <input type="checkbox" data-id="c3">
+      <span class="box"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></span>
+      <span class="text">
+        <span class="item-title">Check whether your ticket needs stamping</span>
+        <span class="item-body">Most tickets from a machine or app are already valid — the date and time are printed on them. But a <b>strip ticket or multi-ride card</b> must be stamped in the red or yellow <b>Entwerter</b> box before you board.</span>
+      </span>
+    </label>
+
+    <div class="callout alert">
+      <span class="callout-label">If you get it wrong</span>
+      Riding without a valid ticket costs <b>€60</b> on the spot, everywhere in Germany. Not knowing the rule is not accepted as an excuse.
+    </div>
+
+    <label class="item">
+      <input type="checkbox" data-id="c4">
+      <span class="box"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></span>
+      <span class="text">
+        <span class="item-title">Start your SIM activation</span>
+        <span class="item-body">Buy a prepaid SIM (<b>ALDI TALK, LIDL Connect, Vodafone CallYa</b>) at a supermarket checkout. Install the app and start the <b>Video-Ident</b> check with your passport straight away — the SIM will not work until identity verification is done.</span>
+      </span>
+    </label>
+
+    <div class="callout tip">
+      <span class="callout-label">Pro tip</span>
+      If the video call fails because of your document type, print the registration form from the app and take it to a <b>Deutsche Post</b> branch. Post staff verify you in person, and the provider normally covers the cost.
+    </div>
+  </section>
+
+  <!-- DAY 3 -->
+  <section class="day">
+    <div class="day-head">
+      <span class="day-num">Day 3</span>
+      <h2 class="day-title">The bureaucracy baseline</h2>
+    </div>
+
+    <label class="item">
+      <input type="checkbox" data-id="c5">
+      <span class="box"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></span>
+      <span class="text">
+        <span class="item-title">Book your Anmeldung appointment</span>
+        <span class="item-body">Federal law gives you <b>two weeks</b> to register your address. Book on your local <b>Bürgeramt</b> website on day one — in bigger cities the free slots are gone weeks ahead. Book first, worry about the deadline second.</span>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="c6">
+      <span class="box"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></span>
+      <span class="text">
+        <span class="item-title">Download offline German translation</span>
+        <span class="item-body">Install <b>Google Translate</b> and download the German language pack for offline use. The camera mode reads letters, bin labels and food packaging without data.</span>
+      </span>
+    </label>
+  </section>
+
+  <!-- DAY 4 -->
+  <section class="day">
+    <div class="day-head">
+      <span class="day-num">Day 4</span>
+      <h2 class="day-title">Unlocking your money</h2>
+    </div>
+
+    <label class="item">
+      <input type="checkbox" data-id="c7">
+      <span class="box"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></span>
+      <span class="text">
+        <span class="item-title">Open a normal current account (Girokonto)</span>
+        <span class="item-body">Your blocked account is not a spending account. You need a separate everyday account — <b>N26, Tomorrow, Commerzbank, Sparkasse</b> — to receive the monthly payout and pay rent. Fully online banks like N26 usually let you open without an Anmeldung certificate; most branch banks will ask for one.</span>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="c8">
+      <span class="box"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></span>
+      <span class="text">
+        <span class="item-title">Link your new IBAN to the blocked account</span>
+        <span class="item-body">Log in to your blocked account provider (<b>Fintiba, Expatrio</b>), upload your visa, finish the legitimation step, and enter your new IBAN. The first monthly payout is only released once that link is active.</span>
+      </span>
+    </label>
+
+    <div class="callout tip">
+      <span class="callout-label">Order matters</span>
+      Bank account before payout, and often <b>Anmeldung before bank account</b>. This is why day 3 is booked on day 1 — a slow Bürgeramt slot can delay your first payout by weeks. Plan to cover 4–6 weeks of living costs yourself.
+    </div>
+  </section>
+
+  <!-- DAY 5 -->
+  <section class="day">
+    <div class="day-head">
+      <span class="day-num">Day 5</span>
+      <h2 class="day-title">Local customs mastery</h2>
+    </div>
+
+    <label class="item">
+      <input type="checkbox" data-id="c9">
+      <span class="box"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></span>
+      <span class="text">
+        <span class="item-title">Learn the Pfand system</span>
+        <span class="item-body">Do not bin plastic bottles or cans. Single-use bottles and all cans carry the <b>DPG Pfand logo</b> and are worth <b>€0.25</b>. Refillable bottles marked <b>Mehrweg</b> are usually €0.08 or €0.15. Feed them into the machine at any supermarket and you get a voucher to use at the till.</span>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-id="c10">
+      <span class="box"><svg viewBox="0 0 24 24"><polyline points="4 12.5 9.5 18 20 6.5"/></svg></span>
+      <span class="text">
+        <span class="item-title">Sort your rubbish</span>
+        <span class="item-body">Separate as you go: <b>blue</b> paper, <b>yellow</b> plastic and packaging, <b>brown</b> food waste, <b>black or grey</b> everything else. Glass goes to street containers sorted by colour. Bin colours vary a little by city, so check the sticker in your building.</span>
+      </span>
+    </label>
+  </section>
+
+  <div class="reset-row">
+    <button class="reset" id="resetBtn" type="button">Reset checklist</button>
+  </div>
+
+</div>
+
+<p class="fineprint">
+  Rules change and city practice varies. Always confirm deadlines with your own Bürgeramt and your visa paperwork. Last reviewed September 2026.
+</p>
+
+<div class="cta">
+  <div class="cta-inner">
+    <p class="cta-text"><b>Stuck on the Day 3 paperwork?</b> Go back to my profile and watch the Anmeldung form walkthrough.</p>
+    <a class="cta-btn" id="ctaLink" href="https://www.instagram.com/unpackgermany/" target="_blank" rel="noopener">Follow for more tips</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var STORAGE_KEY = "de-survival-checklist-v1";
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.item input[type="checkbox"]'));
+  var fill = document.getElementById("progressFill");
+  var pct = document.getElementById("progressPct");
+  var label = document.getElementById("progressLabel");
+  var banner = document.getElementById("doneBanner");
+  var resetBtn = document.getElementById("resetBtn");
+
+  // Fallback store so the page still works where localStorage is blocked
+  // (private mode, sandboxed iframes, strict browser settings).
+  var memory = {};
+  var hasLS = (function(){
+    try {
+      var t = "__t";
+      window.localStorage.setItem(t, "1");
+      window.localStorage.removeItem(t);
+      return true;
+    } catch (e) { return false; }
+  })();
+
+  function load(){
+    if (!hasLS) return memory;
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      return raw ? (JSON.parse(raw) || {}) : {};
+    } catch (e) { return {}; }
+  }
+
+  function save(state){
+    memory = state;
+    if (!hasLS) return;
+    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function currentState(){
+    var s = {};
+    boxes.forEach(function(b){ s[b.dataset.id] = b.checked; });
+    return s;
+  }
+
+  function render(){
+    var total = boxes.length;
+    var done = boxes.filter(function(b){ return b.checked; }).length;
+    var percent = total ? Math.round((done / total) * 100) : 0;
+    var complete = done === total && total > 0;
+
+    fill.style.width = percent + "%";
+    pct.textContent = percent + "%";
+    label.textContent = done + " of " + total + " done";
+
+    fill.classList.toggle("is-complete", complete);
+    pct.classList.toggle("is-complete", complete);
+    banner.classList.toggle("show", complete);
+  }
+
+  // restore
+  var saved = load();
+  boxes.forEach(function(b){
+    if (saved[b.dataset.id]) b.checked = true;
+    b.addEventListener("change", function(){
+      save(currentState());
+      render();
+    });
+  });
+
+  resetBtn.addEventListener("click", function(){
+    boxes.forEach(function(b){ b.checked = false; });
+    memory = {};
+    if (hasLS) {
+      try { window.localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    }
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
