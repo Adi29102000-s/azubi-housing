@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Unfurnished Apartment — German Student Housing Checklist</title>
+<meta name="description" content="German flats often come with no kitchen, no lamps and no floor. What to ask at a viewing, where to search, and what to do on day one.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="The Unfurnished Apartment — German Student Housing Checklist">
+<meta property="og:description" content="No kitchen. No lightbulbs. No floor. Here's how to handle a German flat viewing.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#f9f9f9;
+    --surface:#ffffff;
+    --ink:#111111;
+    --ink-soft:#54595f;
+    --ink-faint:#8b9096;
+    --line:#e6e7e9;
+    --slate:#2c3e50;
+    --crimson:#d9381e;
+    --crimson-bg:#fdf0ee;
+    --amber:#fab005;
+    --amber-bg:#fff8e5;
+    --green:#2f9e44;
+    --green-bg:#eaf7ee;
+    --radius:16px;
+    --maxw:680px;
+    --pad:20px;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+    padding-bottom:150px;
+  }
+
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(12px);
+    -webkit-backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--line);
+    padding-top:env(safe-area-inset-top);
+  }
+  .topbar-inner{
+    max-width:var(--maxw);margin:0 auto;
+    padding:11px var(--pad);
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    font-size:13px;font-weight:600;color:var(--ink-soft);
+  }
+  .topbar a{color:var(--slate);text-decoration:none;}
+  .topbar a:hover{text-decoration:underline;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);}
+
+  header.hero{padding:38px 0 26px;}
+  .eyebrow{
+    display:inline-block;background:var(--crimson-bg);color:var(--crimson);
+    font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+    padding:5px 11px;border-radius:999px;margin-bottom:14px;
+  }
+  h1{margin:0 0 12px;font-size:clamp(28px,7vw,38px);line-height:1.13;letter-spacing:-.022em;font-weight:800;}
+  .sub{margin:0;color:var(--ink-soft);font-size:16px;max-width:48ch;}
+
+  .card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);padding:24px var(--pad);margin:0 0 16px;
+  }
+  .card-head{
+    display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+    padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:18px;
+  }
+  .step{
+    flex:0 0 auto;background:var(--slate);color:#fff;
+    font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;position:relative;top:-1px;
+  }
+  h2{margin:0;font-size:18px;font-weight:700;letter-spacing:-.012em;line-height:1.3;}
+  h3{margin:22px 0 8px;font-size:15.5px;font-weight:700;letter-spacing:-.008em;}
+  p{margin:0 0 13px;}
+  p:last-child{margin-bottom:0;}
+  .card p{color:var(--ink-soft);font-size:15px;}
+  .card p b, .card li b{color:var(--ink);font-weight:600;}
+
+  .de{
+    font-style:normal;background:#f2f3f4;color:var(--slate);
+    padding:1px 6px;border-radius:5px;font-size:14.5px;font-weight:600;
+    white-space:nowrap;
+  }
+
+  /* missing-items grid */
+  .missing{
+    list-style:none;margin:16px 0 0;padding:0;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;
+  }
+  .missing li{
+    background:var(--bg);border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;font-size:14px;color:var(--ink-soft);
+  }
+  .missing li b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:2px;}
+
+  /* questions */
+  .q{padding:18px 0;border-bottom:1px solid var(--line);}
+  .q:first-of-type{padding-top:0;}
+  .q:last-of-type{border-bottom:0;padding-bottom:0;}
+  .q-num{
+    display:inline-grid;place-items:center;
+    width:24px;height:24px;border-radius:7px;
+    background:var(--amber-bg);color:#8a6400;
+    font-size:13px;font-weight:800;margin-right:9px;
+    vertical-align:-5px;
+  }
+  .q-en{font-weight:700;font-size:16px;letter-spacing:-.008em;}
+  .q-de{
+    display:block;margin:9px 0 8px 33px;
+    background:#f2f3f4;border-left:3px solid var(--slate);
+    border-radius:0 8px 8px 0;padding:9px 12px;
+    font-size:15px;font-weight:600;color:var(--slate);
+  }
+  .q-why{display:block;margin-left:33px;font-size:14.5px;color:var(--ink-soft);}
+  .q-why b{color:var(--ink);font-weight:600;}
+
+  /* sites */
+  .site{padding:16px 0;border-bottom:1px solid var(--line);}
+  .site:first-of-type{padding-top:0;}
+  .site:last-of-type{border-bottom:0;padding-bottom:0;}
+  .site-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:5px;}
+  .site-name{font-weight:700;font-size:16px;letter-spacing:-.008em;}
+  .tag{
+    font-size:11px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;
+    padding:3px 8px;border-radius:999px;
+  }
+  .tag.best{background:var(--green-bg);color:#1c6b31;}
+  .tag.cheap{background:#eef2f6;color:var(--slate);}
+  .tag.pricey{background:var(--amber-bg);color:#8a6400;}
+  .site p{margin:0;font-size:14.5px;}
+  .site .url{
+    display:inline-block;margin-top:6px;font-size:13.5px;
+    color:var(--slate);font-weight:600;text-decoration:none;border-bottom:1px solid #c9ced3;
+  }
+  .site .url:hover{border-bottom-color:var(--slate);}
+
+  /* day 1 steps */
+  .d1{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line);}
+  .d1:first-of-type{padding-top:0;}
+  .d1:last-of-type{border-bottom:0;padding-bottom:0;}
+  .d1-num{
+    flex:0 0 auto;width:28px;height:28px;border-radius:9px;
+    background:var(--slate);color:#fff;display:grid;place-items:center;
+    font-size:14px;font-weight:800;
+  }
+  .d1-title{display:block;font-weight:700;font-size:16px;letter-spacing:-.008em;margin-bottom:3px;}
+  .d1-body{display:block;color:var(--ink-soft);font-size:14.5px;}
+  .d1-body b{color:var(--ink);font-weight:600;}
+
+  /* callouts */
+  .callout{
+    border-radius:12px;padding:14px 16px;margin:18px 0 0;
+    font-size:14.5px;line-height:1.5;border-left:4px solid;
+  }
+  .callout .callout-label{display:block;font-weight:700;font-size:12.5px;letter-spacing:.02em;margin-bottom:4px;}
+  .callout.tip{background:var(--amber-bg);border-left-color:var(--amber);color:#5c4400;}
+  .callout.tip .callout-label{color:#8a6400;}
+  .callout.alert{background:var(--crimson-bg);border-left-color:var(--crimson);color:#7d2213;}
+  .callout.alert .callout-label{color:var(--crimson);}
+  .callout b{font-weight:700;}
+
+  .closer{
+    background:var(--slate);color:#fff;border-radius:var(--radius);
+    padding:24px var(--pad);margin:0 0 22px;
+  }
+  .closer h2{color:#fff;font-size:19px;margin-bottom:8px;}
+  .closer p{color:#c8d2db;font-size:15px;margin:0;}
+
+  .fineprint{
+    max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 34px;
+    font-size:12.5px;line-height:1.5;color:var(--ink-faint);
+  }
+
+  .cta{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;
+    background:rgba(255,255,255,.93);
+    backdrop-filter:saturate(180%) blur(12px);
+    -webkit-backdrop-filter:saturate(180%) blur(12px);
+    border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);
+  }
+  .cta-inner{
+    max-width:var(--maxw);margin:0 auto;
+    padding:13px var(--pad) 15px;display:flex;align-items:center;gap:14px;
+  }
+  .cta-text{margin:0;font-size:13.5px;line-height:1.4;color:var(--ink-soft);flex:1 1 auto;min-width:0;}
+  .cta-text b{color:var(--ink);font-weight:700;}
+  .cta-btn{
+    flex:0 0 auto;display:inline-block;background:var(--ink);color:#fff;
+    text-decoration:none;font-size:14px;font-weight:700;padding:12px 18px;border-radius:999px;
+    transition:transform .15s ease,background-color .18s ease;
+  }
+  .cta-btn:hover{background:var(--slate);}
+  .cta-btn:active{transform:scale(.97);}
+  .cta-btn:focus-visible{outline:3px solid rgba(44,62,80,.4);outline-offset:2px;}
+
+  @media (max-width:420px){
+    :root{--pad:16px;}
+    .cta-inner{flex-direction:column;align-items:stretch;gap:10px;}
+    .cta-btn{text-align:center;}
+    body{padding-bottom:190px;}
+    .q-de,.q-why{margin-left:0;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition-duration:.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>Housing guide</span>
+    <a href="index.html">← All guides</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">The unfurnished apartment</span>
+    <h1>German flats come empty. Emptier than you think.</h1>
+    <p class="sub">No kitchen. No lamps. Sometimes no floor. This is normal here, it is legal, and it is survivable — as long as nobody hands you the keys to a surprise.</p>
+  </header>
+
+  <!-- 1 -->
+  <section class="card">
+    <div class="card-head">
+      <span class="step">1</span>
+      <h2>The reality check</h2>
+    </div>
+
+    <p>In most countries "unfurnished" means no sofa. In Germany it can mean <b>no kitchen at all</b> — bare walls, capped pipes, and a socket where an oven used to be.</p>
+
+    <p>The word you are looking for is <span class="de">Einbauküche</span>, usually shortened to <b>EBK</b>. It means a fitted kitchen: cabinets, worktop, sink, and normally an oven and hob. If a listing does not say EBK, assume there is no kitchen.</p>
+
+    <p><b>Why is it like this?</b> German tenants stay for years and traditionally buy their own kitchen and take it with them when they move. Landlords never had to provide one, so many still do not. The same logic applies to ceiling lamps and sometimes flooring.</p>
+
+    <h3>What is commonly missing</h3>
+    <ul class="missing">
+      <li><b>Kitchen</b>Cabinets, sink, oven, hob</li>
+      <li><b>Light fixtures</b>Bare wires from the ceiling</li>
+      <li><b>Lampshades and bulbs</b>Even where a fitting exists</li>
+      <li><b>Wardrobes</b>Built-in closets are rare</li>
+      <li><b>Flooring</b>Occasionally bare screed</li>
+      <li><b>Curtains and rails</b>Almost always absent</li>
+    </ul>
+
+    <div class="callout tip">
+      <span class="callout-label">The way out</span>
+      Many outgoing tenants sell you their kitchen instead of removing it. This is called an <span class="de">Abstandszahlung</span> — a transfer payment. A used EBK often costs €300–€1,500, far less than a new one. Always ask whether the current tenant wants to sell.
+    </div>
+
+    <div class="callout alert">
+      <span class="callout-label">Read this before you sign</span>
+      If you take over a kitchen, ask <b>in writing</b> whether you must remove it when you leave. Some contracts make you restore the flat to its original empty state at your own cost.
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="card">
+    <div class="card-head">
+      <span class="step">2</span>
+      <h2>Five questions to ask at the viewing</h2>
+    </div>
+
+    <p style="margin-bottom:20px;">Say them in German if you can. It signals you are serious, and landlords choosing between twenty applicants notice that.</p>
+
+    <div class="q">
+      <span class="q-en"><span class="q-num">1</span>Is a fitted kitchen included?</span>
+      <span class="q-de">Ist eine Einbauküche enthalten?</span>
+      <span class="q-why">If the answer is no, follow up with <span class="de">Kann ich die Küche vom Vormieter übernehmen?</span> — can I take over the kitchen from the previous tenant?</span>
+    </div>
+
+    <div class="q">
+      <span class="q-en"><span class="q-num">2</span>How high are the extra costs, and what do they include?</span>
+      <span class="q-de">Wie hoch sind die Nebenkosten, und was ist darin enthalten?</span>
+      <span class="q-why">Rent is quoted two ways. <b>Kaltmiete</b> is the bare rent. <b>Warmmiete</b> adds Nebenkosten — heating, water, rubbish. <b>Electricity and internet are usually not included</b>, so budget €40–€70 a month on top for those.</span>
+    </div>
+
+    <div class="q">
+      <span class="q-en"><span class="q-num">3</span>Will I get the landlord's confirmation for city registration?</span>
+      <span class="q-de">Bekomme ich eine Wohnungsgeberbestätigung für die Anmeldung?</span>
+      <span class="q-why">This is the single most important question on the list. Without this signed form you <b>cannot register your address</b>, and without registration you cannot get a tax ID, a bank account, or in many cases your residence permit. A landlord who hesitates here is a serious warning sign.</span>
+    </div>
+
+    <div class="q">
+      <span class="q-en"><span class="q-num">4</span>How much is the deposit, and can I pay it in three instalments?</span>
+      <span class="q-de">Wie hoch ist die Kaution, und kann ich sie in drei Raten zahlen?</span>
+      <span class="q-why">German law caps the deposit at <b>three months of Kaltmiete</b>, and you have the legal right to split it across three monthly payments. Anyone demanding more than three months, or demanding it all in cash, is either uninformed or not legitimate.</span>
+    </div>
+
+    <div class="q">
+      <span class="q-en"><span class="q-num">5</span>Are there ceiling lamps and flooring, and do I have to redecorate when I leave?</span>
+      <span class="q-de">Sind Lampen und Bodenbelag vorhanden? Muss ich beim Auszug renovieren?</span>
+      <span class="q-why">Redecoration clauses (<span class="de">Schönheitsreparaturen</span>) can mean repainting the whole flat at your expense on the way out. Many such clauses have been struck down by German courts, but you want to know what is written before you sign, not after.</span>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="card">
+    <div class="card-head">
+      <span class="step">3</span>
+      <h2>Where to actually search</h2>
+    </div>
+
+    <div class="site">
+      <div class="site-head"><span class="site-name">Studierendenwerk</span><span class="tag cheap">Cheapest</span></div>
+      <p>Your university city's official student housing body. Dorm rooms are the cheapest legitimate option, often €250–€400 warm. The catch is the waiting list, which runs one to three semesters in popular cities. <b>Apply the day you get your admission letter</b>, not the day you arrive.</p>
+      <a class="url" href="https://www.studentenwerke.de/en" target="_blank" rel="noopener">studentenwerke.de</a>
+    </div>
+
+    <div class="site">
+      <div class="site-head"><span class="site-name">WG-Gesucht</span><span class="tag best">Most listings</span></div>
+      <p>The default site for shared flats (<span class="de">WG</span>) and the largest pool of student-friendly rooms in Germany. Expect competition: good rooms get fifty messages in an hour, and you will be invited to a viewing that is effectively an interview.</p>
+      <a class="url" href="https://www.wg-gesucht.de/en/" target="_blank" rel="noopener">wg-gesucht.de</a>
+    </div>
+
+    <div class="site">
+      <div class="site-head"><span class="site-name">Wunderflats</span><span class="tag pricey">Furnished</span></div>
+      <p>Verified furnished flats rented for one month or longer, with contracts written in English and registration-ready paperwork. You pay a premium for that safety. Sensible as a <b>landing pad for your first one to three months</b> while you search properly from inside the country.</p>
+      <a class="url" href="https://wunderflats.com/en/" target="_blank" rel="noopener">wunderflats.com</a>
+    </div>
+
+    <div class="site">
+      <div class="site-head"><span class="site-name">ImmoScout24 &amp; Immowelt</span><span class="tag cheap">Whole flats</span></div>
+      <p>The mainstream property portals, mostly for entire apartments rather than rooms. Listings are almost all in German and landlords typically want proof of income, which is hard as a new student. Useful once you have a job or a guarantor.</p>
+      <a class="url" href="https://www.immobilienscout24.de/" target="_blank" rel="noopener">immobilienscout24.de</a>
+    </div>
+
+    <div class="callout alert">
+      <span class="callout-label">Non-negotiable rule</span>
+      Never transfer money and never send your passport scan before you have <b>seen the flat</b> — in person or on a live video call — <b>and signed a contract</b>. Any story that ends with "send the deposit first and I will post the keys" is a scam. There are no exceptions to this, however convincing the listing looks.
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="card">
+    <div class="card-head">
+      <span class="step">4</span>
+      <h2>Your first day in an empty flat</h2>
+    </div>
+
+    <div class="d1">
+      <span class="d1-num">1</span>
+      <span>
+        <span class="d1-title">Buy light before dark</span>
+        <span class="d1-body">If there are bare wires hanging from the ceiling, you have no light after sunset — and in a German winter that is around four in the afternoon. Get a cheap <b>plug-in floor lamp or clip lamp</b> and bulbs from any DIY store on day one. Do not wire a ceiling fixture yourself unless you know exactly what you are doing.</span>
+      </span>
+    </div>
+
+    <div class="d1">
+      <span class="d1-num">2</span>
+      <span>
+        <span class="d1-title">Put your name on the letterbox and doorbell</span>
+        <span class="d1-body">German post is not delivered to flat numbers. It is delivered to <b>names</b>. If your name is not on the <span class="de">Briefkasten</span> and the <span class="de">Klingelschild</span>, your residence permit, bank card and university letters go back to sender. A printed label strip is fine on day one — ask the landlord before drilling or sticking anything permanent.</span>
+      </span>
+    </div>
+
+    <div class="d1">
+      <span class="d1-num">3</span>
+      <span>
+        <span class="d1-title">Photograph every flaw and file the handover protocol</span>
+        <span class="d1-body">Before you unpack, photograph every scratch, stain, damp mark and broken fitting, with the date visible. Make sure it all goes into the <span class="de">Übergabeprotokoll</span> — the handover record — and that both of you sign it. This document is what stands between you and losing your deposit two years from now.</span>
+      </span>
+    </div>
+
+    <div class="callout tip">
+      <span class="callout-label">Same week, not same day</span>
+      Register your electricity with a provider, and book your <span class="de">Anmeldung</span> appointment. Both are easy to forget in the chaos of moving, and both have deadlines attached.
+    </div>
+  </section>
+
+  <div class="closer">
+    <h2>An empty flat is not a bad flat</h2>
+    <p>It is a flat that expects you to arrive prepared. Ask the five questions, keep your deposit money out of strangers' hands, and buy a lamp on day one. Everything after that is just furniture.</p>
+  </div>
+
+</div>
+
+<p class="fineprint">
+  Deposit and registration rules described here are federal German law (BGB §551, BMG §19). Prices are typical ranges, not guarantees, and vary widely by city. Confirm anything contractual with a tenants' association (<span class="de">Mieterverein</span>) before signing. Last reviewed September 2026.
+</p>
+
+<div class="cta">
+  <div class="cta-inner">
+    <p class="cta-text"><b>Going to a viewing this week?</b> Save this page and open it on your phone while you are there.</p>
+    <a class="cta-btn" href="https://www.instagram.com/unpackgermany/" target="_blank" rel="noopener">Follow for more tips</a>
+  </div>
+</div>
+
+</body>
+</html>
