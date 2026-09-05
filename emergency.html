@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Germany Student Emergency Kit 🚨</title>
+<meta name="description" content="Emergency numbers, English-speaking doctors and survival German phrases for international students in Germany. One tap to dial.">
+<meta name="theme-color" content="#07090d">
+<meta property="og:title" content="Germany Student Emergency Kit 🚨">
+<meta property="og:description" content="112, 110, 116117 — one tap to dial. Save this before you need it.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#07090d;
+    --bg-2:#0d1117;
+    --glass:rgba(255,255,255,.045);
+    --glass-line:rgba(255,255,255,.10);
+    --ink:#f2f5f8;
+    --ink-soft:#98a3b0;
+    --ink-faint:#6b7683;
+    --red:#ff3333;
+    --red-dim:rgba(255,51,51,.14);
+    --blue:#00d4ff;
+    --blue-dim:rgba(0,212,255,.13);
+    --amber:#ffb020;
+    --radius:18px;
+    --maxw:620px;
+    --pad:18px;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    background-image:
+      radial-gradient(60rem 40rem at 50% -10%, rgba(255,51,51,.13), transparent 60%),
+      radial-gradient(50rem 36rem at 100% 18%, rgba(0,212,255,.10), transparent 62%),
+      radial-gradient(46rem 34rem at 0% 55%, rgba(0,212,255,.055), transparent 60%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:60px;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);}
+
+  /* ---------- ticker ---------- */
+  .ticker{
+    position:relative;overflow:hidden;
+    background:linear-gradient(90deg,var(--red),#ff6b3d);
+    color:#fff;font-size:12px;font-weight:800;letter-spacing:.09em;
+    text-transform:uppercase;padding:7px 0;
+    padding-top:calc(7px + env(safe-area-inset-top));
+  }
+  .ticker-track{display:flex;width:max-content;animation:slide 26s linear infinite;}
+  .ticker-track span{padding:0 26px;white-space:nowrap;}
+  @keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- header ---------- */
+  header.hero{padding:34px 0 20px;text-align:center;}
+  h1{
+    margin:0 0 10px;font-size:clamp(27px,7.4vw,38px);
+    line-height:1.12;letter-spacing:-.025em;font-weight:800;
+  }
+  h1 .glow{
+    color:var(--red);
+    text-shadow:0 0 22px rgba(255,51,51,.55),0 0 44px rgba(255,51,51,.25);
+  }
+  .sub{margin:0 auto;color:var(--ink-soft);font-size:15px;max-width:34ch;}
+
+  /* ---------- search ---------- */
+  .search-wrap{position:sticky;top:0;z-index:40;padding:12px 0 14px;
+    background:linear-gradient(180deg,var(--bg) 62%,transparent);}
+  .search{position:relative;}
+  .search svg{
+    position:absolute;left:15px;top:50%;transform:translateY(-50%);
+    width:17px;height:17px;stroke:var(--ink-faint);fill:none;stroke-width:2.2;
+    pointer-events:none;
+  }
+  #q{
+    width:100%;appearance:none;
+    background:rgba(255,255,255,.055);
+    border:1px solid var(--glass-line);
+    border-radius:14px;
+    padding:14px 44px 14px 42px;
+    color:var(--ink);font:inherit;font-size:15.5px;
+    transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease;
+  }
+  #q::placeholder{color:var(--ink-faint);}
+  #q:focus{
+    outline:none;border-color:var(--blue);
+    background:rgba(0,212,255,.05);
+    box-shadow:0 0 0 3px rgba(0,212,255,.14),0 0 22px rgba(0,212,255,.14);
+  }
+  .clear{
+    position:absolute;right:8px;top:50%;transform:translateY(-50%);
+    background:none;border:0;color:var(--ink-faint);font-size:20px;
+    width:32px;height:32px;border-radius:50%;cursor:pointer;line-height:1;
+    display:none;
+  }
+  .clear.show{display:block;}
+  .clear:hover{color:var(--ink);background:rgba(255,255,255,.07);}
+  .noresult{
+    display:none;text-align:center;color:var(--ink-faint);
+    font-size:14.5px;padding:26px 0;
+  }
+  .noresult.show{display:block;}
+
+  /* ---------- section headings ---------- */
+  .sec-label{
+    display:flex;align-items:center;gap:10px;
+    font-size:11.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ink-faint);margin:32px 0 14px;
+  }
+  .sec-label::after{content:"";flex:1;height:1px;background:var(--glass-line);}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);
+    transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- cards ---------- */
+  .card{
+    background:var(--glass);
+    border:1px solid var(--glass-line);
+    border-radius:var(--radius);
+    backdrop-filter:blur(16px) saturate(150%);
+    -webkit-backdrop-filter:blur(16px) saturate(150%);
+    padding:20px;margin-bottom:12px;
+    transition:transform .22s cubic-bezier(.2,.7,.3,1),border-color .22s ease,box-shadow .22s ease;
+  }
+  .card:hover,.card:focus-within{
+    transform:scale(1.018);
+    border-color:rgba(255,255,255,.2);
+    box-shadow:0 12px 40px rgba(0,0,0,.45);
+  }
+  .card.critical{border-color:rgba(255,51,51,.34);background:linear-gradient(180deg,var(--red-dim),rgba(255,255,255,.03));}
+  .card.critical:hover{border-color:var(--red);box-shadow:0 12px 44px rgba(255,51,51,.22);}
+
+  .card-top{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+  .badge{
+    flex:0 0 auto;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    padding:4px 9px;border-radius:6px;
+  }
+  .badge.red{background:var(--red-dim);color:var(--red);border:1px solid rgba(255,51,51,.3);}
+  .badge.blue{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(0,212,255,.3);}
+  .badge.grey{background:rgba(255,255,255,.06);color:var(--ink-soft);border:1px solid var(--glass-line);}
+  .card-title{font-size:17px;font-weight:700;letter-spacing:-.012em;}
+  .card-desc{color:var(--ink-soft);font-size:14px;margin:0 0 15px;}
+  .card-desc b{color:var(--ink);font-weight:600;}
+
+  /* ---------- dial button ---------- */
+  .dial{
+    display:flex;align-items:center;justify-content:center;gap:11px;
+    width:100%;text-decoration:none;
+    border-radius:14px;padding:16px 18px;
+    font-size:26px;font-weight:800;letter-spacing:.02em;
+    font-variant-numeric:tabular-nums;
+    transition:transform .16s ease,box-shadow .22s ease,filter .2s ease;
+  }
+  .dial:active{transform:scale(.975);}
+  .dial svg{width:20px;height:20px;fill:currentColor;flex:0 0 auto;}
+  .dial.red{
+    background:linear-gradient(180deg,#ff4141,#d61d1d);
+    color:#fff;box-shadow:0 0 0 1px rgba(255,120,120,.4),0 8px 26px rgba(255,51,51,.34);
+    animation:pulseRed 2.4s ease-in-out infinite;
+  }
+  .dial.blue{
+    background:linear-gradient(180deg,#12c9f0,#0a8fb5);
+    color:#031318;box-shadow:0 0 0 1px rgba(120,230,255,.4),0 8px 26px rgba(0,212,255,.28);
+    animation:pulseBlue 2.8s ease-in-out infinite;
+  }
+  .dial.ghost{
+    background:rgba(255,255,255,.06);color:var(--ink);
+    border:1px solid var(--glass-line);font-size:20px;
+  }
+  .dial.ghost:hover{background:rgba(255,255,255,.1);}
+  @keyframes pulseRed{
+    0%,100%{box-shadow:0 0 0 1px rgba(255,120,120,.4),0 8px 26px rgba(255,51,51,.3);}
+    50%{box-shadow:0 0 0 1px rgba(255,140,140,.7),0 10px 40px rgba(255,51,51,.62);}
+  }
+  @keyframes pulseBlue{
+    0%,100%{box-shadow:0 0 0 1px rgba(120,230,255,.4),0 8px 26px rgba(0,212,255,.24);}
+    50%{box-shadow:0 0 0 1px rgba(150,240,255,.7),0 10px 38px rgba(0,212,255,.5);}
+  }
+  .dial-note{
+    display:block;text-align:center;font-size:12px;color:var(--ink-faint);
+    margin-top:9px;
+  }
+
+  /* ---------- warning ---------- */
+  .warn{
+    border-radius:14px;padding:15px 17px;margin:0 0 12px;
+    border:1px solid;font-size:14px;line-height:1.55;
+  }
+  .warn .wl{display:block;font-weight:800;font-size:11.5px;letter-spacing:.09em;
+    text-transform:uppercase;margin-bottom:5px;}
+  .warn.red{background:var(--red-dim);border-color:rgba(255,51,51,.3);color:#ffc9c4;}
+  .warn.red .wl{color:var(--red);}
+  .warn.amber{background:rgba(255,176,32,.1);border-color:rgba(255,176,32,.28);color:#ffe2ad;}
+  .warn.amber .wl{color:var(--amber);}
+  .warn b{color:#fff;font-weight:700;}
+
+  /* ---------- what to say ---------- */
+  .wsay{list-style:none;margin:0;padding:0;counter-reset:w;}
+  .wsay li{
+    display:flex;gap:12px;align-items:flex-start;
+    padding:11px 0;border-bottom:1px solid var(--glass-line);
+    font-size:14.5px;color:var(--ink-soft);
+  }
+  .wsay li:last-child{border-bottom:0;padding-bottom:0;}
+  .wsay li::before{
+    counter-increment:w;content:counter(w);
+    flex:0 0 auto;width:24px;height:24px;border-radius:7px;
+    background:var(--blue-dim);border:1px solid rgba(0,212,255,.3);
+    color:var(--blue);font-size:12px;font-weight:800;
+    display:grid;place-items:center;
+  }
+  .wsay b{color:var(--ink);font-weight:700;}
+
+  /* ---------- links ---------- */
+  .link{
+    display:flex;align-items:center;gap:13px;text-decoration:none;color:inherit;
+    padding:14px 0;border-bottom:1px solid var(--glass-line);
+  }
+  .link:last-of-type{border-bottom:0;padding-bottom:0;}
+  .link .lico{
+    flex:0 0 auto;width:38px;height:38px;border-radius:11px;
+    background:rgba(255,255,255,.06);border:1px solid var(--glass-line);
+    display:grid;place-items:center;font-size:17px;
+  }
+  .link .lt{flex:1 1 auto;min-width:0;}
+  .link .ln{display:block;font-weight:700;font-size:15px;letter-spacing:-.008em;}
+  .link .ld{display:block;color:var(--ink-soft);font-size:13.5px;line-height:1.45;}
+  .link .lar{color:var(--ink-faint);font-size:19px;}
+  .link:hover .ln{color:var(--blue);}
+
+  /* ---------- accordion ---------- */
+  .acc{
+    border:1px solid var(--glass-line);border-radius:14px;
+    background:var(--glass);margin-bottom:9px;overflow:hidden;
+    transition:border-color .2s ease,transform .2s cubic-bezier(.2,.7,.3,1);
+  }
+  .acc:hover{border-color:rgba(255,255,255,.19);transform:scale(1.01);}
+  .acc.open{border-color:rgba(0,212,255,.42);}
+  .acc-btn{
+    width:100%;background:none;border:0;color:var(--ink);
+    font:inherit;text-align:left;cursor:pointer;
+    padding:15px 16px;display:flex;align-items:center;gap:12px;
+  }
+  .acc-btn:focus-visible{outline:2px solid var(--blue);outline-offset:-2px;}
+  .acc-de{flex:1 1 auto;font-size:15.5px;font-weight:700;letter-spacing:-.008em;}
+  .acc-ic{
+    flex:0 0 auto;width:22px;height:22px;border-radius:6px;
+    background:rgba(0,212,255,.12);color:var(--blue);
+    display:grid;place-items:center;font-size:15px;font-weight:700;line-height:1;
+    transition:transform .3s cubic-bezier(.2,.7,.3,1),background-color .2s ease;
+  }
+  .acc.open .acc-ic{transform:rotate(45deg);background:rgba(0,212,255,.24);}
+  .acc-panel{
+    display:grid;grid-template-rows:0fr;
+    transition:grid-template-rows .34s cubic-bezier(.2,.7,.3,1);
+  }
+  .acc.open .acc-panel{grid-template-rows:1fr;}
+  .acc-inner{overflow:hidden;}
+  .acc-body{padding:0 16px 15px;}
+  .acc-en{color:var(--blue);font-size:15px;font-weight:600;margin:0 0 4px;}
+  .acc-say{color:var(--ink-faint);font-size:13px;margin:0;}
+
+  /* ---------- footer ---------- */
+  .closer{
+    border:1px solid rgba(255,51,51,.3);
+    background:linear-gradient(180deg,var(--red-dim),rgba(255,255,255,.02));
+    border-radius:var(--radius);padding:22px 20px;margin-top:26px;text-align:center;
+  }
+  .closer h2{margin:0 0 7px;font-size:18px;font-weight:800;letter-spacing:-.015em;}
+  .closer p{margin:0 0 16px;color:var(--ink-soft);font-size:14.5px;}
+  .ig{
+    display:inline-block;background:#fff;color:#07090d;text-decoration:none;
+    font-size:14.5px;font-weight:800;padding:13px 24px;border-radius:999px;
+    transition:transform .15s ease,box-shadow .2s ease;
+  }
+  .ig:active{transform:scale(.97);}
+  .ig:hover{box-shadow:0 8px 28px rgba(255,255,255,.18);}
+
+  .fineprint{
+    max-width:var(--maxw);margin:0 auto;
+    padding:26px var(--pad) 0;
+    font-size:12px;line-height:1.6;color:var(--ink-faint);text-align:center;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important;transition-duration:.001ms !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Your lifesaving first-week guide</span><span>·</span>
+    <span>112 = ambulance &amp; fire</span><span>·</span>
+    <span>110 = police</span><span>·</span>
+    <span>116117 = doctor, not an emergency</span><span>·</span>
+    <span>Save this page offline</span><span>·</span>
+    <span>Your lifesaving first-week guide</span><span>·</span>
+    <span>112 = ambulance &amp; fire</span><span>·</span>
+    <span>110 = police</span><span>·</span>
+    <span>116117 = doctor, not an emergency</span><span>·</span>
+    <span>Save this page offline</span><span>·</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <h1>Germany Student <span class="glow">Emergency Kit</span> 🚨</h1>
+    <p class="sub">Numbers, doctors and the German words you need when something goes wrong.</p>
+  </header>
+
+  <div class="search-wrap">
+    <div class="search">
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+      <input id="q" type="search" placeholder="Search: doctor, police, accident, pharmacy…" autocomplete="off" aria-label="Search emergency resources">
+      <button class="clear" id="clearBtn" type="button" aria-label="Clear search">×</button>
+    </div>
+  </div>
+
+  <p class="noresult" id="noresult">Nothing matches that. Try “doctor”, “police”, “fire”, “pharmacy”, “card” or “pain”.</p>
+
+  <!-- CRITICAL -->
+  <p class="sec-label" data-sec>Call right now</p>
+
+  <div class="card critical reveal" data-tags="112 ambulance fire emergency accident injury unconscious bleeding crash burn heart attack rettungsdienst feuerwehr notruf life threatening">
+    <div class="card-top"><span class="badge red">Life threatening</span><span class="card-title">Ambulance &amp; Fire</span></div>
+    <p class="card-desc">Serious injury, chest pain, unconsciousness, heavy bleeding, an accident, a fire. Works anywhere in the EU. <b>Free from any phone.</b></p>
+    <a class="dial red" href="tel:112">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.6a1 1 0 01-.25 1z"/></svg>
+      112
+    </a>
+    <span class="dial-note">Ambulance · Fire brigade · Rescue services</span>
+  </div>
+
+  <div class="card critical reveal" data-tags="110 police polizei crime theft stolen robbery assault attack harassment stalking break in violence danger">
+    <div class="card-top"><span class="badge red">Police</span><span class="card-title">Polizei</span></div>
+    <p class="card-desc">Crime in progress, theft, assault, harassment, someone threatening you, a break-in. If you are unsure whether it is police or ambulance, <b>call 112 — they will transfer you.</b></p>
+    <a class="dial red" href="tel:110">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.6a1 1 0 01-.25 1z"/></svg>
+      110
+    </a>
+    <span class="dial-note">Free · 24 hours · Every network</span>
+  </div>
+
+  <div class="card reveal" data-tags="116117 doctor arzt sick ill fever flu pain infection weekend night sunday holiday bereitschaftsdienst on call not emergency clinic">
+    <div class="card-top"><span class="badge blue">Not an emergency</span><span class="card-title">On-call doctor</span></div>
+    <p class="card-desc">You are ill but it is not life threatening, and it is <b>night, a weekend or a public holiday</b> when normal practices are closed. Fever, infection, bad pain, a sick note. They tell you where to go or send a doctor.</p>
+    <a class="dial blue" href="tel:116117">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.6a1 1 0 01-.25 1z"/></svg>
+      116 117
+    </a>
+    <span class="dial-note">Free · Dial with no area code · 24 hours</span>
+  </div>
+
+  <div class="warn red reveal" data-tags="sim card 112 without sim no sim prepaid emergency call myth">
+    <span class="wl">Read this before you need it</span>
+    In Germany you <b>cannot call 112 or 110 without a SIM card in the phone</b>. This was blocked nationwide in 2009 because of misuse — so the advice you have read elsewhere does not apply here. The SIM does not need credit and the phone does not need to be unlocked, and it will borrow any network that has signal. But an empty phone will not dial. <b>Get a SIM in week one.</b>
+  </div>
+
+  <!-- OTHER NUMBERS -->
+  <p class="sec-label" data-sec>Other numbers worth saving</p>
+
+  <div class="card reveal" data-tags="116116 bank card blocked lost stolen wallet debit credit sperr notruf ec karte freeze">
+    <div class="card-top"><span class="badge grey">Money</span><span class="card-title">Block a lost bank card</span></div>
+    <p class="card-desc">Wallet stolen or card gone. One number blocks German debit and credit cards, and it works day and night. Report the theft to the police as well.</p>
+    <a class="dial ghost" href="tel:116116">116 116</a>
+  </div>
+
+  <div class="card reveal" data-tags="pharmacy apotheke medicine night closed emergency notdienst prescription">
+    <div class="card-top"><span class="badge grey">Pharmacy</span><span class="card-title">Night &amp; weekend pharmacy</span></div>
+    <p class="card-desc">German pharmacies close in the evening, but one in each area stays open on rota. This line tells you which one is open near you right now.</p>
+    <a class="dial ghost" href="tel:080000228833">0800 0022 833</a>
+    <span class="dial-note">Free from a German landline or mobile</span>
+  </div>
+
+  <div class="card reveal" data-tags="women violence abuse domestic harassment help hotline hilfetelefon multilingual translator support safe">
+    <div class="card-top"><span class="badge grey">Support</span><span class="card-title">Violence against women helpline</span></div>
+    <p class="card-desc">Free, anonymous, 24 hours, and <b>available in around 18 languages with an interpreter</b> — including Hindi, Urdu, Arabic and English. For domestic violence, sexual violence, stalking or harassment.</p>
+    <a class="dial ghost" href="tel:116016">116 016</a>
+  </div>
+
+  <div class="card reveal" data-tags="mental health lonely crisis stress depression anxiety talk someone telefonseelsorge counselling support overwhelmed homesick">
+    <div class="card-top"><span class="badge grey">Support</span><span class="card-title">Someone to talk to</span></div>
+    <p class="card-desc">Free, anonymous and open all night, for anyone who is struggling — homesickness, stress, or feeling like it is all too much. Mostly German-speaking; your university also has a free psychological counselling service (<b>Psychologische Beratung</b>) that usually offers English.</p>
+    <a class="dial ghost" href="tel:08001110111">0800 111 0 111</a>
+  </div>
+
+  <div class="warn amber reveal" data-tags="poison giftnotruf swallowed chemical overdose cleaning product">
+    <span class="wl">Poisoning</span>
+    Germany has <b>no single national poison number</b> — each region runs its own Giftnotruf. Search “Giftnotruf” plus your state now and save it. If someone has swallowed something dangerous and is unwell, <b>call 112</b> and do not wait to look it up.
+  </div>
+
+  <!-- WHAT TO SAY -->
+  <p class="sec-label" data-sec>What to say when they answer</p>
+
+  <div class="card reveal" data-tags="what to say call script location wo english speak operator 112 how to report accident">
+    <p class="card-desc" style="margin-bottom:14px;">Operators are trained to lead the conversation. Many speak English — if you are stuck, say <b>“Do you speak English?”</b> and wait. Do not hang up until they tell you to.</p>
+    <ol class="wsay">
+      <li><b>Where.</b> Street, number, city, floor. This matters most — say it first, before anything else.</li>
+      <li><b>What happened.</b> One plain sentence. “A man collapsed.” “There is a fire.”</li>
+      <li><b>How many people</b> are hurt.</li>
+      <li><b>What kind of injury</b> or symptom, as best you can describe it.</li>
+      <li><b>Wait.</b> Stay on the line and answer their questions. They will end the call.</li>
+    </ol>
+  </div>
+
+  <!-- DOCTORS -->
+  <p class="sec-label" data-sec>Finding an English-speaking doctor</p>
+
+  <div class="card reveal" data-tags="doctor arzt english speaking find booking appointment doctolib jameda tk video consultation gp hausarzt">
+    <a class="link" href="https://www.doctolib.de/" target="_blank" rel="noopener">
+      <span class="lico">🗓️</span>
+      <span class="lt"><span class="ln">Doctolib</span><span class="ld">The most used booking site in Germany. Filter by spoken language and book online without phoning.</span></span>
+      <span class="lar">›</span>
+    </a>
+    <a class="link" href="https://www.jameda.de/" target="_blank" rel="noopener">
+      <span class="lico">⭐</span>
+      <span class="lt"><span class="ln">Jameda</span><span class="ld">Doctor directory with patient reviews and a language filter. Good for reading about a practice before you go.</span></span>
+      <span class="lar">›</span>
+    </a>
+    <a class="link" href="https://www.tk.de/techniker/leistungen-und-mitgliedschaft/informationen-versicherte/leistungen/aerztliche-behandlung/tk-doc-app-2131540" target="_blank" rel="noopener">
+      <span class="lico">📱</span>
+      <span class="lt"><span class="ln">TK-Doc app</span><span class="ld">Video consultations — but <b>only if you are insured with TK</b>. Other insurers run their own version, so check yours.</span></span>
+      <span class="lar">›</span>
+    </a>
+    <a class="link" href="https://www.116117.de/de/arztsuche.php" target="_blank" rel="noopener">
+      <span class="lico">🔎</span>
+      <span class="lt"><span class="ln">Official 116117 doctor search</span><span class="ld">The state-run directory of every doctor taking public insurance. German only, but the most complete list there is.</span></span>
+      <span class="lar">›</span>
+    </a>
+  </div>
+
+  <div class="warn amber reveal" data-tags="insurance card versichertenkarte hospital cost pay bill emergency room">
+    <span class="wl">Take your insurance card</span>
+    Bring your <b>Versichertenkarte</b> to every appointment and to hospital. Without it you may be asked to pay up front and claim it back later. If it is a real emergency, go anyway — <b>nobody is turned away from an emergency room for missing a card.</b>
+  </div>
+
+  <!-- PHRASES -->
+  <p class="sec-label" data-sec>German phrases that get help</p>
+
+  <div class="acc reveal" data-tags="help hilfe emergency shout">
+    <button class="acc-btn" type="button"><span class="acc-de">Hilfe! Es ist ein Notfall.</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">Help! This is an emergency.</p>
+      <p class="acc-say">HIL-fuh! Es ist ein NOHT-fal.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" data-tags="doctor arzt need sick ill">
+    <button class="acc-btn" type="button"><span class="acc-de">Ich brauche einen Arzt.</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">I need a doctor.</p>
+      <p class="acc-say">Ish BROW-khuh EYE-nen ARTST.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" data-tags="ambulance krankenwagen call rufen">
+    <button class="acc-btn" type="button"><span class="acc-de">Rufen Sie bitte einen Krankenwagen.</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">Please call an ambulance.</p>
+      <p class="acc-say">ROO-fen zee BIT-tuh EYE-nen KRAN-ken-vah-gen.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" data-tags="english speak sprechen sie englisch language">
+    <button class="acc-btn" type="button"><span class="acc-de">Sprechen Sie Englisch?</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">Do you speak English?</p>
+      <p class="acc-say">SHPREH-khen zee ENG-lish?</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" data-tags="pain schmerzen hurt here">
+    <button class="acc-btn" type="button"><span class="acc-de">Ich habe starke Schmerzen — hier.</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">I am in severe pain — here. <span style="color:var(--ink-faint)">(point to the place)</span></p>
+      <p class="acc-say">Ish HAH-buh SHTAR-kuh SHMER-tsen — heer.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" data-tags="allergy allergisch allergic reaction nuts penicillin">
+    <button class="acc-btn" type="button"><span class="acc-de">Ich bin allergisch gegen …</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">I am allergic to …</p>
+      <p class="acc-say">Ish bin ah-LAIR-gish GAY-gen …</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" data-tags="breathe atmen breathing cannot chest">
+    <button class="acc-btn" type="button"><span class="acc-de">Ich kann nicht atmen.</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">I can't breathe.</p>
+      <p class="acc-say">Ish kan nisht AHT-men.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" data-tags="accident unfall crash happened there is">
+    <button class="acc-btn" type="button"><span class="acc-de">Es gab einen Unfall.</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">There has been an accident.</p>
+      <p class="acc-say">Es gahp EYE-nen OON-fal.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" data-tags="police polizei call rufen crime">
+    <button class="acc-btn" type="button"><span class="acc-de">Bitte rufen Sie die Polizei.</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">Please call the police.</p>
+      <p class="acc-say">BIT-tuh ROO-fen zee dee po-lee-TSIGH.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" data-tags="lost verlaufen address wohne where live">
+    <button class="acc-btn" type="button"><span class="acc-de">Ich habe mich verlaufen. Ich wohne in …</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">I'm lost. I live at …</p>
+      <p class="acc-say">Ish HAH-buh mish fer-LOW-fen. Ish VOH-nuh in …</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" data-tags="stolen gestohlen theft wallet bag phone">
+    <button class="acc-btn" type="button"><span class="acc-de">Meine Tasche wurde gestohlen.</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">My bag has been stolen.</p>
+      <p class="acc-say">MY-nuh TASH-uh VOOR-duh guh-SHTOH-len.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal" data-tags="insured versichert insurance krankenversichert card bei">
+    <button class="acc-btn" type="button"><span class="acc-de">Ich bin krankenversichert bei …</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p class="acc-en">I have health insurance with …</p>
+      <p class="acc-say">Ish bin KRAN-ken-fer-zish-ert by …</p>
+    </div></div></div>
+  </div>
+
+  <div class="closer reveal">
+    <h2>Screenshot this page now</h2>
+    <p>Take a screenshot of the three numbers at the top and set it as your lock screen for your first month. In a real emergency you will not be scrolling.</p>
+    <a class="ig" href="https://www.instagram.com/unpackgermany/" target="_blank" rel="noopener">Follow for more tips</a>
+  </div>
+
+</div>
+
+<p class="fineprint">
+  Numbers verified for Germany, September 2026. This page is practical information, not medical or legal advice. In any doubt about someone's safety, call 112 — a call that turns out to be unnecessary costs nothing.
+</p>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- accordion ---- */
+  document.querySelectorAll(".acc").forEach(function(acc){
+    var btn = acc.querySelector(".acc-btn");
+    btn.setAttribute("aria-expanded","false");
+    btn.addEventListener("click", function(){
+      var open = acc.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+
+  /* ---- scroll reveal ---- */
+  var items = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -40px 0px", threshold: 0.08 });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = Math.min(i, 5) * 45 + "ms";
+      io.observe(el);
+    });
+  } else {
+    items.forEach(function(el){ el.classList.add("in"); });
+  }
+
+  /* ---- search filter ---- */
+  var q = document.getElementById("q");
+  var clearBtn = document.getElementById("clearBtn");
+  var noresult = document.getElementById("noresult");
+  var labels = document.querySelectorAll("[data-sec]");
+  var filterables = document.querySelectorAll("[data-tags]");
+
+  function haystack(el){
+    return ((el.getAttribute("data-tags") || "") + " " + (el.textContent || "")).toLowerCase();
+  }
+
+  function run(){
+    var term = q.value.trim().toLowerCase();
+    clearBtn.classList.toggle("show", term.length > 0);
+
+    if (!term) {
+      filterables.forEach(function(el){ el.style.display = ""; el.classList.add("in"); });
+      labels.forEach(function(l){ l.style.display = ""; });
+      noresult.classList.remove("show");
+      return;
+    }
+
+    var hits = 0;
+    filterables.forEach(function(el){
+      var match = haystack(el).indexOf(term) !== -1;
+      el.style.display = match ? "" : "none";
+      if (match) { el.classList.add("in"); hits++; }
+    });
+
+    // hide a section heading if nothing under it survived
+    labels.forEach(function(l){
+      var any = false, n = l.nextElementSibling;
+      while (n && !n.hasAttribute("data-sec")) {
+        if (n.hasAttribute("data-tags") && n.style.display !== "none") { any = true; break; }
+        n = n.nextElementSibling;
+      }
+      l.style.display = any ? "" : "none";
+    });
+
+    noresult.classList.toggle("show", hits === 0);
+  }
+
+  q.addEventListener("input", run);
+  clearBtn.addEventListener("click", function(){ q.value = ""; run(); q.focus(); });
+  q.addEventListener("keydown", function(e){ if (e.key === "Escape") { q.value = ""; run(); } });
+})();
+</script>
+
+</body>
+</html>
