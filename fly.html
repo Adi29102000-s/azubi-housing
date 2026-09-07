@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flying to Germany with Medicine — Student Guide</title>
+<meta name="description" content="What you can actually bring into Germany: the 3-month rule, which medicines need paperwork, and a doctor's letter template you can copy.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Flying to Germany with Medicine — Student Guide">
+<meta property="og:description" content="The real rule: up to a 3-month supply for personal use. Here's what actually gets seized.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#f9f9f9;--surface:#ffffff;--ink:#111111;--ink-soft:#54595f;--ink-faint:#8b9096;
+    --line:#e6e7e9;--slate:#2c3e50;--crimson:#d9381e;--crimson-bg:#fdf0ee;
+    --amber:#fab005;--amber-bg:#fff8e5;--green:#2f9e44;--green-bg:#eaf7ee;
+    --radius:16px;--maxw:680px;--pad:20px;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:150px;
+  }
+  .topbar{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top);
+  }
+  .topbar-inner{
+    max-width:var(--maxw);margin:0 auto;padding:11px var(--pad);
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    font-size:13px;font-weight:600;color:var(--ink-soft);
+  }
+  .topbar a{color:var(--slate);text-decoration:none;}
+  .topbar a:hover{text-decoration:underline;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);}
+
+  header.hero{padding:38px 0 24px;}
+  .eyebrow{
+    display:inline-block;background:var(--green-bg);color:#1c6b31;
+    font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+    padding:5px 11px;border-radius:999px;margin-bottom:14px;
+  }
+  h1{margin:0 0 12px;font-size:clamp(28px,7vw,38px);line-height:1.13;letter-spacing:-.022em;font-weight:800;}
+  .sub{margin:0;color:var(--ink-soft);font-size:16px;max-width:48ch;}
+
+  .headline{
+    background:var(--surface);border:1px solid var(--green);border-radius:var(--radius);
+    padding:26px 20px;text-align:center;margin:0 0 16px;
+  }
+  .headline .num{
+    font-size:clamp(38px,11vw,52px);font-weight:800;letter-spacing:-.035em;
+    line-height:1;color:var(--green);
+  }
+  .headline .cap{
+    display:block;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:10px;
+  }
+  .headline p{margin:14px 0 0;color:var(--ink-soft);font-size:14.5px;}
+  .headline p b{color:var(--ink);font-weight:600;}
+
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px var(--pad);margin:0 0 16px;
+  }
+  .card-head{
+    display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+    padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:18px;
+  }
+  .step{flex:0 0 auto;background:var(--slate);color:#fff;font-size:12px;font-weight:700;
+    padding:4px 10px;border-radius:999px;position:relative;top:-1px;}
+  h2{margin:0;font-size:18px;font-weight:700;letter-spacing:-.012em;line-height:1.3;}
+  h3{margin:22px 0 8px;font-size:15.5px;font-weight:700;letter-spacing:-.008em;}
+  p{margin:0 0 13px;}
+  p:last-child{margin-bottom:0;}
+  .card p{color:var(--ink-soft);font-size:15px;}
+  .card p b,.card li b{color:var(--ink);font-weight:600;}
+
+  .de{background:#f2f3f4;color:var(--slate);padding:1px 6px;border-radius:5px;
+    font-size:14.5px;font-weight:600;white-space:nowrap;}
+
+  .row{display:flex;gap:13px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line);}
+  .row:last-child{border-bottom:0;padding-bottom:0;}
+  .row:first-child{padding-top:0;}
+  .row-ic{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+    font-size:16px;background:var(--bg);border:1px solid var(--line);
+  }
+  .row-t{display:block;font-weight:700;font-size:15.5px;letter-spacing:-.008em;margin-bottom:2px;}
+  .row-d{display:block;color:var(--ink-soft);font-size:14.5px;line-height:1.5;}
+  .row-d b{color:var(--ink);font-weight:600;}
+  .flag{
+    display:inline-block;margin-top:7px;font-size:11px;font-weight:800;
+    letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:6px;
+  }
+  .flag.ok{background:var(--green-bg);color:#1c6b31;}
+  .flag.care{background:var(--amber-bg);color:#8a6400;}
+  .flag.stop{background:var(--crimson-bg);color:var(--crimson);}
+
+  .callout{border-radius:12px;padding:14px 16px;margin:18px 0 0;
+    font-size:14.5px;line-height:1.55;border-left:4px solid;}
+  .callout .callout-label{display:block;font-weight:700;font-size:12.5px;letter-spacing:.02em;margin-bottom:4px;}
+  .callout.tip{background:var(--amber-bg);border-left-color:var(--amber);color:#5c4400;}
+  .callout.tip .callout-label{color:#8a6400;}
+  .callout.alert{background:var(--crimson-bg);border-left-color:var(--crimson);color:#7d2213;}
+  .callout.alert .callout-label{color:var(--crimson);}
+  .callout.good{background:var(--green-bg);border-left-color:var(--green);color:#1a5c2c;}
+  .callout.good .callout-label{color:#1c6b31;}
+  .callout b{font-weight:700;}
+
+  .check{list-style:none;margin:0;padding:0;}
+  .check li{
+    display:flex;gap:11px;align-items:flex-start;padding:10px 0;
+    border-bottom:1px solid var(--line);font-size:14.5px;color:var(--ink-soft);
+  }
+  .check li:last-child{border-bottom:0;padding-bottom:0;}
+  .check li::before{
+    content:"✓";flex:0 0 auto;width:22px;height:22px;border-radius:7px;
+    background:var(--green-bg);color:var(--green);font-size:13px;font-weight:800;
+    display:grid;place-items:center;margin-top:1px;
+  }
+  .check li b{color:var(--ink);font-weight:600;}
+
+  /* template */
+  .tpl{
+    border:1px solid var(--slate);border-radius:var(--radius);
+    background:var(--surface);overflow:hidden;margin:0 0 16px;
+  }
+  .tpl-head{padding:15px 18px;border-bottom:1px solid var(--line);}
+  .tpl-name{font-size:15px;font-weight:700;letter-spacing:-.008em;}
+  .tpl-when{display:block;font-size:13px;color:var(--ink-faint);font-weight:500;margin-top:2px;}
+  .tpl-text{
+    margin:0;padding:18px;white-space:pre-wrap;word-break:break-word;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:12.5px;line-height:1.8;color:#2b3138;
+    max-height:300px;overflow-y:auto;background:#fbfbfc;
+  }
+  .copy{
+    width:100%;border:0;cursor:pointer;font:inherit;font-size:14.5px;font-weight:800;
+    letter-spacing:.03em;padding:16px;color:#fff;background:var(--ink);
+    transition:background-color .18s ease,transform .14s ease;
+  }
+  .copy:hover{background:var(--slate);}
+  .copy:active{transform:scale(.99);}
+  .copy.done{background:var(--green);}
+
+  .closer{
+    background:var(--slate);color:#fff;border-radius:var(--radius);
+    padding:24px var(--pad);margin:0 0 22px;
+  }
+  .closer h2{color:#fff;font-size:19px;margin-bottom:8px;}
+  .closer p{color:#c8d2db;font-size:15px;margin:0;}
+
+  .fineprint{
+    max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 34px;
+    font-size:12.5px;line-height:1.55;color:var(--ink-faint);
+  }
+  .fineprint a{color:var(--ink-soft);}
+
+  .cta{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.93);
+    backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+    border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);
+  }
+  .cta-inner{max-width:var(--maxw);margin:0 auto;padding:13px var(--pad) 15px;
+    display:flex;align-items:center;gap:14px;}
+  .cta-text{margin:0;font-size:13.5px;line-height:1.4;color:var(--ink-soft);flex:1 1 auto;min-width:0;}
+  .cta-text b{color:var(--ink);font-weight:700;}
+  .cta-btn{
+    flex:0 0 auto;display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    font-size:14px;font-weight:700;padding:12px 18px;border-radius:999px;
+    transition:transform .15s ease,background-color .18s ease;
+  }
+  .cta-btn:hover{background:var(--slate);}
+  .cta-btn:active{transform:scale(.97);}
+
+  .toast{
+    position:fixed;left:50%;bottom:96px;transform:translate(-50%,16px);
+    background:var(--ink);color:#fff;font-size:14px;font-weight:700;
+    padding:11px 22px;border-radius:999px;z-index:99;opacity:0;pointer-events:none;
+    transition:opacity .25s ease,transform .25s cubic-bezier(.2,.7,.3,1);
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0);}
+
+  @media (max-width:420px){
+    :root{--pad:16px;}
+    .cta-inner{flex-direction:column;align-items:stretch;gap:10px;}
+    .cta-btn{text-align:center;}
+    body{padding-bottom:190px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition-duration:.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>Packing guide</span>
+    <a href="index.html">← All guides</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">Medicine &amp; customs</span>
+    <h1>Flying to Germany with medicine in your bag</h1>
+    <p class="sub">The rules are stricter than India's and far less scary than the internet says. Here is what German customs law actually allows.</p>
+  </header>
+
+  <div class="headline">
+    <div class="num">3 months</div>
+    <span class="cap">Per medicine, for your own use</span>
+    <p>That is the legal limit. Within it you need <b>no import permit</b>, and it makes <b>no difference whether the medicine is prescription-only or over the counter</b>, or whether it is approved in Germany at all.</p>
+  </div>
+
+  <div class="callout good" style="margin:0 0 16px;">
+    <span class="callout-label">Clearing up a myth first</span>
+    You do <b>not</b> need a stamped doctor's prescription to carry ordinary medicine into Germany. Paracetamol, cold strips, antacids, your regular tablets — a personal supply is legal. The German Health Ministry and Zoll both state this plainly. The rules that do bite are narrower, and they are further down this page.
+  </div>
+
+  <!-- 1 -->
+  <section class="card">
+    <div class="card-head"><span class="step">1</span><h2>What you can bring without any paperwork</h2></div>
+
+    <ul class="check">
+      <li><b>Up to a three-month supply</b> of each medicine, counted using the dosage on the leaflet.</li>
+      <li><b>Prescription-only or over-the-counter</b> — the law makes no distinction for travel.</li>
+      <li><b>Medicines not approved in Germany</b>, including Indian brands with no German equivalent.</li>
+      <li><b>Ayurvedic and homeopathic preparations</b>, within the same personal-use limit.</li>
+    </ul>
+
+    <div class="callout tip">
+      <span class="callout-label">The two conditions</span>
+      It must be <b>for you</b>, and it must be a supply, not a stock. Carrying medicine for your cousin, your roommate or "in case someone needs it" is outside the exception, and so is a year's worth of anything.
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="card">
+    <div class="card-head"><span class="step">2</span><h2>What actually causes problems</h2></div>
+
+    <div class="row">
+      <span class="row-ic">⚠️</span>
+      <span>
+        <span class="row-t">Controlled substances</span>
+        <span class="row-d">This is the real one. Anything classed as a narcotic under German law — <b>codeine cough syrups, tramadol, alprazolam and similar sedatives, ADHD medication, strong opioid painkillers</b> — has its own rules and needs a signed doctor's certificate in English. Several of these are sold over the counter in India and are strictly controlled here.</span>
+        <span class="flag stop">Certificate required</span>
+      </span>
+    </div>
+
+    <div class="row">
+      <span class="row-ic">📦</span>
+      <span>
+        <span class="row-t">More than three months, or for someone else</span>
+        <span class="row-d">Stockpiling is explicitly excluded, as is bringing medicine on behalf of another person. This is the most common way a normal traveller falls outside the rule without meaning to.</span>
+        <span class="flag stop">Not covered</span>
+      </span>
+    </div>
+
+    <div class="row">
+      <span class="row-ic">❌</span>
+      <span>
+        <span class="row-t">Counterfeit or unlabelled medicine</span>
+        <span class="row-d">There is <b>no personal-use exception for fakes</b>. Loose tablets in a plastic pouch with no box and no leaflet are hard to identify and easy to seize. Keep everything in its original packaging.</span>
+        <span class="flag stop">Always prohibited</span>
+      </span>
+    </div>
+
+    <div class="row">
+      <span class="row-ic">🌿</span>
+      <span>
+        <span class="row-t">Ayurvedic products — a genuine caveat</span>
+        <span class="row-d">Legal as personal supply, but some traditional preparations have been found to contain <b>heavy metals or undeclared pharmaceutical ingredients</b>. Those can be seized as unsafe regardless of quantity. Sealed, branded, labelled products from a reputable manufacturer are far safer than loose powders in a home-packed jar.</span>
+        <span class="flag care">Bring sealed &amp; labelled</span>
+      </span>
+    </div>
+
+    <div class="row">
+      <span class="row-ic">💪</span>
+      <span>
+        <span class="row-t">Anabolic steroids and doping agents</span>
+        <span class="row-d">Prohibited under separate anti-doping law, with no travel exception. Do not bring gym supplements of uncertain composition.</span>
+        <span class="flag stop">Always prohibited</span>
+      </span>
+    </div>
+
+    <div class="callout alert">
+      <span class="callout-label">The part people confuse</span>
+      A prescription <b>is</b> always required for one specific thing: <b>ordering medicine from outside the EU through a German pharmacy</b> after you arrive. That is mail order, not luggage. Guides that mix the two up are the reason people think they need a stamped prescription at the airport.
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="card">
+    <div class="card-head"><span class="step">3</span><h2>How to pack it</h2></div>
+
+    <ul class="check">
+      <li><b>Original boxes with the leaflet inside.</b> The leaflet proves the dosage, which is how the three-month limit is calculated.</li>
+      <li><b>Hand luggage, not checked bags</b>, for anything you actually need. Hold luggage gets lost and pharmacies here will not replace a foreign prescription.</li>
+      <li><b>A doctor's letter in English</b> for regular medication. Not legally required for ordinary medicines, but it ends any conversation in thirty seconds. Template below.</li>
+      <li><b>Declare it if asked</b>, and answer plainly. Nothing you are carrying legally becomes a problem by mentioning it.</li>
+      <li><b>Photograph everything</b> before you fly — boxes, leaflets, the letter. Useful if a bag goes missing.</li>
+    </ul>
+
+    <div class="callout tip">
+      <span class="callout-label">Worth knowing</span>
+      Most common medicines are cheap and easy to get in Germany. Ibuprofen, paracetamol and cold remedies are all available in any <span class="de">Apotheke</span> without a prescription. You do not need to bring a year of supplies — bring what you need for the transition and buy the rest here.
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="card">
+    <div class="card-head"><span class="step">4</span><h2>Doctor's letter template</h2></div>
+    <p>Have your doctor put this on their letterhead, sign it, and stamp it. Carry the original with your medicines. For controlled substances this is not optional.</p>
+  </section>
+
+  <div class="tpl">
+    <div class="tpl-head">
+      <span class="tpl-name">Medical certificate for travel</span>
+      <span class="tpl-when">English · signed and stamped by your doctor</span>
+    </div>
+    <pre class="tpl-text" id="tpl1">MEDICAL CERTIFICATE FOR TRAVEL
+
+To whom it may concern,
+
+I confirm that I am the treating physician of:
+
+Name of patient:      [FULL NAME AS IN PASSPORT]
+Date of birth:        [DD/MM/YYYY]
+Passport number:      [PASSPORT NUMBER]
+
+The patient is under my care for the following condition:
+[DIAGNOSIS IN PLAIN ENGLISH]
+
+The patient requires the following medication, which is
+necessary for continuous personal treatment during travel
+and residence abroad:
+
+1. [GENERIC / ACTIVE INGREDIENT NAME]
+   Brand name:  [BRAND]
+   Strength:    [e.g. 500 mg]
+   Dosage:      [e.g. one tablet twice daily]
+   Quantity carried: [e.g. 180 tablets — 90 days supply]
+
+2. [REPEAT FOR EACH MEDICINE]
+
+The quantities carried correspond to the patient's personal
+requirement for a maximum of three months at the prescribed
+dosage. The medication is for the patient's own use only.
+
+Physician:      Dr. [FULL NAME]
+Registration:   [MEDICAL COUNCIL REGISTRATION NUMBER]
+Clinic:         [CLINIC NAME AND FULL ADDRESS]
+Telephone:      [WITH COUNTRY CODE]
+Email:          [EMAIL]
+
+Signature: ______________________     Date: [DD/MM/YYYY]
+
+[OFFICIAL STAMP OF THE CLINIC]</pre>
+    <button class="copy" type="button" data-target="tpl1">CLICK TO COPY 📋</button>
+  </div>
+
+  <div class="callout alert" style="margin:0 0 22px;">
+    <span class="callout-label">Use the generic name</span>
+    Write the <b>active ingredient</b>, not just the Indian brand name. A German officer or pharmacist will not recognise most Indian brands, but every one of them knows paracetamol, cetirizine or pantoprazole. This single detail prevents most of the confusion at a customs desk.
+  </div>
+
+  <div class="closer">
+    <h2>Bring a supply, not a stockpile</h2>
+    <p>Three months of what you actually take, in the original boxes, with a signed English letter for anything regular. That is the whole rule. Everything beyond that is either unnecessary or the thing that gets you stopped.</p>
+  </div>
+
+</div>
+
+<p class="fineprint">
+  Based on §73 of the German Medicines Act (Arzneimittelgesetz) as summarised by the German Federal Ministry of Health and German customs (Zoll), September 2026. Controlled substances are governed separately under narcotics law. This is general information, not medical or legal advice — for anything you depend on, confirm with the German embassy in your country before you fly.
+</p>
+
+<div class="cta">
+  <div class="cta-inner">
+    <p class="cta-text"><b>Packing this week?</b> Send this to whoever is putting the medicine box together.</p>
+    <a class="cta-btn" href="https://www.instagram.com/unpackgermany/" target="_blank" rel="noopener">Follow for more tips</a>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied ✓</div>
+
+<script>
+(function(){
+  "use strict";
+  var toast = document.getElementById("toast"), t;
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(t);
+    t = setTimeout(function(){ toast.classList.remove("show"); }, 1900);
+  }
+
+  function legacyCopy(text){
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly","");
+    ta.style.position = "fixed"; ta.style.top = "-1000px";
+    document.body.appendChild(ta);
+    ta.select(); ta.setSelectionRange(0, text.length);
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  document.querySelectorAll(".copy").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var text = document.getElementById(btn.dataset.target).textContent;
+      var original = btn.textContent;
+      function win(){
+        btn.textContent = "COPIED ✓"; btn.classList.add("done");
+        showToast("Copied ✓");
+        setTimeout(function(){ btn.textContent = original; btn.classList.remove("done"); }, 2000);
+      }
+      function fail(){ showToast("Copy failed — select the text manually"); }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(win, function(){ legacyCopy(text) ? win() : fail(); });
+      } else {
+        legacyCopy(text) ? win() : fail();
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
