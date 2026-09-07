@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>German TV Tax (ARD) Exemption Kit 💶</title>
+<meta name="description" content="The Rundfunkbeitrag is €18.36 per flat, not per person. How students in a shared flat avoid paying twice — with a ready-to-send German letter template.">
+<meta name="theme-color" content="#06090a">
+<meta property="og:title" content="German TV Tax (ARD) Exemption Kit 💶">
+<meta property="og:description" content="€220.32 a year, per flat — not per person. Don't pay it twice.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#06090a;
+    --glass:rgba(255,255,255,.045);
+    --line:rgba(255,255,255,.10);
+    --ink:#eef4f0;
+    --ink-soft:#94a49b;
+    --ink-faint:#66756d;
+    --neon:#00ff66;
+    --neon-dim:rgba(0,255,102,.12);
+    --neon-line:rgba(0,255,102,.34);
+    --amber:#ffb020;
+    --red:#ff4d4d;
+    --radius:18px;
+    --maxw:620px;
+    --pad:18px;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg);
+    background-image:
+      radial-gradient(58rem 38rem at 50% -12%, rgba(0,255,102,.14), transparent 62%),
+      radial-gradient(46rem 34rem at 100% 30%, rgba(0,255,102,.06), transparent 60%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+    padding-bottom:56px;overflow-x:hidden;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);}
+
+  .ticker{
+    overflow:hidden;background:linear-gradient(90deg,#00ff66,#0ad48a);
+    color:#04120a;font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+    padding:7px 0;padding-top:calc(7px + env(safe-area-inset-top));
+  }
+  .ticker-track{display:flex;width:max-content;animation:slide 24s linear infinite;}
+  .ticker-track span{padding:0 24px;white-space:nowrap;}
+  @keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  header.hero{padding:34px 0 8px;text-align:center;}
+  h1{margin:0 0 10px;font-size:clamp(26px,7.2vw,37px);line-height:1.13;letter-spacing:-.026em;font-weight:800;}
+  h1 .glow{color:var(--neon);text-shadow:0 0 22px rgba(0,255,102,.5),0 0 46px rgba(0,255,102,.22);}
+  .sub{margin:0 auto;color:var(--ink-soft);font-size:15px;max-width:36ch;}
+
+  .sec-label{
+    display:flex;align-items:center;gap:10px;
+    font-size:11.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ink-faint);margin:32px 0 14px;
+  }
+  .sec-label::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  .reveal{opacity:0;transform:translateY(18px);
+    transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  .card{
+    background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
+    backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
+    padding:20px;margin-bottom:12px;
+    transition:transform .22s cubic-bezier(.2,.7,.3,1),border-color .22s ease,box-shadow .22s ease;
+  }
+  .card:hover,.card:focus-within{transform:scale(1.016);border-color:rgba(255,255,255,.2);box-shadow:0 12px 40px rgba(0,0,0,.5);}
+  .card.hero-card{
+    border-color:var(--neon-line);
+    background:linear-gradient(180deg,var(--neon-dim),rgba(255,255,255,.02));
+    text-align:center;padding:26px 20px;
+  }
+  .card.hero-card:hover{border-color:var(--neon);box-shadow:0 14px 46px rgba(0,255,102,.2);}
+
+  .big{
+    font-size:clamp(40px,12vw,58px);font-weight:800;letter-spacing:-.035em;
+    line-height:1;color:var(--neon);font-variant-numeric:tabular-nums;
+    text-shadow:0 0 26px rgba(0,255,102,.42);
+    animation:breathe 3s ease-in-out infinite;
+  }
+  @keyframes breathe{0%,100%{text-shadow:0 0 22px rgba(0,255,102,.32);}50%{text-shadow:0 0 40px rgba(0,255,102,.7);}}
+  .big-cap{display:block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-top:9px;}
+
+  .rule{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    margin:20px 0 4px;flex-wrap:wrap;font-size:15px;font-weight:700;
+  }
+  .rule .yes{color:var(--neon);}
+  .rule .no{color:var(--ink-faint);text-decoration:line-through;}
+
+  /* splitter */
+  .split{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);}
+  .split-q{font-size:13.5px;color:var(--ink-soft);margin:0 0 12px;}
+  .stepper{display:flex;align-items:center;justify-content:center;gap:16px;}
+  .stepper button{
+    width:44px;height:44px;border-radius:13px;cursor:pointer;
+    background:rgba(0,255,102,.09);border:1px solid var(--neon-line);color:var(--neon);
+    font-size:23px;font-weight:700;line-height:1;
+    transition:background-color .18s ease,transform .14s ease;
+  }
+  .stepper button:hover{background:rgba(0,255,102,.18);}
+  .stepper button:active{transform:scale(.93);}
+  .stepper button:disabled{opacity:.3;cursor:not-allowed;}
+  .stepper .n{font-size:30px;font-weight:800;min-width:44px;font-variant-numeric:tabular-nums;}
+  .split-out{margin-top:16px;font-size:15px;color:var(--ink-soft);}
+  .split-out b{color:var(--neon);font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;}
+  .split-year{display:block;font-size:13px;color:var(--ink-faint);margin-top:5px;}
+
+  /* situation cards */
+  .sit{display:flex;gap:13px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line);}
+  .sit:last-child{border-bottom:0;padding-bottom:0;}
+  .sit:first-child{padding-top:0;}
+  .sit-ic{
+    flex:0 0 auto;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+    font-size:17px;background:rgba(255,255,255,.06);border:1px solid var(--line);
+  }
+  .sit-t{display:block;font-weight:700;font-size:15.5px;letter-spacing:-.008em;margin-bottom:2px;}
+  .sit-d{display:block;color:var(--ink-soft);font-size:14px;line-height:1.5;}
+  .sit-d b{color:var(--ink);font-weight:600;}
+  .verdict{
+    display:inline-block;margin-top:7px;font-size:11px;font-weight:800;
+    letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:6px;
+  }
+  .verdict.pay{background:rgba(255,77,77,.13);color:var(--red);border:1px solid rgba(255,77,77,.3);}
+  .verdict.free{background:var(--neon-dim);color:var(--neon);border:1px solid var(--neon-line);}
+
+  /* accordion */
+  .acc{
+    border:1px solid var(--line);border-radius:14px;background:var(--glass);
+    margin-bottom:9px;overflow:hidden;
+    transition:border-color .2s ease,transform .2s cubic-bezier(.2,.7,.3,1);
+  }
+  .acc:hover{border-color:rgba(255,255,255,.19);transform:scale(1.008);}
+  .acc.open{border-color:var(--neon-line);}
+  .acc-btn{
+    width:100%;background:none;border:0;color:var(--ink);font:inherit;text-align:left;
+    cursor:pointer;padding:15px 16px;display:flex;align-items:center;gap:13px;
+  }
+  .acc-btn:focus-visible{outline:2px solid var(--neon);outline-offset:-2px;}
+  .acc-n{
+    flex:0 0 auto;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+    background:var(--neon-dim);border:1px solid var(--neon-line);color:var(--neon);
+    font-size:13px;font-weight:800;
+  }
+  .acc-t{flex:1 1 auto;font-size:15.5px;font-weight:700;letter-spacing:-.008em;}
+  .acc-ic{
+    flex:0 0 auto;color:var(--neon);font-size:17px;font-weight:700;line-height:1;
+    transition:transform .3s cubic-bezier(.2,.7,.3,1);
+  }
+  .acc.open .acc-ic{transform:rotate(45deg);}
+  .acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .34s cubic-bezier(.2,.7,.3,1);}
+  .acc.open .acc-panel{grid-template-rows:1fr;}
+  .acc-inner{overflow:hidden;}
+  .acc-body{padding:0 16px 16px 55px;color:var(--ink-soft);font-size:14.5px;}
+  .acc-body b{color:var(--ink);font-weight:600;}
+  .acc-body code{
+    background:rgba(0,255,102,.1);color:var(--neon);
+    padding:1px 6px;border-radius:5px;font-size:13.5px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  .acc-body p{margin:0 0 9px;}
+  .acc-body p:last-child{margin-bottom:0;}
+
+  /* copy box */
+  .tpl{
+    border:1px solid var(--neon-line);border-radius:var(--radius);
+    background:linear-gradient(180deg,rgba(0,255,102,.05),rgba(255,255,255,.02));
+    overflow:hidden;margin-bottom:12px;
+  }
+  .tpl-head{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 16px;border-bottom:1px solid var(--line);
+  }
+  .tpl-name{font-size:14.5px;font-weight:700;letter-spacing:-.008em;}
+  .tpl-when{display:block;font-size:12.5px;color:var(--ink-faint);font-weight:500;margin-top:1px;}
+  .tpl-text{
+    margin:0;padding:16px;white-space:pre-wrap;word-break:break-word;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:13px;line-height:1.75;color:#cfe0d6;
+    max-height:290px;overflow-y:auto;
+  }
+  .copy{
+    width:100%;border:0;cursor:pointer;font:inherit;
+    font-size:14.5px;font-weight:800;letter-spacing:.03em;
+    padding:16px;color:#04120a;
+    background:linear-gradient(180deg,#22ff7d,#00cc52);
+    box-shadow:inset 0 0 0 1px rgba(160,255,200,.4);
+    transition:filter .18s ease,transform .14s ease;
+  }
+  .copy:hover{filter:brightness(1.08);}
+  .copy:active{transform:scale(.99);}
+  .copy.done{background:linear-gradient(180deg,#e8fff1,#b6f5cf);}
+
+  /* warnings */
+  .warn{border-radius:14px;padding:15px 17px;margin:0 0 12px;border:1px solid;font-size:14px;line-height:1.55;}
+  .warn .wl{display:block;font-weight:800;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px;}
+  .warn.red{background:rgba(255,77,77,.1);border-color:rgba(255,77,77,.3);color:#ffc9c9;}
+  .warn.red .wl{color:var(--red);}
+  .warn.amber{background:rgba(255,176,32,.1);border-color:rgba(255,176,32,.28);color:#ffe2ad;}
+  .warn.amber .wl{color:var(--amber);}
+  .warn b{color:#fff;font-weight:700;}
+
+  .closer{
+    border:1px solid var(--neon-line);
+    background:linear-gradient(180deg,var(--neon-dim),rgba(255,255,255,.02));
+    border-radius:var(--radius);padding:22px 20px;margin-top:26px;text-align:center;
+  }
+  .closer h2{margin:0 0 7px;font-size:18px;font-weight:800;letter-spacing:-.015em;}
+  .closer p{margin:0 0 16px;color:var(--ink-soft);font-size:14.5px;}
+  .ig{
+    display:inline-block;background:#fff;color:#06090a;text-decoration:none;
+    font-size:14.5px;font-weight:800;padding:13px 24px;border-radius:999px;
+    transition:transform .15s ease,box-shadow .2s ease;
+  }
+  .ig:active{transform:scale(.97);}
+  .ig:hover{box-shadow:0 8px 28px rgba(255,255,255,.18);}
+
+  .fineprint{
+    max-width:var(--maxw);margin:0 auto;padding:26px var(--pad) 0;
+    font-size:12px;line-height:1.65;color:var(--ink-faint);text-align:center;
+  }
+  .fineprint a{color:var(--ink-soft);}
+
+  .toast{
+    position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);
+    background:var(--neon);color:#04120a;font-size:14px;font-weight:800;
+    padding:12px 22px;border-radius:999px;z-index:99;
+    opacity:0;pointer-events:none;
+    transition:opacity .25s ease,transform .25s cubic-bezier(.2,.7,.3,1);
+    box-shadow:0 10px 34px rgba(0,255,102,.4);
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0);}
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important;transition-duration:.001ms !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>€18.36 per month</span><span>·</span><span>Per flat, not per person</span><span>·</span>
+    <span>€220.32 a year</span><span>·</span><span>Register within 4 weeks</span><span>·</span>
+    <span>€18.36 per month</span><span>·</span><span>Per flat, not per person</span><span>·</span>
+    <span>€220.32 a year</span><span>·</span><span>Register within 4 weeks</span><span>·</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <h1>German TV Tax <span class="glow">Kit</span> 💶</h1>
+    <p class="sub">The Rundfunkbeitrag is charged per flat, not per head. Most students in a shared flat are paying it twice without knowing.</p>
+  </header>
+
+  <div class="card hero-card reveal">
+    <div class="big" id="bigNum">€220.32</div>
+    <span class="big-cap">Per flat, per year — 2026 rate</span>
+
+    <div class="rule">
+      <span class="yes">✓ One flat = one payment</span>
+      <span class="no">✗ One person = one payment</span>
+    </div>
+
+    <div class="split">
+      <p class="split-q">How many people live in your flat?</p>
+      <div class="stepper">
+        <button id="minus" type="button" aria-label="Fewer people">−</button>
+        <span class="n" id="count">3</span>
+        <button id="plus" type="button" aria-label="More people">+</button>
+      </div>
+      <p class="split-out">Your share: <b id="share">€6.12</b><span class="split-year" id="saved">You each save €146.88 a year versus paying separately.</span></p>
+    </div>
+  </div>
+
+  <div class="warn amber reveal">
+    <span class="wl">Let's be accurate about this</span>
+    This is <b>not a loophole and not a trick</b>. It is what the law says — §2 of the Rundfunkbeitragsstaatsvertrag charges one contribution per dwelling, whatever the number of residents. You are not dodging anything. You are avoiding a duplicate charge that the system creates because it writes to every newly registered resident automatically.
+  </div>
+
+  <!-- WHICH ARE YOU -->
+  <p class="sec-label">First: which one are you?</p>
+
+  <div class="card reveal">
+    <div class="sit">
+      <span class="sit-ic">🏠</span>
+      <span>
+        <span class="sit-t">You share a flat, one front door</span>
+        <span class="sit-d">A normal WG. Several bedrooms behind one entrance door, shared kitchen and bathroom. <b>One person pays for everyone.</b> The rest give that person's Beitragsnummer when the letter arrives.</span>
+        <span class="verdict free">You don't pay separately</span>
+      </span>
+    </div>
+
+    <div class="sit">
+      <span class="sit-ic">🚪</span>
+      <span>
+        <span class="sit-t">Dorm room with its own door off a corridor</span>
+        <span class="sit-d">Most Studierendenwerk single rooms. If you reach your room from a shared corridor or stairwell rather than through a shared flat door, the law usually counts your room as <b>its own dwelling</b>. Everyone on the corridor pays their own €18.36.</span>
+        <span class="verdict pay">You pay in full</span>
+      </span>
+    </div>
+
+    <div class="sit">
+      <span class="sit-ic">🔑</span>
+      <span>
+        <span class="sit-t">Your own studio or apartment</span>
+        <span class="sit-d">One flat, one resident, one contribution. Nothing to split.</span>
+        <span class="verdict pay">You pay in full</span>
+      </span>
+    </div>
+
+    <div class="sit">
+      <span class="sit-ic">🎓</span>
+      <span>
+        <span class="sit-t">You receive BAföG</span>
+        <span class="sit-d">Full exemption on application, with your BAföG decision letter attached. <b>Most international students are not eligible for BAföG</b>, so this route is usually closed — check before you rely on it.</span>
+        <span class="verdict free">Exempt on application</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- STEPS -->
+  <p class="sec-label">What to do when the letter arrives</p>
+
+  <div class="acc reveal">
+    <button class="acc-btn" type="button"><span class="acc-n">1</span><span class="acc-t">Get your flatmate's Beitragsnummer</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p>Ask whoever already pays for the flat. It is a <b>9-digit number</b> printed at the top of every letter from the Beitragsservice, and on their bank statement reference.</p>
+      <p>If <b>nobody</b> in the flat is registered yet, one of you has to register. The law gives you four weeks from moving in. Whoever registers becomes the payer and the others attach themselves to that number.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal">
+    <button class="acc-btn" type="button"><span class="acc-n">2</span><span class="acc-t">Open the online form</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p>Go to <code>rundfunkbeitrag.de</code> and find <b>Abmelden</b> (deregister). Choose the reason that says another person already pays the contribution for this dwelling — <b>„Die Wohnung ist bereits angemeldet"</b>.</p>
+      <p>The site is German-only. Use your phone's browser translate, or Google Translate's camera on the screen.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal">
+    <button class="acc-btn" type="button"><span class="acc-n">3</span><span class="acc-t">Enter both numbers</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p>You need <b>your own</b> Beitragsnummer from the letter they sent you, and <b>your flatmate's</b> Beitragsnummer that already covers the flat. The address on both must match exactly, including the flat number.</p>
+      <p>Give the date you moved in as the start date, so any charge is cancelled from the beginning rather than from today.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal">
+    <button class="acc-btn" type="button"><span class="acc-n">4</span><span class="acc-t">Or send the letter instead</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p>If the online form rejects you — common when your address is written slightly differently on the two accounts — post or email the template below. Email: the contact form on their site. Post: <b>ARD ZDF Deutschlandradio Beitragsservice, 50656 Köln</b>.</p>
+      <p>Keep a copy and a screenshot of the confirmation. If a reminder arrives later, that screenshot is what ends the argument.</p>
+    </div></div></div>
+  </div>
+
+  <div class="acc reveal">
+    <button class="acc-btn" type="button"><span class="acc-n">5</span><span class="acc-t">Wait for written confirmation</span><span class="acc-ic">+</span></button>
+    <div class="acc-panel"><div class="acc-inner"><div class="acc-body">
+      <p>Processing takes a few weeks. <b>Do not assume it worked</b> until a letter says your account is closed. If a payment demand arrives in the meantime, reply referencing your deregistration rather than ignoring it.</p>
+    </div></div></div>
+  </div>
+
+  <!-- TEMPLATE -->
+  <p class="sec-label">Copy-paste letter</p>
+
+  <div class="tpl reveal">
+    <div class="tpl-head">
+      <span>
+        <span class="tpl-name">Deregistration — flat already registered</span>
+        <span class="tpl-when">Use when a flatmate already pays for your flat</span>
+      </span>
+    </div>
+    <pre class="tpl-text" id="tpl1">Sehr geehrte Damen und Herren,
+
+ich beziehe mich auf Ihr Schreiben vom [DATUM] mit der Beitragsnummer [MEINE BEITRAGSNUMMER].
+
+Ich wohne seit dem [EINZUGSDATUM] in einer Wohngemeinschaft unter der oben genannten Adresse. Der Rundfunkbeitrag fuer diese Wohnung wird bereits von einem Mitbewohner entrichtet.
+
+Beitragsnummer des zahlenden Mitbewohners: [BEITRAGSNUMMER MITBEWOHNER]
+Name des zahlenden Mitbewohners: [NAME MITBEWOHNER]
+Adresse: [STRASSE, HAUSNUMMER, PLZ, ORT]
+
+Da gemaess Paragraf 2 Absatz 1 RBStV je Wohnung nur ein Rundfunkbeitrag zu entrichten ist, bitte ich Sie, mein Beitragskonto rueckwirkend zum [EINZUGSDATUM] abzumelden und eventuell offene Forderungen zu stornieren.
+
+Bitte bestaetigen Sie mir die Abmeldung schriftlich.
+
+Mit freundlichen Gruessen
+[VORNAME NACHNAME]
+[ADRESSE]
+[DATUM]</pre>
+    <button class="copy" type="button" data-target="tpl1">CLICK TO COPY 📋</button>
+  </div>
+
+  <div class="tpl reveal">
+    <div class="tpl-head">
+      <span>
+        <span class="tpl-name">Exemption request — BAföG</span>
+        <span class="tpl-when">Only if you actually receive BAföG</span>
+      </span>
+    </div>
+    <pre class="tpl-text" id="tpl2">Sehr geehrte Damen und Herren,
+
+hiermit beantrage ich die Befreiung von der Rundfunkbeitragspflicht gemaess Paragraf 4 Absatz 1 Nummer 5 RBStV.
+
+Beitragsnummer: [MEINE BEITRAGSNUMMER]
+Name: [VORNAME NACHNAME]
+Adresse: [STRASSE, HAUSNUMMER, PLZ, ORT]
+
+Ich erhalte Leistungen nach dem Bundesausbildungsfoerderungsgesetz (BAfoeG) und wohne nicht bei meinen Eltern. Eine Kopie meines aktuellen BAfoeG-Bescheides liegt diesem Schreiben bei.
+
+Ich bitte um Befreiung ab dem [DATUM] sowie um eine schriftliche Bestaetigung.
+
+Mit freundlichen Gruessen
+[VORNAME NACHNAME]
+[DATUM]</pre>
+    <button class="copy" type="button" data-target="tpl2">CLICK TO COPY 📋</button>
+  </div>
+
+  <!-- WARNINGS -->
+  <p class="sec-label">Before you try anything clever</p>
+
+  <div class="warn red reveal">
+    <span class="wl">Never use a number that isn't real</span>
+    Quoting the Beitragsnummer of someone who does not actually pay for <b>your</b> flat is a false declaration, not a hack. The Beitragsservice cross-checks against the Einwohnermeldeamt — the same registration you did at your Anmeldung — so the addresses have to match. Getting caught means back-payment plus a penalty, and it is exactly the kind of thing that shows up when you apply to extend a residence permit.
+  </div>
+
+  <div class="warn red reveal">
+    <span class="wl">Ignoring the letters does not work</span>
+    The contribution is a legal obligation, not a subscription. There is no cancelling it because you own no TV, and no opting out because you only watch Netflix. Unpaid amounts become an enforceable debt collected by the local authority, and they can be claimed back <b>up to three years</b>. Students who binned the letters in first semester get a four-figure demand later.
+  </div>
+
+  <div class="warn amber reveal">
+    <span class="wl">Low income alone is not enough</span>
+    There is a hardship exemption under §4(6), but it applies in narrow cases — mainly where a benefit was formally refused because your income exceeded the threshold by less than €18.36. <b>Being a broke student is not by itself a qualifying reason</b>, and blanket claims that internationals can get exempted are wrong. If you think you have a case, take it to your university's social counselling service.
+  </div>
+
+  <div class="closer reveal">
+    <h2>Register, then deregister</h2>
+    <p>The safe order is always: respond to the letter, name the paying flatmate, keep the confirmation. Silence is the only version of this that costs you money.</p>
+    <a class="ig" href="https://www.instagram.com/unpackgermany/" target="_blank" rel="noopener">Follow for more tips</a>
+  </div>
+
+</div>
+
+<p class="fineprint">
+  Rate verified September 2026: €18.36 per month, unchanged since August 2021. A constitutional court case on a possible increase was heard in June 2026 and the KEF has recommended €18.64 from January 2027 — check <a href="https://www.rundfunkbeitrag.de/" target="_blank" rel="noopener">rundfunkbeitrag.de</a> for the current figure. This is general information, not legal advice.
+</p>
+
+<div class="toast" id="toast">Copied ✓</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var RATE = 18.36;
+
+  /* ---- splitter ---- */
+  var n = 3;
+  var countEl = document.getElementById("count");
+  var shareEl = document.getElementById("share");
+  var savedEl = document.getElementById("saved");
+  var minus = document.getElementById("minus");
+  var plus = document.getElementById("plus");
+
+  function money(v){ return "€" + v.toFixed(2); }
+
+  function drawSplit(){
+    countEl.textContent = n;
+    var share = RATE / n;
+    shareEl.textContent = money(share);
+    if (n === 1) {
+      savedEl.textContent = "Living alone — the full contribution is yours.";
+    } else {
+      var savedYear = (RATE - share) * 12;
+      savedEl.textContent = "You each save " + money(savedYear) + " a year versus paying separately.";
+    }
+    minus.disabled = n <= 1;
+    plus.disabled = n >= 8;
+  }
+  minus.addEventListener("click", function(){ if (n > 1) { n--; drawSplit(); } });
+  plus.addEventListener("click", function(){ if (n < 8) { n++; drawSplit(); } });
+  drawSplit();
+
+  /* ---- accordion ---- */
+  document.querySelectorAll(".acc").forEach(function(acc){
+    var btn = acc.querySelector(".acc-btn");
+    btn.setAttribute("aria-expanded","false");
+    btn.addEventListener("click", function(){
+      var open = acc.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+
+  /* ---- reveal ---- */
+  var items = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -40px 0px", threshold: 0.08 });
+    items.forEach(function(el){ io.observe(el); });
+  } else {
+    items.forEach(function(el){ el.classList.add("in"); });
+  }
+
+  /* ---- copy ---- */
+  var toast = document.getElementById("toast");
+  var toastTimer;
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove("show"); }, 1900);
+  }
+
+  function legacyCopy(text){
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly","");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  document.querySelectorAll(".copy").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var text = document.getElementById(btn.dataset.target).textContent;
+      var original = btn.textContent;
+
+      function win(){
+        btn.textContent = "COPIED ✓";
+        btn.classList.add("done");
+        showToast("Copied ✓");
+        setTimeout(function(){ btn.textContent = original; btn.classList.remove("done"); }, 2000);
+      }
+      function fail(){
+        showToast("Copy failed — select the text manually");
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(win, function(){ legacyCopy(text) ? win() : fail(); });
+      } else {
+        legacyCopy(text) ? win() : fail();
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
