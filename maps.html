@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Germany Offline Transit & Maps Kit</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: rgba(22, 27, 34, 0.85);
+            --accent-blue: #00d2ff;
+            --accent-glow: rgba(0, 210, 255, 0.25);
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --border-color: rgba(240, 246, 252, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: linear-gradient(180deg, rgba(22, 27, 34, 0.6) 0%, rgba(13, 17, 23, 1) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-blue);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 12px;
+            animation: pulse 2.5s infinite;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        h1 span {
+            color: var(--accent-blue);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .search-wrapper {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .search-bar {
+            width: 100%;
+            background: #070a0e;
+            border: 1px solid var(--border-color);
+            padding: 14px 14px 14px 40px;
+            border-radius: 14px;
+            color: var(--text-main);
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .city-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .city-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .city-card.hidden {
+            display: none;
+        }
+
+        .city-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .city-name {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .hub-tag {
+            font-size: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 4px 8px;
+            border-radius: 6px;
+            color: var(--text-muted);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .map-btn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .map-btn:active {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .download-btn {
+            background: linear-gradient(90deg, #00d2ff 0%, #00a8ff 100%);
+            color: #000;
+            border: none;
+        }
+
+        .download-btn:active {
+            transform: scale(0.98);
+        }
+
+        .setup-instructions {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed var(--border-color);
+            border-radius: 14px;
+            padding: 14px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .instruction-title {
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.3); }
+            70% { box-shadow: 0 0 0 8px rgba(0, 210, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="badge">PRE-DEPARTURE SURVIVAL KIT ✈️</div>
+        <h1>Offline <span>Maps Guide</span></h1>
+        <p class="subtitle">Search your arrival city to download offline Google Maps and routes before your network goes dead.</p>
+    </header>
+
+    <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="citySearch" class="search-bar" placeholder="Type your city (e.g., Aachen, Munich)..." onkeyup="filterCities()">
+    </div>
+
+    <div class="city-grid" id="cityGrid">
+        <!-- Frankfurt -->
+        <div class="city-card" data-city="frankfurt">
+            <div class="city-info">
+                <div class="city-name">Frankfurt am Main 🏙️</div>
+                <div class="hub-tag">Primary Landing Hub</div>
+            </div>
+            <div class="btn-group">
+                <a href="https://google.com" target="_blank" class="map-btn">Preview Map</a>
+                <a href="https://google.com" target="_blank" class="map-btn download-btn">Download Map 📥</a>
+            </div>
+        </div>
+
+        <!-- Munich -->
+        <div class="city-card" data-city="munich münchen">
+            <div class="city-info">
+                <div class="city-name">Munich (München) 🥨</div>
+                <div class="hub-tag">Major Airport Hub</div>
+            </div>
+            <div class="btn-group">
+                <a href="https://google.com" target="_blank" class="map-btn">Preview Map</a>
+                <a href="https://google.com" target="_blank" class="map-btn download-btn">Download Map 📥</a>
+            </div>
+        </div>
+
+        <!-- Aachen -->
+        <div class="city-card" data-city="aachen">
+            <div class="city-info">
+                <div class="city-name">Aachen 🎓</div>
+                <div class="hub-tag">Student Destination</div>
+            </div>
+            <div class="btn-group">
+                <a href="https://google.com" target="_blank" class="map-btn">Preview Map</a>
+                <a href="https://google.com" target="_blank" class="map-btn download-btn">Download Map 📥</a>
+            </div>
+        </div>
+
+        <!-- Berlin -->
+        <div class="city-card" data-city="berlin">
+            <div class="city-info">
+                <div class="city-name">Berlin 🐻</div>
+                <div class="hub-tag">Capital Sector</div>
+            </div>
+            <div class="btn-group">
+                <a href="https://google.com" target="_blank" class="map-btn">Preview Map</a>
+                <a href="https://google.com" target="_blank" class="map-btn download-btn">Download Map 📥</a>
+            </div>
+        </div>
+
+        <!-- Stuttgart -->
+        <div class="city-card" data-city="stuttgart">
+            <div class="city-info">
+                <div class="city-name">Stuttgart 🚗</div>
+                <div class="hub-tag">Automotive Tech Hub</div>
+            </div>
+            <div class="btn-group">
+                <a href="https://google.com" target="_blank" class="map-btn">Preview Map</a>
+                <a href="https://google.com" target="_blank" class="map-btn download-btn">Download Map 📥</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="setup-instructions">
+        <div class="instruction-title">📲 How to Save Map Offline:</div>
+        1. Click "Download Map" to view the official save configuration instructions.<br>
+        2. Open Google Maps on your phone right now while you still have Indian data/Wi-Fi.<br>
+        3. Search your target German city, tap the profile menu options, and select <b>"Offline Maps"</b> to download the area directly to local storage!
+    </div>
+</div>
+
+<script>
+    function filterCities() {
