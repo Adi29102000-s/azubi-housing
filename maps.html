@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Germany Offline Maps Directory</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: rgba(22, 27, 34, 0.85);
+            --accent-blue: #00d2ff;
+            --accent-glow: rgba(0, 210, 255, 0.25);
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --border-color: rgba(240, 246, 252, 0.1);
+            --success-green: #00ff66;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: linear-gradient(180deg, rgba(22, 27, 34, 0.6) 0%, rgba(13, 17, 23, 1) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-blue);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        h1 span {
+            color: var(--accent-blue);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .search-wrapper {
+            position: relative;
+            margin: 20px 0 10px 0;
+        }
+
+        .search-bar {
+            width: 100%;
+            background: #070a0e;
+            border: 1px solid var(--border-color);
+            padding: 16px 16px 16px 44px;
+            border-radius: 16px;
+            color: var(--text-main);
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: var(--text-muted);
+        }
+
+        .dynamic-result-box {
+            margin-top: 16px;
+        }
+
+        .generated-card {
+            background: rgba(0, 210, 255, 0.03);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 210, 255, 0.05);
+        }
+
+        .generated-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .generated-status {
+            font-size: 12px;
+            color: var(--success-green);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .map-btn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .map-btn:active {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .download-btn {
+            background: linear-gradient(90deg, #00d2ff 0%, #00a8ff 100%);
+            color: #000;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 168, 255, 0.2);
+        }
+
+        .download-btn:active {
+            transform: scale(0.97);
+        }
+
+        .setup-instructions {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed var(--border-color);
+            border-radius: 14px;
+            padding: 14px;
+            margin-top: 24px;
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .instruction-title {
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="badge">GERMANY UNIVERSAL SEARCH ENGINE 🇩🇪</div>
+        <h1>All Cities & <span>Villages</span></h1>
+        <p class="subtitle">Type any German city or village name below to instantly isolate its offline coordinates map block.</p>
+    </header>
+
+    <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="citySearch" class="search-bar" placeholder="Enter city or village (e.g., Hamburg, Simmerath)..." onkeyup="updateMapEngine()">
+    </div>
+
+    <div class="dynamic-result-box" id="resultBox">
+        <!-- Initial Card State -->
+        <div class="generated-card">
+            <div class="generated-title" id="displayCity">Frankfurt am Main 🏙️</div>
+            <div class="generated-status">✨ Verified German Sector Map Link Ready</div>
+            <div class="btn-group">
+                <a href="https://google.com" target="_blank" id="previewLink" class="map-btn">Preview Sector</a>
+                <a href="https://google.com" target="_blank" class="map-btn download-btn">Download Map 📥</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="setup-instructions">
+        <div class="instruction-title">📲 How to Save Your City Offline:</div>
+        1. Type your destination name. The search engine updates the live link instantly for any specific area.<br>
+        2. Open Google Maps on your phone right now before you board your flight.<br>
+        3. Tap your profile icon, go to <b>"Offline Maps"</b>, select "Custom Map", and target the area boundaries to lock it into local phone memory!
+    </div>
+</div>
+
+<script>
+    function updateMapEngine() {
+        const input = document.getElementById('citySearch').value.trim();
+        const displayCity = document.getElementById('displayCity');
+        const previewLink = document.getElementById('previewLink');
+        
+        if (input.length > 0) {
+            // Capitalize first letter cleanly for UI aesthetics
+            const formattedCity = input.charAt(0).toUpperCase() + input.slice(1);
+            
+            displayCity.innerHTML = formattedCity + " 📍";
+            // Dynamically construct a flawless location boundary locator string
+            previewLink.href = "https://google.com" + encodeURIComponent(formattedCity + ", Germany");
+        } else {
+            displayCity.innerHTML = "Frankfurt am Main 🏙️";
+            previewLink.href = "https://google.com";
+        }
+    }
+</script>
+
+</body>
+</html>
