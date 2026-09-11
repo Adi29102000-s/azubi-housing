@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#060912" />
+<title>German Offline Maps Directory</title>
+<style>
+  :root {
+    --bg-0: #060912;
+    --bg-1: #0b1020;
+    --surface: rgba(18, 26, 44, 0.72);
+    --surface-2: rgba(28, 38, 62, 0.6);
+    --border: rgba(72, 140, 255, 0.18);
+    --border-strong: rgba(56, 170, 255, 0.45);
+    --text: #eaf1ff;
+    --text-dim: #9bb0d4;
+    --text-faint: #6274a0;
+    --neon: #38aaff;
+    --neon-bright: #1f8dff;
+    --neon-glow: rgba(56, 170, 255, 0.35);
+    --accent-green: #2bd68a;
+    --accent-amber: #ffb84d;
+    --radius: 18px;
+    --radius-sm: 12px;
+    --shadow: 0 18px 48px rgba(0, 8, 30, 0.55);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg-0);
+    color: var(--text);
+    line-height: 1.55;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(1100px 600px at 50% -8%, rgba(56,170,255,0.18), transparent 60%),
+      radial-gradient(800px 500px at 100% 100%, rgba(43,214,138,0.08), transparent 60%),
+      linear-gradient(180deg, #060912 0%, #070c18 40%, #060912 100%);
+    background-attachment: fixed;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 22px 16px 64px;
+  }
+
+  header.hero {
+    text-align: center;
+    padding: 28px 12px 14px;
+  }
+  .logo-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    margin-bottom: 20px;
+  }
+  .logo-icon {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, var(--neon), var(--accent-green));
+    position: relative;
+    box-shadow: 0 0 16px var(--neon-glow);
+  }
+  .logo-icon::after {
+    content: "";
+    position: absolute; inset: 4px;
+    border: 1.5px solid rgba(255,255,255,0.85);
+    border-radius: 3px;
+  }
+  .logo-text {
+    font-size: 12px; font-weight: 700; letter-spacing: 1.6px;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: clamp(26px, 6.5vw, 34px);
+    line-height: 1.2; font-weight: 800; letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 0%, #9fd1ff 60%, #38aaff 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p.lead {
+    margin-top: 12px; color: var(--text-dim);
+    font-size: 15px; line-height: 1.5;
+    max-width: 460px; margin-left: auto; margin-right: auto;
+  }
+
+  .search-card {
+    margin-top: 26px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--shadow);
+  }
+  .search-wrap {
+    position: relative;
+    display: flex; align-items: center;
+    background: rgba(8, 12, 24, 0.7);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .search-wrap:focus-within {
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 4px rgba(56,170,255,0.12);
+  }
+  .search-icon {
+    flex: 0 0 auto;
+    padding: 0 12px 0 14px;
+    color: var(--text-faint);
+  }
+  .search-icon svg { display: block; width: 20px; height: 20px; }
+  #searchInput {
+    flex: 1 1 auto;
+    width: 100%;
+    background: transparent; border: none; outline: none;
+    color: var(--text);
+    font-size: 16px; font-family: inherit;
+    padding: 15px 12px 15px 0;
+  }
+  #searchInput::placeholder { color: var(--text-faint); }
+  .clear-btn {
+    flex: 0 0 auto;
+    margin-right: 8px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: none; background: rgba(255,255,255,0.06);
+    color: var(--text-dim);
+    cursor: pointer;
+    display: none;
+    align-items: center; justify-content: center;
+    font-size: 16px; line-height: 1;
+    transition: background .15s;
+  }
+  .clear-btn:hover { background: rgba(255,255,255,0.12); }
+  .clear-btn.show { display: flex; }
+
+  .hint-row {
+    margin-top: 14px;
+    font-size: 13px; color: var(--text-faint);
+    display: flex; flex-wrap: wrap; gap: 8px 14px;
+    align-items: center;
+  }
+  .hint-chip {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 12.5px; font-weight: 600;
+    cursor: pointer;
+    transition: all .18s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hint-chip:hover, .hint-chip:active {
+    color: var(--neon);
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+  }
+
+  .result {
+    margin-top: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+  }
+  .result.active {
+    opacity: 1; transform: translateY(0); pointer-events: auto;
+  }
+  .result-empty {
+    margin-top: 18px;
+    text-align: center;
+    padding: 30px 18px;
+    color: var(--text-faint);
+    font-size: 14px;
+  }
+  .result-label {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 1.4px;
+    text-transform: uppercase; color: var(--text-faint);
+  }
+  .result-city {
+    margin-top: 6px;
+    font-size: 24px; font-weight: 800; letter-spacing: -0.01em;
+    color: var(--text);
+    word-break: break-word;
+  }
+  .result-city .country {
+    color: var(--text-dim); font-weight: 500; font-size: 16px;
+  }
+  .result-sub {
+    margin-top: 6px; font-size: 13.5px; color: var(--text-dim);
+  }
+
+  .preview-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin-top: 18px;
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, var(--neon-bright), var(--neon));
+    color: #04101f;
+    font-size: 16px; font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 10px 28px rgba(56,170,255,0.32), 0 0 0 1px rgba(56,170,255,0.3) inset;
+    transition: transform .15s, box-shadow .15s, filter .15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .preview-btn:hover, .preview-btn:active {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 38px rgba(56,170,255,0.42), 0 0 0 1px rgba(56,170,255,0.5) inset;
+    filter: brightness(1.06);
+  }
+  .preview-btn svg { width: 20px; height: 20px; flex: 0 0 auto; }
+
+  .prepare-btn {
+    margin-top: 10px;
+    background: linear-gradient(135deg, var(--accent-green), #19c074);
+    color: #04130c;
+    box-shadow: 0 10px 28px rgba(43,214,138,0.3), 0 0 0 1px rgba(43,214,138,0.3) inset;
+  }
+  .prepare-btn:hover, .prepare-btn:active {
+    box-shadow: 0 16px 38px rgba(43,214,138,0.42), 0 0 0 1px rgba(43,214,138,0.5) inset;
+    filter: brightness(1.06);
+  }
+
+  .result-extra {
+    margin-top: 14px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .extra-link {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 10px;
+    border-radius: 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 13.5px; font-weight: 600;
+    text-decoration: none;
+    transition: border-color .15s, color .15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .extra-link:hover, .extra-link:active {
+    border-color: var(--border-strong);
+    color: var(--neon);
+  }
+  .extra-link svg { width: 16px; height: 16px; flex: 0 0 auto; }
+
+  .section-title {
+    margin: 34px 0 16px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 800; letter-spacing: -0.01em;
+  }
+  .section-title .badge {
+    flex: 0 0 auto;
+    width: 26px; height: 26px; border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--neon);
+    font-size: 13px; font-weight: 800;
+  }
+
+  .accordion {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .acc-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .acc-item.open {
+    border-color: var(--border-strong);
+    box-shadow: 0 8px 24px rgba(56,170,255,0.14);
+  }
+  .acc-head {
+    display: flex; align-items: center; gap: 12px;
+    width: 100%;
+    padding: 16px 18px;
+    background: transparent; border: none; cursor: pointer;
+    color: var(--text); font-family: inherit; text-align: left;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .acc-num {
+    flex: 0 0 auto;
+    width: 30px; height: 30px; border-radius: 9px;
+    background: linear-gradient(135deg, rgba(56,170,255,0.22), rgba(56,170,255,0.06));
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800; color: var(--neon);
+  }
+  .acc-title {
+    flex: 1 1 auto; font-size: 15px; font-weight: 700; line-height: 1.35;
+  }
+  .acc-chevron {
+    flex: 0 0 auto; color: var(--text-faint);
+    transition: transform .25s;
+  }
+  .acc-item.open .acc-chevron { transform: rotate(180deg); color: var(--neon); }
+  .acc-chevron svg { width: 18px; height: 18px; display: block; }
+  .acc-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height .3s ease;
+  }
+  .acc-body-inner {
+    padding: 0 18px 18px 60px;
+    font-size: 14px; color: var(--text-dim); line-height: 1.6;
+  }
+  .acc-body-inner p + p { margin-top: 8px; }
+  .acc-body-inner strong { color: var(--text); font-weight: 700; }
+  .acc-body-inner .kbd {
+    display: inline-block;
+    padding: 2px 8px; border-radius: 6px;
+    background: rgba(56,170,255,0.14);
+    border: 1px solid var(--border);
+    color: var(--neon);
+    font-size: 12.5px; font-weight: 700;
+  }
+  .tip-row {
+    margin-top: 12px;
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 10px 12px;
+    background: rgba(43,214,138,0.08);
+    border: 1px solid rgba(43,214,138,0.22);
+    border-radius: 10px;
+    font-size: 13px; color: var(--accent-green);
+  }
+  .tip-row svg { width: 16px; height: 16px; flex: 0 0 auto; margin-top: 1px; }
+
+  .banner {
+    margin-top: 18px;
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, rgba(255,184,77,0.12), rgba(255,184,77,0.04));
+    border: 1px solid rgba(255,184,77,0.25);
+    border-radius: 14px;
+    font-size: 13px; color: var(--accent-amber); line-height: 1.5;
+  }
+  .banner svg { width: 20px; height: 20px; flex: 0 0 auto; margin-top: 1px; }
+  .banner b { color: #ffd089; font-weight: 700; }
+
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    color: var(--text-faint);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  footer .dot { margin: 0 6px; opacity: 0.5; }
+
+  @media (max-width: 420px) {
+    .result-extra { grid-template-columns: 1fr; }
+    .acc-body-inner { padding-left: 18px; }
+    .acc-body-inner .acc-num-pad { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="logo-row">
+        <span class="logo-icon"></span>
+        <span class="logo-text">Offline Maps DE</span>
+      </div>
+      <h1>Never get lost when you land</h1>
+      <p class="lead">Search any German city, town, or village. Get an instant map link and step-by-step instructions to save it offline before your signal disappears.</p>
+    </header>
+
+    <div class="search-card">
+      <div class="search-wrap">
+        <span class="search-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+        </span>
+        <input id="searchInput" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Type a city, town or village…" aria-label="Search German city" />
+        <button class="clear-btn" id="clearBtn" aria-label="Clear search">×</button>
+      </div>
+      <div class="hint-row">
+        <span>Try:</span>
+        <span class="hint-chip" data-city="Munich">Munich</span>
+        <span class="hint-chip" data-city="Berlin">Berlin</span>
+        <span class="hint-chip" data-city="Tübingen">Tübingen</span>
+        <span class="hint-chip" data-city="Freiburg">Freiburg</span>
+      </div>
+    </div>
+
+    <section id="resultCard" class="result" aria-live="polite">
+      <div class="result-label">Selected location</div>
+      <div class="result-city"><span id="cityName">—</span> <span class="country">, Germany</span></div>
+      <div class="result-sub" id="resultSub">Tap "Preview Sector" to see the location, or "Prepare Offline Map" to open it in Google Maps ready for you to save.</div>
+      <a id="previewBtn" class="preview-btn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6"/><rect x="3" y="3" width="18" height="18" rx="3"/>
+        </svg>
+        <span>Preview Sector on Map</span>
+      </a>
+      <a id="prepareBtn" class="preview-btn prepare-btn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Prepare Offline Map</span>
+      </a>
+      <div class="result-extra">
+        <a id="directionsLink" class="extra-link" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+          </svg>
+          Get Directions
+        </a>
+      </div>
+    </section>
+
+    <div id="emptyState" class="result-empty">
+      Start typing above to preview and prepare your offline map.
+    </div>
+
+    <div class="section-title">
+      <span class="badge">i</span>
+      Finish the Download in Google Maps
+    </div>
+
+    <div class="banner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>
+      </svg>
+      <div><b>Do this before you fly.</b> Download your map while you still have internet (home Wi-Fi or Indian data roaming). Once you land in Germany with no signal, you can still navigate freely.</div>
+    </div>
+
+    <div class="accordion" id="accordion">
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-num">1</span>
+          <span class="acc-title">Open Google Maps on your phone now</span>
+          <span class="acc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Open the <strong>Google Maps app</strong> on your phone while you still have a data connection. If you don't have it installed, install it from the Play Store or App Store first.</p>
+          <p>Make sure Wi-Fi is on, or use your Indian SIM's data roaming — the map file is large and needs internet to download once.</p>
+        </div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-num">2</span>
+          <span class="acc-title">Search for your German city or village</span>
+          <span class="acc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>If you tapped <strong>Prepare Offline Map</strong> above, Google Maps already opens at the right spot — skip to step 3.</p>
+          <p>Otherwise, search for <span class="kbd" id="kbd1">your city</span> in the Maps search bar and tap the result that shows <strong>, Germany</strong> to drop a pin on it.</p>
+        </div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-num">3</span>
+          <span class="acc-title">Open the menu and tap "Offline Maps"</span>
+          <span class="acc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Tap your <strong>profile picture</strong> (top-right) to open the menu, then select <span class="kbd">Offline maps</span>.</p>
+          <p>On older Android versions, tap the three-line <strong>hamburger menu</strong> on the left instead.</p>
+        </div></div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false">
+          <span class="acc-num">4</span>
+          <span class="acc-title">Select your area and download</span>
+          <span class="acc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-body"><div class="acc-body-inner">
+          <p>Tap <span class="kbd">Select your own map</span>. A blue rectangle appears over the map — drag and resize it so it fully covers your city boundary, your airport, and your train station.</p>
+          <p>Tap <span class="kbd">Download</span>. Wait for the file to save to your phone storage. You'll see it listed under "Offline maps" when it's done.</p>
+          <div class="tip-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <span>Repeat this for every city on your trip (airport city + your university town). Saved maps stay usable for 30 days, then update automatically when you're online again.</span>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <footer>
+      This site opens Google Maps for you — the actual offline download happens inside the Google Maps app.<span class="dot">•</span>Not affiliated with Google Maps.
+    </footer>
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  var input = document.getElementById("searchInput");
+  var clearBtn = document.getElementById("clearBtn");
+  var resultCard = document.getElementById("resultCard");
+  var emptyState = document.getElementById("emptyState");
+  var cityName = document.getElementById("cityName");
+  var previewBtn = document.getElementById("previewBtn");
+  var prepareBtn = document.getElementById("prepareBtn");
+  var directionsLink = document.getElementById("directionsLink");
+  var kbd1 = document.getElementById("kbd1");
+
+  function formatCity(raw) {
+    return (raw || "").trim();
+  }
+
+  function buildLinks(city) {
+    var q = encodeURIComponent(city + ",Germany");
+    return {
+      preview: "https://www.google.com/maps/search/?api=1&query=" + q,
+      prepare: "https://maps.google.com/?q=" + q,
+      directions: "https://www.google.com/maps/dir/?api=1&destination=" + q
+    };
+  }
+
+  function update() {
+    var city = formatCity(input.value);
+
+    if (city.length === 0) {
+      resultCard.classList.remove("active");
+      emptyState.style.display = "block";
+      clearBtn.classList.remove("show");
+      previewBtn.removeAttribute("href");
+      previewBtn.setAttribute("aria-disabled", "true");
+      prepareBtn.removeAttribute("href");
+      prepareBtn.setAttribute("aria-disabled", "true");
+      return;
+    }
+
+    clearBtn.classList.add("show");
+    emptyState.style.display = "none";
+    resultCard.classList.add("active");
+
+    var links = buildLinks(city);
+    cityName.textContent = city;
+    previewBtn.setAttribute("href", links.preview);
+    previewBtn.removeAttribute("aria-disabled");
+    prepareBtn.setAttribute("href", links.prepare);
+    prepareBtn.removeAttribute("aria-disabled");
+    directionsLink.setAttribute("href", links.directions);
+    kbd1.textContent = city;
+  }
+
+  input.addEventListener("input", update);
+  input.addEventListener("keyup", update);
+
+  clearBtn.addEventListener("click", function () {
+    input.value = "";
+    update();
+    input.focus();
+  });
+
+  var chips = document.querySelectorAll(".hint-chip");
+  for (var i = 0; i < chips.length; i++) {
+    (function (chip) {
+      chip.addEventListener("click", function () {
+        input.value = chip.getAttribute("data-city");
+        update();
+        input.focus();
+      });
+    })(chips[i]);
+  }
+
+  var accHeads = document.querySelectorAll(".acc-head");
+  for (var j = 0; j < accHeads.length; j++) {
+    (function (head) {
+      var item = head.parentElement;
+      var body = head.nextElementSibling;
+      head.addEventListener("click", function () {
+        var isOpen = item.classList.contains("open");
+        for (var k = 0; k < accHeads.length; k++) {
+          accHeads[k].parentElement.classList.remove("open");
+          accHeads[k].setAttribute("aria-expanded", "false");
+          accHeads[k].nextElementSibling.style.maxHeight = null;
+        }
+        if (!isOpen) {
+          item.classList.add("open");
+          head.setAttribute("aria-expanded", "true");
+          body.style.maxHeight = body.scrollHeight + "px";
+        }
+      });
+    })(accHeads[j]);
+  }
+
+  window.addEventListener("resize", function () {
+    var openItem = document.querySelector(".acc-item.open .acc-body");
+    if (openItem) { openItem.style.maxHeight = openItem.scrollHeight + "px"; }
+  });
+
+  update();
+})();
+</script>
+</body>
+</html>
