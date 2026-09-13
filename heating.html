@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>German Heating Guide | Azubi Housing</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0d1117;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        header {
+            padding: 40px 20px 25px;
+            text-align: center;
+            background: #111827;
+            border-bottom: 1px solid #263241;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 34px;
+            color: #00d2ff;
+        }
+
+        header p {
+            margin-top: 10px;
+            color: #b8c1cc;
+            font-size: 16px;
+        }
+
+        .section {
+            margin: 25px 0;
+            padding: 25px;
+            background: #151b23;
+            border: 1px solid #273342;
+            border-radius: 15px;
+        }
+
+        .section h2 {
+            margin-top: 0;
+            color: #00d2ff;
+            font-size: 24px;
+        }
+
+        .section h3 {
+            color: #ffffff;
+        }
+
+        .warning {
+            padding: 18px;
+            border-left: 4px solid #ffcc00;
+            background: #211f15;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .danger {
+            padding: 18px;
+            border-left: 4px solid #ff3333;
+            background: #241719;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .success {
+            padding: 18px;
+            border-left: 4px solid #00ff66;
+            background: #132219;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        /* Heating Dial */
+
+        .dial-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .dial {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 20px auto;
+            background: #1d2632;
+            border: 8px solid #303d4d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.08);
+        }
+
+        .dial-center {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            background: #0d1117;
+            border: 3px solid #00d2ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .dial-center .temperature {
+            font-size: 30px;
+            font-weight: bold;
+            color: #00d2ff;
+        }
+
+        .dial-center .label {
+            font-size: 13px;
+            color: #aeb8c4;
+        }
+
+        .dial-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .dial-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #455466;
+            background: #1b2430;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .dial-btn:hover {
+            transform: scale(1.08);
+            border-color: #00d2ff;
+        }
+
+        .dial-btn.active {
+            background: #00d2ff;
+            color: #0d1117;
+            border-color: #00d2ff;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.35);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .stat {
+            background: #0d1117;
+            border: 1px solid #293544;
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .stat-title {
+            color: #8f9baa;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        #costVal {
+            color: #ffcc00;
+        }
+
+        /* Accordions */
+
+        .accordion {
+            background: #111821;
+            border: 1px solid #2a3746;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 18px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .accordion-header:hover {
+            background: #18222e;
+        }
+
+        .accordion-header::after {
+            content: "+";
+            color: #00d2ff;
+            font-size: 24px;
+        }
+
+        .accordion.active .accordion-header::after {
+            content: "−";
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            transition: max-height 0.3s ease;
+            color: #c2cad4;
+        }
+
+        .accordion.active .accordion-content {
+            padding-bottom: 18px;
+        }
+
+        ul {
+            padding-left: 22px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .tip-box {
+            background: #101923;
+            border: 1px solid #2d4052;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .tip-box strong {
+            color: #00d2ff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 15px;
+            color: #788493;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 27px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .dial {
+                width: 220px;
+                height: 220px;
+            }
+
+            .dial-center {
+                width: 110px;
+                height: 110px;
+            }
+
+            .dial-center .temperature {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1>🇩🇪 German Heating Guide</h1>
+        <p>Understand your radiator, save energy and avoid unnecessary heating costs.</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- Heating Dial -->
+    <section class="section">
+
+        <h2>🌡️ What Does Your Radiator Setting Mean?</h2>
+
+        <p>
+            German radiators often use a numbered thermostat rather than a direct
+            temperature display. The numbers generally correspond to different
+            target room temperatures.
+        </p>
+
+        <div class="warning">
+            <strong>Important:</strong>
+            The exact temperature can vary depending on the thermostat and room
+            conditions. Use these values as a practical guide rather than an exact
+            measurement.
+        </div>
+
+        <div class="dial-container">
+
+            <div class="dial">
+
+                <div class="dial-center">
+                    <div class="temperature" id="tempVal">20°C</div>
+                    <div class="label">Target</div>
+                </div>
+
+            </div>
+
+            <div class="dial-buttons">
+
+                <button
+                    class="dial-btn"
+                    onclick="setDial(1, '12°C', 'Eco / Low', 'Lowest Cost 🟢')">
+                    1
+                </button>
+
+                <button
+                    class="dial-btn"
+                    onclick="setDial(2, '16°C', 'Sleeping Mode', 'Budget Friendly 🟢')">
+                    2
+                </button>
+
+                <button
+                    class="dial-btn active"
+                    onclick="setDial(3, '20°C', 'Standard Living', 'Recommended Balance 🟡')">
+                    3
+                </button>
+
+                <button
+                    class="dial-btn"
+                    onclick="setDial(4, '24°C', 'Heavy Heat', 'Expensive Bills 🔴')">
+                    4
+                </button>
+
+                <button
+                    class="dial-btn"
+                    onclick="setDial(5, '28°C', 'Maximum Capacity', 'Wallet Drain Danger 🛑')">
+                    5
+                </button>
+
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="stat-title">Temperature</div>
+                    <div class="stat-value" id="tempStat">20°C</div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-title">Profile</div>
+                    <div class="stat-value" id="profileVal">
+                        Standard Living
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-title">Cost Impact</div>
+                    <div class="stat-value" id="costVal">
+                        Recommended Balance 🟡
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Basic Heating Advice -->
+    <section class="section">
+
+        <h2>🔥 Smart Heating Rules</h2>
+
+        <div class="success">
+            <strong>Best practice:</strong>
+            Keep a reasonably stable temperature instead of constantly switching
+            the heating completely on and off.
+        </div>
+
+        <ul>
+            <li>🌡️ Around 18–21°C is usually comfortable for living spaces.</li>
+            <li>🛏️ Bedrooms can generally be cooler.</li>
+            <li>🚪 Close doors between heated and cooler rooms.</li>
+            <li>🪟 Do not permanently leave windows tilted open while heating.</li>
+            <li>💨 Ventilate quickly with the windows fully open.</li>
+            <li>🧱 Keep radiators unobstructed by furniture or thick curtains.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- Accordion 1 -->
+    <section class="section">
+
+        <h2>💨 Ventilation</h2>
+
+        <div class="accordion">
+
+            <div
+                class="accordion-header"
+                onclick="toggleAccordion(this.parentElement)">
+                What is Stoßlüften?
+            </div>
+
+            <div class="accordion-content">
+
+                <p>
+                    <strong>Stoßlüften</strong> means opening the windows fully
+                    for a short period to replace humid indoor air with fresh air.
+                </p>
+
+                <ul>
+                    <li>Open the window completely.</li>
+                    <li>Usually ventilate for several minutes.</li>
+                    <li>Close the window afterwards.</li>
+                    <li>Avoid leaving the window tilted open for hours during winter.</li>
+                </ul>
+
+                <div class="tip-box">
+                    <strong>Tip:</strong>
+                    Cross-ventilation through windows on opposite sides of an
+                    apartment can make ventilation much faster.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Accordion 2 -->
+        <div class="accordion">
+
+            <div
+                class="accordion-header"
+                onclick="toggleAccordion(this.parentElement)">
+                The Legal Liability Trap
+            </div>
+
+            <div class="accordion-content">
+
+                <p>
+                    Heating and ventilation can matter when landlords and tenants
+                    discuss moisture or mould damage.
+                </p>
+
+                <p>
+                    However, responsibility depends on the circumstances, the
+                    building, ventilation behaviour, heating behaviour and the
+                    actual cause of the moisture problem.
+                </p>
+
+                <div class="danger">
+                    <strong>Don't panic:</strong>
+                    If you notice mould or persistent moisture, document the
+                    problem and inform your landlord promptly rather than trying
+                    to determine liability yourself.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Accordion 3 -->
+        <div class="accordion">
+
+            <div
+                class="accordion-header"
+                onclick="toggleAccordion(this.parentElement)">
+                Post-Shower Protocol
+            </div>
+
+            <div class="accordion-content">
+
+                <p>
+                    Showers can create a large amount of humidity, especially in
+                    small bathrooms.
+                </p>
+
+                <ul>
+                    <li>🚿 Remove excess water from wet surfaces where practical.</li>
+                    <li>💨 Ventilate the bathroom after showering.</li>
+                    <li>🚪 Keep bathroom humidity from spreading through the apartment.</li>
+                    <li>🪟 Use short, effective ventilation rather than leaving windows tilted for long periods.</li>
+                </ul>
+
+                <div class="tip-box">
+                    <strong>Simple routine:</strong>
+                    Shower → ventilate → close the window → allow the room to dry.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Winter Guide -->
+    <section class="section">
+
+        <h2>❄️ Winter Heating Checklist</h2>
+
+        <ul>
+            <li>✔️ Check that radiators are not blocked.</li>
+            <li>✔️ Keep rooms at a reasonable temperature.</li>
+            <li>✔️ Ventilate briefly and effectively.</li>
+            <li>✔️ Watch for condensation around windows.</li>
+            <li>✔️ Keep an eye on unusual dampness or mould.</li>
+            <li>✔️ Report building-related moisture problems early.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- Important Note -->
+    <section class="section">
+
+        <h2>⚠️ Important</h2>
+
+        <p>
+            Heating costs depend on many factors, including the building,
+            insulation, energy source, thermostat, apartment size and energy
+            prices. The settings shown above are therefore practical examples,
+            not exact predictions of your heating bill.
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+    Azubi Housing 🇩🇪 · Germany Living Guide
+</footer>
+
+
+<script>
+
+    function setDial(num, temp, profile, cost) {
+
+        // Remove active state from all buttons
+        document.querySelectorAll('.dial-btn').forEach(function(button, index) {
+
+            if (index === num - 1) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+
+        });
+
+
+        // Update main temperature
+        document.getElementById('tempVal').innerText = temp;
+
+        // Update temperature stat
+        document.getElementById('tempStat').innerText = temp;
+
+        // Update profile
+        document.getElementById('profileVal').innerText = profile;
+
+        // Update cost
+        const costElement = document.getElementById('costVal');
+
+        costElement.innerText = cost;
+
+
+        // Change cost colour
+        if (num <= 2) {
+
+            costElement.style.color = '#00ff66';
+
+        } else if (num === 3) {
+
+            costElement.style.color = '#ffcc00';
+
+        } else {
+
+            costElement.style.color = '#ff3333';
+
+        }
+
+    }
+
+
+    function toggleAccordion(accordion) {
+
+        // Close all other accordions
+        document.querySelectorAll('.accordion').forEach(function(item) {
+
+            if (item !== accordion) {
+
+                item.classList.remove('active');
+
+                const otherContent =
+                    item.querySelector('.accordion-content');
+
+                if (otherContent) {
+                    otherContent.style.maxHeight = null;
+                }
+
+            }
+
+        });
+
+
+        // Toggle selected accordion
+        accordion.classList.toggle('active');
+
+        const content =
+            accordion.querySelector('.accordion-content');
+
+
+        if (accordion.classList.contains('active')) {
+
+            content.style.maxHeight =
+                content.scrollHeight + 'px';
+
+        } else {
+
+            content.style.maxHeight = null;
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
