@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find official German university student job portals, HiWi jobs, Werkstudent opportunities and career services.">
+  <title>Uni Job Portal Finder | Germany Student Toolkit</title>
+
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0b1728;
+      --card: rgba(17, 30, 50, 0.82);
+      --card2: rgba(23, 40, 66, 0.72);
+      --text: #f5f8ff;
+      --muted: #9fb0c8;
+      --blue: #35b9ff;
+      --blue2: #1689ff;
+      --green: #3ee59a;
+      --border: rgba(255,255,255,0.10);
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(53,185,255,0.18), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(22,137,255,0.12), transparent 28%),
+        linear-gradient(145deg, var(--bg), var(--bg2));
+      padding: 22px 14px 45px;
+    }
+
+    .container {
+      width: min(980px, 100%);
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 18px 8px 28px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border: 1px solid rgba(53,185,255,0.28);
+      background: rgba(53,185,255,0.08);
+      color: #8fdcff;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: clamp(29px, 7vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -1.8px;
+      margin-bottom: 12px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #ffffff, #72d0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    header p {
+      max-width: 680px;
+      margin: auto;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .search-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 9px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #c8d5e7;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    input {
+      flex: 1;
+      min-width: 0;
+      height: 54px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 0 16px;
+      outline: none;
+      color: white;
+      background: rgba(0,0,0,0.22);
+      font-size: 15px;
+    }
+
+    input::placeholder {
+      color: #71839d;
+    }
+
+    input:focus {
+      border-color: rgba(53,185,255,0.7);
+      box-shadow: 0 0 0 3px rgba(53,185,255,0.10);
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      font-weight: 800;
+      color: white;
+    }
+
+    .find-btn {
+      min-width: 155px;
+      border-radius: 14px;
+      padding: 0 18px;
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      box-shadow: 0 10px 28px rgba(22,137,255,0.25);
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .find-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .examples {
+      margin-top: 11px;
+      color: #71839d;
+      font-size: 12px;
+    }
+
+    .examples span {
+      color: #a9bdd6;
+    }
+
+    .result {
+      display: none;
+      margin-top: 16px;
+      background: var(--card2);
+      border: 1px solid rgba(62,229,154,0.22);
+      border-radius: 20px;
+      padding: 18px;
+      animation: show .25s ease;
+    }
+
+    @keyframes show {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-top {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .uni-icon {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(62,229,154,0.10);
+      border: 1px solid rgba(62,229,154,0.20);
+      font-size: 22px;
+    }
+
+    .result h2 {
+      font-size: 19px;
+      margin-bottom: 4px;
+    }
+
+    .result p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .action {
+      min-height: 54px;
+      padding: 12px 13px;
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(0,0,0,0.18);
+      text-align: left;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .action:hover {
+      transform: translateY(-2px);
+      border-color: rgba(53,185,255,0.4);
+      background: rgba(53,185,255,0.07);
+    }
+
+    .action strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .action small {
+      color: #8092aa;
+      font-size: 11px;
+    }
+
+    .tip {
+      margin-top: 13px;
+      padding: 12px 13px;
+      border-radius: 12px;
+      background: rgba(53,185,255,0.06);
+      border: 1px solid rgba(53,185,255,0.10);
+      color: #9eb5cf;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .section {
+      margin-top: 34px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 13px;
+    }
+
+    .job-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .job-card {
+      background: rgba(17,30,50,0.65);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 17px;
+    }
+
+    .job-card .emoji {
+      font-size: 23px;
+      margin-bottom: 9px;
+    }
+
+    .job-card h3 {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .job-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .how {
+      background: rgba(17,30,50,0.60);
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      padding: 18px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .step {
+      display: flex;
+      gap: 10px;
+    }
+
+    .number {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(53,185,255,0.13);
+      color: #75d0ff;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .step h3 {
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    footer {
+      text-align: center;
+      color: #60728b;
+      font-size: 11px;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 14px 11px 35px;
+      }
+
+      .search-card {
+        padding: 15px;
+        border-radius: 19px;
+      }
+
+      .search-row {
+        flex-direction: column;
+      }
+
+      .find-btn {
+        min-height: 52px;
+      }
+
+      .actions,
+      .job-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <header>
+      <div class="badge">🇩🇪 Germany Student Toolkit</div>
+      <h1><span class="gradient">Uni Job Portal Finder</span> 🎓</h1>
+      <p>
+        Enter your German university and quickly access targeted searches
+        for official university jobs, HiWi positions, Werkstudent roles and
+        Career Service opportunities.
+      </p>
+    </header>
+
+    <section class="search-card">
+      <label class="label" for="uniName">Enter your university</label>
+
+      <div class="search-row">
+        <input
+          id="uniName"
+          type="text"
+          autocomplete="off"
+          placeholder="e.g. RWTH Aachen, TUM, LMU, University of Cologne"
+          aria-label="University name"
+        >
+
+        <button class="find-btn" onclick="findJobPortal()">
+          Find Jobs 🚀
+        </button>
+      </div>
+
+      <div class="examples">
+        Try: <span>RWTH Aachen</span> · <span>TU Munich</span> ·
+        <span>University of Cologne</span>
+      </div>
+
+      <div class="result" id="result">
+        <div class="result-top">
+          <div class="uni-icon">🎓</div>
+          <div>
+            <h2 id="resultTitle">University Jobs</h2>
+            <p>
+              Choose the type of opportunity you want to search for.
+              The buttons open targeted Google searches focused on the
+              university you entered.
+            </p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="action" onclick="openSearch('official')">
+            <strong>🏛️ Official University Jobs</strong>
+            <small>University jobs & student vacancies</small>
+          </button>
+
+          <button class="action" onclick="openSearch('hiwi')">
+            <strong>🔬 HiWi / Research Jobs</strong>
+            <small>Student assistant & research positions</small>
+          </button>
+
+          <button class="action" onclick="openSearch('werkstudent')">
+            <strong>💼 Werkstudent Jobs</strong>
+            <small>Working-student opportunities</small>
+          </button>
+
+          <button class="action" onclick="openSearch('career')">
+            <strong>🚀 Career Service</strong>
+            <small>University career portal & job board</small>
+          </button>
+        </div>
+
+        <div class="tip">
+          💡 <strong>Tip:</strong> For an official university portal,
+          check that the result belongs to your university's official
+          website/domain before applying or entering personal information.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">What can you find? 🔎</h2>
+
+      <div class="job-grid">
+        <article class="job-card">
+          <div class="emoji">🔬</div>
+          <h3>HiWi / Student Assistant</h3>
+          <p>Research, laboratory, teaching and university assistant positions.</p>
+        </article>
+
+        <article class="job-card">
+          <div class="emoji">💼</div>
+          <h3>Werkstudent</h3>
+          <p>Working-student roles that can fit around your university schedule.</p>
+        </article>
+
+        <article class="job-card">
+          <div class="emoji">🚀</div>
+          <h3>Career Services</h3>
+          <p>University career centres, job boards, company events and internships.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">How it works ⚡</h2>
+
+      <div class="how">
+        <div class="steps">
+          <div class="step">
+            <div class="number">1</div>
+            <div>
+              <h3>Enter your university</h3>
+              <p>Type the name of your German university.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="number">2</div>
+            <div>
+              <h3>Select a job type</h3>
+              <p>Choose official jobs, HiWi, Werkstudent or Career Service.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="number">3</div>
+            <div>
+              <h3>Verify & apply</h3>
+              <p>Open the result, verify the official source and apply there.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Germany Student Toolkit · Built for students searching for university job opportunities
+    </footer>
+
+  </main>
+
+  <script>
+    let currentUniversity = "";
+
+    function getUniversity() {
+      return document.getElementById("uniName").value.trim();
+    }
+
+    function findJobPortal() {
+      const university = getUniversity();
+
+      if (!university) {
+        document.getElementById("uniName").focus();
+        alert("Please enter your university name first.");
+        return;
+      }
+
+      currentUniversity = university;
+
+      document.getElementById("resultTitle").textContent =
+        university + " — Job Search";
+
+      document.getElementById("result").style.display = "block";
+
+      document.getElementById("result").scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+    }
+
+    function openSearch(type) {
+      const university = currentUniversity || getUniversity();
+
+      if (!university) {
+        alert("Please enter your university name first.");
+        return;
+      }
+
+      let query = "";
+
+      if (type === "official") {
+        query =
+          '"' + university + '"' +
+          ' ("Stellenangebote" OR "Jobs" OR "Jobportal" OR "Stellenmarkt")' +
+          ' (Student OR students OR studentische)';
+      }
+
+      if (type === "hiwi") {
+        query =
+          '"' + university + '"' +
+          ' ("HiWi" OR "Hilfskraft" OR "studentische Hilfskraft" OR "wissenschaftliche Hilfskraft")';
+      }
+
+      if (type === "werkstudent") {
+        query =
+          '"' + university + '"' +
+          ' ("Werkstudent" OR "Werkstudenten" OR "working student")';
+      }
+
+      if (type === "career") {
+        query =
+          '"' + university + '"' +
+          ' ("Career Service" OR "Career Center" OR "Karriereportal" OR "Jobbörse")';
+      }
+
+      const url =
+        "https://www.google.com/search?q=" +
+        encodeURIComponent(query);
+
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    document.getElementById("uniName").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        findJobPortal();
+      }
+    });
+  </script>
+</body>
+</html>
