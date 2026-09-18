@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Germany SIM Card Survival Guide</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #161f30;
+            --accent: #ff3366;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --code-bg: #090d16;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-sizing: border-box;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        h1 {
+            font-size: 22px;
+            margin: 15px 0 5px 0;
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin: 0;
+        }
+        .step {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .step:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        h2 {
+            font-size: 16px;
+            color: var(--accent);
+            margin: 0 0 8px 0;
+        }
+        p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin: 0;
+        }
+        ul {
+            margin: 8px 0 0 0;
+            padding-left: 20px;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+        .code-container {
+            margin-top: 15px;
+            background: var(--code-bg);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .code-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-main);
+            padding: 4px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        pre {
+            margin: 0;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            color: #e2e8f0;
+            line-height: 1.5;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <span class="badge">🚨 Expat & Student Hack</span>
+        <h1>Germany SIM Card Guide</h1>
+        <p class="subtitle">Get mobile data without falling into a 2-year trap</p>
+    </div>
+
+    <div class="step">
+        <h2>1. The 2-Year Contract Trap</h2>
+        <p>Walking into major outlets like O2, Vodafone, or Telekom usually locks you into a mandatory <strong>24-month contract</strong>. Breaking it early if you relocate out of Germany is incredibly tedious, and the automated billing cycle will continue draining your bank account.</p>
+    </div>
+
+    <div class="step">
+        <h2>2. The Safe Strategy: Prepaid Flexibility</h2>
+        <p>To avoid massive cancellation fees, only opt for contract-free monthly rolling packages which you can dynamically cancel or pause every 30 days.</p>
+    </div>
+
+    <div class="step">
+        <h2>3. Best Initial Setup Options</h2>
+        <ul>
+            <li><strong>ALDI Talk / Lidl Connect:</strong> Cheap physical prepaid cards available immediately at supermarket billing counters. No hidden dynamic commitments.</li>
+            <li><strong>Fraenk:</strong> A premium, zero-commitment digital app eSIM that runs cleanly on the high-speed Telekom infrastructure. Managed entirely within their application.</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h2>4. Early Cancellation Template</h2>
+        <p>If you signed a long-term plan and are permanently moving away, you can use your <strong>Abmeldung (City Deregistration)</strong> to invoke an extraordinary cancellation under Section 46 of the TKG. Use this template:</p>
+        
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-label">Kündigungsschreiben (German)</span>
+                <button class="copy-btn" onclick="copyCode()">Copy Text</button>
+            </div>
+            <pre id="template-text">Sehr geehrte Damen und Herren,
+
+hiermit kündige ich meinen Mobilfunkvertrag außerordentlich zum nächstmöglichen Zeitpunkt nach § 46 TKG wegen meiner dauerhaften Ausreise aus Deutschland.
+
+Kundennummer: [Account Number]
+Rufnummer: [Mobile Number]
+
+Meine offizielle Abmeldebestätigung füge ich als Nachweis bei. Bitte bestätigen Sie mir das Vertragsenddatum.
+
+Mit freundlichen Grüßen,
+[Your Name]</pre>
+        </div>
+    </div>
+
+    <div class="footer">
+        © Survival Hub • DM automated resources via GitHub Pages
+    </div>
+</div>
+
+<script>
+    function copyCode() {
+        const text = document.getElementById('template-text').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.innerText = 'Copied!';
+            setTimeout(() => { btn.innerText = 'Copy Text'; }, 2000);
+        });
+    }
+</script>
+
+</body>
+</html>
