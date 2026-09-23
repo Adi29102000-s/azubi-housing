@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Essential transport apps for international students travelling around Germany.">
+  <title>Germany Transit Essentials | Student Guide</title>
+
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0d1b2e;
+      --card: rgba(18, 32, 52, 0.88);
+      --card-hover: rgba(23, 42, 67, 0.95);
+      --text: #f7f9fc;
+      --muted: #9dafc5;
+      --blue: #35b9ff;
+      --green: #43d99b;
+      --red: #ec0016;
+      --border: rgba(255, 255, 255, 0.10);
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 20px 14px 42px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 5%, rgba(53, 185, 255, 0.17), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(67, 217, 155, 0.08), transparent 25%),
+        linear-gradient(145deg, var(--bg), var(--bg-soft));
+    }
+
+    .container {
+      width: min(760px, 100%);
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 12px 8px 28px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 12px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(53, 185, 255, 0.25);
+      border-radius: 999px;
+      background: rgba(53, 185, 255, 0.08);
+      color: #8bd8ff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(30px, 8vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 12px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #ffffff, #70d0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      max-width: 600px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .app-card {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 14px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .app-card:hover {
+      transform: translateY(-2px);
+      background: var(--card-hover);
+    }
+
+    .app-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+    }
+
+    .db-card::before { background: var(--red); }
+    .offi-card::before { background: var(--blue); }
+    .maps-card::before { background: var(--green); }
+
+    .app-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      margin-bottom: 14px;
+    }
+
+    .app-icon {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.07);
+      font-size: 24px;
+    }
+
+    .app-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .app-desc {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 7px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #b9c9dc;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .btn {
+      display: block;
+      padding: 11px 10px;
+      border-radius: 11px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(255, 255, 255, 0.06);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    .btn-ios {
+      background: #111111;
+    }
+
+    .btn-android {
+      background: #202124;
+    }
+
+    .note {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(53, 185, 255, 0.06);
+      color: #8fa4bc;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section-title {
+      margin-bottom: 12px;
+      font-size: 19px;
+    }
+
+    .tips {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .tip {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(18, 32, 52, 0.65);
+    }
+
+    .tip-icon {
+      font-size: 21px;
+      margin-bottom: 7px;
+    }
+
+    .tip strong {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .tip p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      color: #62758d;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 14px 11px 35px;
+      }
+
+      .app-card {
+        padding: 15px;
+        border-radius: 18px;
+      }
+
+      .tips {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        padding: 12px 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <header>
+      <div class="badge">🇩🇪 Germany Student Toolkit</div>
+      <h1><span class="gradient">Germany Transit Essentials</span> 🚆</h1>
+      <p class="subtitle">
+        The essential apps to help international students plan trains,
+        buses, trams and walking routes across Germany.
+      </p>
+    </header>
+
+    <!-- DB Navigator -->
+    <section class="app-card db-card">
+      <div class="app-header">
+        <div class="app-icon">🚆</div>
+        <div>
+          <div class="app-title">1. DB Navigator</div>
+          <div class="app-desc">
+            Plan journeys on Deutsche Bahn services, including ICE, IC,
+            RE and RB trains, and check live connections and disruptions.
+          </div>
+          <span class="tag">BEST FOR TRAINS</span>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <a
+          href="https://apps.apple.com/de/app/db-navigator/id343555245"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-ios"
+        > iPhone / iPad</a>
+
+        <a
+          href="https://play.google.com/store/apps/details?id=de.hafas.android.db"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-android"
+        >🤖 Android</a>
+      </div>
+
+      <div class="note">
+        💡 If you bought your Deutschlandticket through Deutsche Bahn,
+        you can manage it in the DB Navigator app. Other providers may
+        use their own ticket apps.
+      </div>
+    </section>
+
+    <!-- Öffi -->
+    <section class="app-card offi-card">
+      <div class="app-header">
+        <div class="app-icon">🚌</div>
+        <div>
+          <div class="app-title">2. Öffi — Public Transport</div>
+          <div class="app-desc">
+            A useful Android public-transport app for checking local
+            buses, trams, U-Bahn and other public-transport connections
+            in supported regions.
+          </div>
+          <span class="tag">ANDROID PUBLIC TRANSPORT</span>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <a
+          href="https://apps.apple.com/de/app/citymapper/id469463298"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-ios"
+        > iOS Alternative: Citymapper</a>
+
+        <a
+          href="https://play.google.com/store/apps/details?id=de.schildbach.oeffi"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-android"
+        >🤖 Öffi for Android</a>
+      </div>
+
+      <div class="note">
+        💡 Öffi is an Android app. The iPhone button above provides a
+        separate public-transport alternative rather than an iOS version
+        of Öffi.
+      </div>
+    </section>
+
+    <!-- Google Maps -->
+    <section class="app-card maps-card">
+      <div class="app-header">
+        <div class="app-icon">📍</div>
+        <div>
+          <div class="app-title">3. Google Maps</div>
+          <div class="app-desc">
+            Useful for door-to-door directions, walking routes, places,
+            local transport connections and navigating unfamiliar towns.
+          </div>
+          <span class="tag">BEST FOR DOOR-TO-DOOR NAVIGATION</span>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <a
+          href="https://apps.apple.com/de/app/google-maps/id585027354"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-ios"
+        > iPhone / iPad</a>
+
+        <a
+          href="https://play.google.com/store/apps/details?id=com.google.android.apps.maps"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-android"
+        >🤖 Android</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Quick tips for students 💡</h2>
+
+      <div class="tips">
+        <article class="tip">
+          <div class="tip-icon">🚄</div>
+          <strong>Long-distance trains</strong>
+          <p>Use DB Navigator to check ICE and IC connections and live travel updates.</p>
+        </article>
+
+        <article class="tip">
+          <div class="tip-icon">🚌</div>
+          <strong>Local transport</strong>
+          <p>Check the transport app that supports your city or region for local buses and trams.</p>
+        </article>
+
+        <article class="tip">
+          <div class="tip-icon">📍</div>
+          <strong>Finding an address</strong>
+          <p>Google Maps is useful when you need walking directions from a station to your destination.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      Created for international students in Germany 🇩🇪 · Germany Student Toolkit 🚆
+    </footer>
+
+  </main>
+</body>
+</html>
